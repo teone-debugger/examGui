@@ -1,6 +1,8 @@
 package interfaccia;
 
 import gioco.Dungeon;
+import gioco.Giocatore;
+import messaggi.Messaggio;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,14 +17,18 @@ public class FrameFight extends Frame{
 
     private PannelloTitled azioni;
 
+    private int turnoGiocatore, turnoPng;
 
     public FrameFight() {
         super("COMBATTI!!!");
 
+        turnoGiocatore = (int) (Math.random() * 20 + 1);
+        turnoPng = (int) (Math.random() * 20 + 1);
+        int margine = 3 * getHeight() / 100;
+
+
         azioni = new PannelloTitled("SCEGLI L'AZIONE");
         azioni.dimension(new Dimension(getWidthStandard(), getHeightStandard()));
-
-        int margine = 3 * getHeight() / 100;
         
         cura = new JButton("CURA");
             cura.setSize(getWidth() * 20 /100, getHeight() * 20 /100);
@@ -46,7 +52,7 @@ public class FrameFight extends Frame{
         fuga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setVisible(false);
             }
         });
         attacca = new JButton("ATTACCA");
@@ -56,14 +62,9 @@ public class FrameFight extends Frame{
         attacca.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                int turnoGiocatore = (int)(Math.random() * 20 + 1);
-                int turnoPng = (int)(Math.random() * 20 + 1);
-
-                Dungeon.getGiocatore().fightDinamic(Dungeon.getGiocatore().getNemico(), turnoGiocatore, turnoPng);
-
-                // ALLA MORTE DI UNO DEI DUE SCMPARE
-                // OGNI ATTACCO LE STST VARIANO
+                FrameGame.getMessaggi().setText("");
+                actionAttacca();
+                Messaggio.setMessaggio("");
             }
         });
 
@@ -76,8 +77,37 @@ public class FrameFight extends Frame{
 
 
         settings();
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 
+    }
+
+    private void actionAttacca(){
+
+        /**--- ATTACCA SE HO UN'ARMA ---**/
+        if(Giocatore.getArma() != null) {
+
+            Dungeon.getGiocatore().fightDinamic(Dungeon.getGiocatore().getNemico(), turnoGiocatore, turnoPng);
+            FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
+        }else{
+
+            setVisible(false);
+            FrameGame.getMessaggi().setText("NON PUOI COMBATTERE " + Dungeon.getGiocatore().getNemico().getNome() + " NON HAI UN ARMA");
+        }
+
+        /**--- ALLA MORTE DI UNO DEI DUE SCOMPARE LA FINESTRA ---**/
+        if(!Dungeon.getGiocatore().isVivo()){
+
+            FrameGame.getMessaggi().setText("MI DISPIACE MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " SEI MORTO IN QUEST'AVVENTURA");
+            setVisible(false);
+        }
+        if(!Dungeon.getGiocatore().getNemico().isVivo()){
+
+            FrameGame.getMessaggi().setText("MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " HAI SCONFITTO " + Dungeon.getGiocatore().getNemico().getNome());
+            setVisible(false);
+        }
+
+        /**--- CAMBIO LE STATS SULLA FINESTRA PRINCIPALE (OPZIONALE NON BELLISSIMO VEDI TU GIAN :) ) ---**/
+        FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()) + "\n" + Giocatore.statsToString(Dungeon.getGiocatore().getNemico()));
     }
 }

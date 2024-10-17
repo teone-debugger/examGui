@@ -1,5 +1,7 @@
 package gioco;
 
+import messaggi.Messaggio;
+
 public class Personaggio extends Posizione {
 
     private String nome;
@@ -92,17 +94,17 @@ public class Personaggio extends Posizione {
         /**--- ROLL 20 PER ATTACCARE ---**/
         if(this.rollD20() > personaggio.getPuntiArmatura()){
 
-            System.out.println("'" + this.getNome() + "' COLPISCE...");
+            Messaggio.addMessaggio("'" + this.getNome() + "' COLPISCE...");
 
             /**--- ROLL 20 PER DANNO GIOCATORE --> PNG ---**/
-            if(personaggio.getClass().getName().equals("gioco.Png")){
+            if(personaggio.getClass().getSimpleName().equals("Png")){
                 personaggio.damageTaken(this.rollDWeapon(Giocatore.getArma()));
             }else{
                 personaggio.damageTaken(this.rollD4());
             }
 
         }else{
-            System.out.println("'" + personaggio.getNome() + "' HA SCHIVATO IL COLPO...");
+            Messaggio.addMessaggio("'" + personaggio.getNome() + "' HA SCHIVATO IL COLPO...");
         }
     }
 
@@ -124,7 +126,7 @@ public class Personaggio extends Posizione {
 
     public void damageTaken(int danno){
 
-        System.out.println(this.nome + " HA RICEVUTO DANNO: " + danno);
+        Messaggio.addMessaggio(this.nome + " HA RICEVUTO DANNO: " + danno);
         this.puntiVita -= danno;
 
         if(this.puntiVita <= 0){

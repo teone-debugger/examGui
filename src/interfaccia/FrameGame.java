@@ -12,9 +12,9 @@ public class FrameGame extends Frame{
     private static Posizione oldPosizione;
 
     private PannelloText mappa;
-    private PannelloTitled inventario;
-    private PannelloTitled statistiche;
-    private PannelloTitled messaggi;
+    private static PannelloTitled inventario;
+    private static PannelloTitled statistiche;
+    private static PannelloTitled messaggi;
 
     private int widthMappa, heightMappa;
 
@@ -106,6 +106,17 @@ public class FrameGame extends Frame{
         /**--- CREAZIONE PANNELLO MAPPA ---**/
         mappa = new PannelloText();
         mappa.setColor(Color.BLACK, Color.GREEN);
+
+        /**--- FACILE INDENTIFICAZIONE PERSONAGGIO ---**/
+        for (int i = 0; i < mappa.getJtextArea().getText().length(); i++) {
+
+            if(mappa.getJtextArea().getText().charAt(i) == '@') {
+
+                mappa.getJtextArea().setCaretColor(Color.RED);
+                SwingUtilities.updateComponentTreeUI(this);
+            }
+
+        }
         mappa.dimension(new Dimension(widthMappa, heightMappa));
         mappa.setText(Dungeon.dungeonToString());
 
@@ -205,5 +216,15 @@ public class FrameGame extends Frame{
         return mappa;
     }
 
+    public static PannelloTitled getStatistiche() {
+        return statistiche;
+    }
 
+    public static PannelloTitled getMessaggi() {
+        return messaggi;
+    }
+
+    public static PannelloTitled getInventario() {
+        return inventario;
+    }
 }

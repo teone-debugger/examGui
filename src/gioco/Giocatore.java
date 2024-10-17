@@ -1,6 +1,7 @@
 package gioco;
 
 import interfaccia.FrameFight;
+import messaggi.Messaggio;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -283,15 +284,15 @@ public class Giocatore extends Personaggio{
     private void talkGui(Png png) {
 
         this.nemico = png;
-                System.out.println(png.getDialogo());
+        Messaggio.addMessaggio(png.getDialogo());
 
                 if(!png.isOstile()) {
-                    System.out.println("HAI PARLATO CON '" + png.getNome() + "'");
+                    Messaggio.addMessaggio("HAI PARLATO CON '" + png.getNome() + "'");
 
                 }else{
                     new FrameFight();
 
-                    System.out.println(" COMBATTI CON '" + png.getNome() + "'");
+                    Messaggio.addMessaggio(" COMBATTI CON '" + png.getNome() + "'");
 
                 }
     }
@@ -652,6 +653,7 @@ public class Giocatore extends Personaggio{
             case "a":
 
                 this.fightDinamic(png, turnoGiocatore,turnoPng);
+                System.out.println(Messaggio.getMessaggio());
 
                 break;
             case "cura":
@@ -685,7 +687,7 @@ public class Giocatore extends Personaggio{
 
 
         if(turnoGiocatore > turnoPng){
-            System.out.println("IL PRIMO AD ATTACCARE SEI TU ' " + this.getNome() +" '");
+            Messaggio.addMessaggio("IL PRIMO AD ATTACCARE SEI TU ' " + this.getNome() +" '");
             this.attack(png);
 
             if(png.isVivo()){
@@ -695,7 +697,7 @@ public class Giocatore extends Personaggio{
         }
         else{
 
-            System.out.println("IL PRIMO AD ATTACCARE E' ' " + png.getNome() +" '");
+            Messaggio.addMessaggio("IL PRIMO AD ATTACCARE E' ' " + png.getNome() +" '");
             png.attack(this);
 
             if(this.isVivo()) {
@@ -706,7 +708,7 @@ public class Giocatore extends Personaggio{
         /**--- SE IL GIOCATORE MUORE IL PROGRAMMA SI FERMA ---**/
         if(!this.isVivo()){
 
-            System.out.println("MIO PRODE AVVENTURIERO '" + this.getNome() + "' SEI STATO SFORTUNATO HAI PERSO IN QUEST'AVEVNTURA");
+            Messaggio.addMessaggio("MIO PRODE AVVENTURIERO '" + this.getNome() + "' SEI STATO SFORTUNATO HAI PERSO IN QUEST'AVEVNTURA");
             Dungeon.showDungeon();
             Giocatore.showInventario();/**--- STATIC O NON MOSTRIAMOLO ---**/
 
@@ -719,8 +721,10 @@ public class Giocatore extends Personaggio{
 
             this.takeGold(png);
 
-            System.out.println("MIO PRODE AVVENTURIERO '" + this.getNome() + "' HAI SCONFITTO '" + png.getNome() + "'");
-            Dungeon.showDungeon();
+            Messaggio.addMessaggio("MIO PRODE AVVENTURIERO '" + this.getNome() + "' HAI SCONFITTO '" + png.getNome() + "'");
+            if(Game.isTerminal()) {
+                Dungeon.showDungeon();
+            }
         }
     }
 
