@@ -22,5 +22,8 @@ public class Messaggio {
     public static void addMessaggio(String m) {
         messaggio += m + "\n";
     }
+    public static void clearMesaggio(){
+        messaggio = "";
+    }
 
 }

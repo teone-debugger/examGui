@@ -5,11 +5,13 @@ import gioco.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class FrameGame extends Frame{
 
     private static Posizione posizione;
-    private static Posizione oldPosizione;
+    //private static Posizione oldPosizione;
+    private ArrayList<Posizione> posizioniTrovate;
 
     private PannelloText mappa;
     private static PannelloTitled inventario;
@@ -26,6 +28,7 @@ public class FrameGame extends Frame{
 
         widthMappa = getWidth() * 58 /100;
         heightMappa = getHeight() * 60 /100;
+        posizioniTrovate = new ArrayList<>();
 
         creazioneLatoSX();
         creazioneLatoDX();
@@ -76,6 +79,7 @@ public class FrameGame extends Frame{
 
                         break;
                     case KeyEvent.VK_RIGHT:
+
                         messaggi.setText("");
                         Dungeon.getGiocatore().move("right", Game.getScn());
 
@@ -84,11 +88,12 @@ public class FrameGame extends Frame{
                         messaggi.setText("MOSSA NON VALIDA!!!");
                         break;
                 }
+
+                posizioniTrovate.clear();
                 mappa.setText(Dungeon.dungeonToString());
                 posizione = Dungeon.getGiocatore().aroundGui();
+                //posizioniTrovate.add(posizione);
 
-                /**--- EVITO I DOPPI DIALOGHI CON LO STESSO PNG ---**/
-                //oldPosizione = posizione;
                 mappa.getJtextArea().requestFocus();
             }
 
@@ -155,9 +160,10 @@ public class FrameGame extends Frame{
                 if(fe.getJButton().equals(barraStrumenti.getAffermativo())){
 
 
-                    if(FrameGame.posizione != null) {
+                    if(posizione != null) {
 
-                        if(posizione.getClass().getSimpleName().equals("Png")) {
+                        /*{if(posizione.getClass().getSimpleName().equals("Png")) {
+
                             oldPosizione = posizione;
                             //posizione = null;
 
@@ -170,13 +176,29 @@ public class FrameGame extends Frame{
                         Dungeon.getGiocatore().takeUpGui(FrameGame.posizione);
                         inventario.setText(Giocatore.inventarioToString());
                         mappa.setText(Dungeon.dungeonToString());
-                        oldPosizione = posizione;
+                        oldPosizione = posizione;}*/
+
+                        Dungeon.getGiocatore().takeUpGui(posizione);
+
+                        if(!posizione.getClass().getSimpleName().equals("Porta"))
+                            posizioniTrovate.add(posizione);
+
+                        if(/*!isFind(posizione)*/ !posizioniTrovate.contains(posizione)){
+
+                            if(!posizione.getClass().getSimpleName().equals("Png"))
+                                posizione = Dungeon.getGiocatore().aroundGui();
+
+                        }
+                        inventario.setText(Giocatore.inventarioToString());
+                        mappa.setText(Dungeon.dungeonToString());
 
 
                     }
-                    mappa.getJtextArea().requestFocus();
 
-                }
+                }//esle if(fe.getJButton().equals(barraStrumenti.getCura())) Dungeon.getGiocatore().heal();
+
+
+                mappa.getJtextArea().requestFocus();
                 SwingUtilities.updateComponentTreeUI(FrameGame.this);
 
             }
@@ -211,6 +233,17 @@ public class FrameGame extends Frame{
         /**--- INSERIMENTO PANNELLO: messaggi ---**/
         insertComponent(1,2, 0.01, 0.01, 1, 1, GridBagConstraints.PAGE_END, messaggi);
     }
+
+    /**--- CONTROLLA LE POSIZIONE TRA LE POSIZIONI TROVATE ---**/
+    /*private boolean isFind(Posizione posizione){
+
+        for (Posizione value : posizioniTrovate) {
+            if (value.equals(posizione)) {
+                return true;
+            }
+        }
+        return false;
+    }*/
 
     public PannelloText getMappa() {
         return mappa;

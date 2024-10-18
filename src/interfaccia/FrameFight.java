@@ -64,7 +64,7 @@ public class FrameFight extends Frame{
             public void actionPerformed(ActionEvent e) {
                 FrameGame.getMessaggi().setText("");
                 actionAttacca();
-                Messaggio.setMessaggio("");
+                Messaggio.clearMesaggio();
             }
         });
 

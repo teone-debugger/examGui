@@ -36,7 +36,7 @@ public class Personaggio extends Posizione {
     /**--- LANCIO DEL DADO PER DANNO DEL GIOCATORE ---**/
     private int rollDWeapon(Arma arma) {
 
-        if (this.getClass().getName().equals("gioco.Giocatore")) {
+        if (this.getClass().getSimpleName().equals("Giocatore")) {
 
             if (Giocatore.getClasse().equals(Classe.MAGO)) {
 
