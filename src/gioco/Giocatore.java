@@ -18,7 +18,7 @@ public class Giocatore extends Personaggio{
     private static HashMap <Integer,Oggetto> inventario; /**--- BASATO SUL PESO ---**/
     //private HashMap <Integer,Oggetto> armi; /**--- COSI' DA NON SCORRERE TUTTO L'INVENTARIO ---**/
     private static Arma arma;
-    private Png nemico;
+    private Personaggio nemico;
 
     /**--- ARMA EQUIPAGGIATA ---**/
 
@@ -53,22 +53,26 @@ public class Giocatore extends Personaggio{
         switch (p.getClass().getSimpleName()) {
             case "Png":
 
-                System.out.println("VUOI PARLARE CON '" + ((Png)p).getNome() + "' ?");
+                Messaggio.addMessaggio("VUOI PARLARE CON '" + ((Png)p).getNome() + "' ?");
+                break;
+            case "Drago":
+
+                Messaggio.addMessaggio("VUOI COMBATTERE IL DRAGO? ");
                 break;
 
             case "Arma":
             case "Oggetto":
 
-                System.out.println("HAI TROVATO  UN OGGETTO \n");
+                Messaggio.addMessaggio("HAI TROVATO  UN OGGETTO. RACCOGLIERLO? \n");
                 break;
 
             case "Armatura":
 
-                System.out.println("Armatura");
+                Messaggio.addMessaggio("Armatura");
                 break;
             case "Porta":
 
-                System.out.println("VUOI OLTREPASSARE LA PORTA? ");
+                Messaggio.addMessaggio("VUOI OLTREPASSARE LA PORTA? ");
                 break;
 
         }
@@ -81,6 +85,7 @@ public class Giocatore extends Personaggio{
                 case "Oggetto":
                 case "Arma":
                 case "Png":
+                case "Drago":
                     messagge(Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()]);
                     return Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()];
 
@@ -92,6 +97,7 @@ public class Giocatore extends Personaggio{
             case "Oggetto":
             case "Arma":
             case "Png":
+            case "Drago":
                 messagge(Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()]);
                 return Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()];
 
@@ -102,6 +108,7 @@ public class Giocatore extends Personaggio{
             case "Oggetto":
             case "Arma":
             case "Png":
+            case "Drago":
                 messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1]);
                 return Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1];
 
@@ -112,6 +119,7 @@ public class Giocatore extends Personaggio{
             case "Oggetto":
             case "Arma":
             case "Png":
+            case "Drago":
                 messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1]);
                 return Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1];
 
@@ -123,18 +131,17 @@ public class Giocatore extends Personaggio{
             messagge(Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()]);
             return Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()];
 
-        }
+        }else
         /**--- DOWN ---**/
         if (Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
             messagge(Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()]);
             return Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()];
-        }
+        }else
         /**--- LEFT ---**/
         if (Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1].getClass().getSimpleName().equals("Porta")) {
             messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1]);
             return Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1];
-        }
-
+        }else
         /**--- RIGHT ---**/
         if (Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1].getClass().getSimpleName().equals("Porta")) {
             messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1]);
@@ -146,22 +153,14 @@ public class Giocatore extends Personaggio{
     public void takeUpGui(Posizione p){
 
         Oggetto oggetto = null;
-        Png png = null;
-        Porta porta = null;
+        //this.nemico = null;
+
         if(p.getClass().getSimpleName().equals("Arma")){
 
             oggetto = (Arma) p;
         }else if(p.getClass().getSimpleName().equals("Oggetto")){
 
             oggetto = (Oggetto) p;
-        }
-        if(p.getClass().getSimpleName().equals("Png")){
-
-            png = (Png) p;
-        }
-        if(p.getClass().getSimpleName().equals("Porta")){
-
-            porta = (Porta) p;
         }
 
         if(oggetto != null){
@@ -171,62 +170,73 @@ public class Giocatore extends Personaggio{
 
                     inventario.put(oggetto.getIndex(), oggetto);
 
-                    System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
+                    Messaggio.setMessaggio("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
 
                 } else {
-                    System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                    Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
                 }
 
                 /**--- SE L'ARMA E' IL BASTONE O UN ARMA CON LA STESSA RAZZA LA RACCOGLIE ---**/
-            } else if (((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(this.classe)) {
+            } else if (((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(Giocatore.classe)) {
                 if (oggetto.getPeso() + getPesoInventario() <= pesoMax) {
                     inventario.put(oggetto.getIndex(), oggetto);
 
-                    /**--- POI SOSTITUITO DAL METODO EQUIPMENT ---**/
-                    arma = equip((Arma) oggetto);
+                    arma = (Arma)oggetto;
 
-                    System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
+                    Messaggio.setMessaggio("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
                 } else {
-                    System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                    Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
                 }
             } else {
 
-                System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA... RAZZE INCOMPATIBILI");
+                Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA... RAZZE INCOMPATIBILI");
             }
             Dungeon.setPosizioneMappa(new Posizione(oggetto.getRighe(), oggetto.getColonne(), " ", true));
 
         }
 
-        if(png != null){
-            talkGui(png);
+        if(p.getClass().getSimpleName().equals("Png") || p.getClass().getSimpleName().equals("Drago")){
+
+            this.nemico = (Personaggio) p;
+            talkGui();
         }
-        if(porta != null){
-            
-            String direzione = null;
-            /**--- UP ---**/
-            if (Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
+        /*if(p.getClass().getSimpleName().equals("Drago")){
+            this.nemico = (Personaggio) p;
+            talkGui();
+        }*/
 
-                direzione = "up";
+        if(p.getClass().getSimpleName().equals("Porta")){
 
-            }
-            /**--- DOWN ---**/
-            if (Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
+                String direzione = null;
+                /**--- UP ---**/
+                if (Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
 
-                direzione = "down";   
-            }
-            /**--- LEFT ---**/
-            if (Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1 ].getClass().getSimpleName().equals("Porta")) {
+                    direzione = "up";
 
-                direzione = "left";   
-            }
+                }
+                /**--- DOWN ---**/
+                if (Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
 
-            /**--- RIGHT ---**/
-            if (Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1 ].getClass().getSimpleName().equals("Porta")) {
+                    direzione = "down";
+                }
+                /**--- LEFT ---**/
+                if (Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1 ].getClass().getSimpleName().equals("Porta")) {
 
-                direzione = "right";
-            }
-            goThroughGui(porta, direzione);
+                    direzione = "left";
+                }
+
+                /**--- RIGHT ---**/
+                if (Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1 ].getClass().getSimpleName().equals("Porta")) {
+
+                    direzione = "right";
+                }
+                goThroughGui((Porta)p, direzione);
+
         }
+
+
+
+
 
     }
 
@@ -281,20 +291,28 @@ public class Giocatore extends Personaggio{
 
     }
 
-    private void talkGui(Png png) {
+    private void talkGui() {
 
-        this.nemico = png;
-        Messaggio.addMessaggio(png.getDialogo());
+        if(this.nemico.getClass().getSimpleName().equals("Png")) {
 
-                if(!png.isOstile()) {
-                    Messaggio.addMessaggio("HAI PARLATO CON '" + png.getNome() + "'");
+            Messaggio.addMessaggio(((Png) this.nemico).getDialogo());
 
-                }else{
-                    new FrameFight();
+            if(!((Png) this.nemico).isOstile()) {
+                Messaggio.addMessaggio("HAI PARLATO CON '" + this.nemico.getNome() + "'");
 
-                    Messaggio.addMessaggio(" COMBATTI CON '" + png.getNome() + "'");
+            }else{
+                new FrameFight();
 
-                }
+                Messaggio.addMessaggio(" COMBATTI CON '" + this.nemico.getNome() + "'");
+
+            }
+        }else {
+            Messaggio.addMessaggio(Drago.getDialogo());
+
+            new FrameFight();
+        }
+
+
     }
 
     public void around(Scanner scn) throws ClassNotFoundException {
@@ -340,8 +358,9 @@ public class Giocatore extends Personaggio{
 
             switch(p.getClass().getSimpleName()){
                 case "Png":
+                case "Drago":
 
-                    talk((Png)p, "up", scn);
+                    talk((Personaggio)p, "up", scn);
                     break;
                 case "Oggetto":
                 case "Arma":
@@ -360,8 +379,9 @@ public class Giocatore extends Personaggio{
 
             switch (p.getClass().getSimpleName()) {
                 case "Png":
+                case "Drago":
 
-                    talk((Png) p, "down", scn);
+                    talk((Personaggio)p, "up", scn);
                     break;
                 case "Oggetto":
                 case "Arma":
@@ -379,8 +399,9 @@ public class Giocatore extends Personaggio{
 
             switch (p.getClass().getSimpleName()) {
                 case "Png":
+                case "Drago":
 
-                    talk((Png) p, "left", scn);
+                    talk((Personaggio)p, "up", scn);
                     break;
                 case "Oggetto":
                 case "Arma":
@@ -397,8 +418,9 @@ public class Giocatore extends Personaggio{
             p = Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1];
             switch (p.getClass().getSimpleName()) {
                 case "Png":
+                case "Drago":
 
-                    talk((Png) p, "right", scn);
+                    talk((Personaggio)p, "up", scn);
                     break;
                 case "Oggetto":
                 case "Arma":
@@ -498,14 +520,35 @@ public class Giocatore extends Personaggio{
                     }else {
                         System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
                     }
-                }else if(((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(this.classe)) {
+                }else if(((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(Giocatore.classe)) {
                     if (oggetto.getPeso() + getPesoInventario() <= pesoMax) {
                         inventario.put(oggetto.getIndex(), oggetto);
 
                         /**--- POI SOSTITUITO DAL METODO EQUIPMENT ---**/
-                        arma = equip((Arma) oggetto);
+                        if(Giocatore.arma != null) {
 
-                        System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
+                            System.out.println("ARMA TROVATA " + oggetto.getDescrizione() + ": DANNO d" + ((Arma)oggetto).getDado()
+                                    + "\n" + "ARMA EQUIPAGGIATA " + Giocatore.arma.getDescrizione() + ": DANNO d" + Giocatore.arma.getDado());
+
+                            System.out.println("VUOI RACCOGLIERE L'ARMA?");
+
+                            switch (Game.getScn().nextLine().toLowerCase()) {
+                                case "yes":
+                                case "y":
+
+                                    Giocatore.arma = (Arma) oggetto;
+                                case "no":
+                                case "n":
+
+                                    return;
+                            }
+                        }else{
+
+                            System.out.println("ARMA TROVATA " + oggetto.getDescrizione() + ": DANNO d" + ((Arma)oggetto).getDado());
+                            System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
+                            Giocatore.arma = (Arma) oggetto;
+                        }
+
                     } else {
                         System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
                     }
@@ -533,28 +576,32 @@ public class Giocatore extends Personaggio{
         }*/
     }
 
-    private Arma equip(Arma arma) {
-        return arma;
-    }
+    private void talk(Personaggio personaggio, String direzione, Scanner scn) {
 
-    private void talk(Png png, String direzione, Scanner scn) {
+        this.nemico = null;
 
-        System.out.print("vuoi parlare con  '" + png.getNome() + "' ? '" + direzione + "' (yes/y - no/n) ");
+        if(personaggio.getClass().getSimpleName().equals("Png"))  this.nemico = personaggio;
+
+        System.out.print("vuoi parlare con  '" + personaggio.getNome() + "' ? '" + direzione + "' (yes/y - no/n) ");
 
         switch(scn.nextLine().toLowerCase()){
             case "yes":
             case "y":
 
-                System.out.println(png.getDialogo());
+                if(this.nemico != null)
+                    System.out.println(((Png)this.nemico).getDialogo());
+                else
+                    System.out.println(Drago.getDialogo());
 
-                if(!png.isOstile()) {
-                    System.out.println("HAI PARLATO CON '" + png.getNome() + "'");
+
+                if(this.nemico != null && !((Png)this.nemico).isOstile()) {
+                    System.out.println("HAI PARLATO CON '" + personaggio.getNome() + "'");
 
                 }else{
                     int turnoGiocatore = this.rollD20();
-                    int turnoPng = png.rollD20();
+                    int turnoPng = personaggio.rollD20();
 
-                    pngInteractions(png, scn, direzione, turnoGiocatore, turnoPng);
+                    pngInteractions(personaggio, scn, direzione, turnoGiocatore, turnoPng);
 
                 }
 
@@ -562,14 +609,14 @@ public class Giocatore extends Personaggio{
             case "no":
             case "n":
 
-                System.out.println("non hai parlato con " + png.getNome());
+                System.out.println("non hai parlato con " + personaggio.getNome());
                 break;
             default:
-                talk(png, direzione, scn);
+                talk(personaggio, direzione, scn);
                 break;
         }
     }
-    private void pngInteractions(Png png, Scanner scn, String direzione, int turnoGiocatore, int turnoPng) {
+    private void pngInteractions(Personaggio personaggio, Scanner scn, String direzione, int turnoGiocatore, int turnoPng) {
 
         System.out.println("SCEGLI L'AZIONE ( COMBATTERE/C - FUGGIRE/F - STATS/S) ");
         switch (scn.nextLine().toLowerCase()){
@@ -580,11 +627,11 @@ public class Giocatore extends Personaggio{
                 if(Giocatore.getArma() != null){
 
                     /**--- FIGHT FINCHE' SONO VIVI ---**/
-                    while(png.isVivo() && this.isVivo()) {
-                        this.fight(png, turnoGiocatore, turnoPng, scn);
+                    while(personaggio.isVivo() && this.isVivo()) {
+                        this.fight(personaggio, turnoGiocatore, turnoPng, scn);
                     }
                 }else{
-                    System.out.println("NON PUOI COMBATTERE CON " + png.getNome() + " NON HAI UN ARMA");
+                    System.out.println("NON PUOI COMBATTERE CON " + personaggio.getNome() + " NON HAI UN ARMA");
                 }
 
                 break;
@@ -593,7 +640,7 @@ public class Giocatore extends Personaggio{
 
                 /**--- MI SI ALLONTANA PROVANDO TUTTE LE DIREZIONI (POCO SENSATO) FUNZIONA PERCHE' UNA E' SICURAMENTE OCCUPATA DAL PNG ---**/
 
-                System.out.println("SEI SCAPPATO DA '" + png.getNome() + "' ");
+                System.out.println("SEI SCAPPATO DA '" + personaggio.getNome() + "' ");
                 //Dungeon.showDungeon();
 
                 switch (direzione) {
@@ -634,16 +681,16 @@ public class Giocatore extends Personaggio{
 
                 /**--- MOSTRO STATISTICHE ---**/
                 this.showStats();
-                png.showStats();
+                personaggio.showStats();
 
             default:
-                pngInteractions(png, scn, direzione, turnoGiocatore, turnoPng);
+                pngInteractions(personaggio, scn, direzione, turnoGiocatore, turnoPng);
                 break;
         }
     }
 
 
-    public void fight(Png png, int turnoGiocatore, int turnoPng, Scanner scn){
+    public void fight(Personaggio personaggio, int turnoGiocatore, int turnoPng, Scanner scn){
 
         System.out.println("SCEGLI L'AZIONE ( ATTACCARE/A - CURA/C - STATS/S) ");
 
@@ -652,18 +699,22 @@ public class Giocatore extends Personaggio{
             case "attaccare":
             case "a":
 
-                this.fightDinamic(png, turnoGiocatore,turnoPng);
+                this.fightDinamic(personaggio, turnoGiocatore,turnoPng);
                 System.out.println(Messaggio.getMessaggio());
+                Messaggio.clearMesaggio();
 
                 break;
             case "cura":
             case "c":
 
                     if(this.heal()) {
-                        png.attack(this);
+                        personaggio.attack(this);
                     }else{
-                        this.fight(png, turnoGiocatore, turnoPng, scn);
+                        this.fight(personaggio, turnoGiocatore, turnoPng, scn);
                     }
+
+                System.out.println(Messaggio.getMessaggio());
+                    Messaggio.clearMesaggio();
 
 
                 break;
@@ -671,37 +722,37 @@ public class Giocatore extends Personaggio{
             case "s":
 
                 this.showStats();
-                png.showStats();
+                personaggio.showStats();
 
-                this.fight(png, turnoGiocatore, turnoPng, scn);
+                this.fight(personaggio, turnoGiocatore, turnoPng, scn);
 
                 break;
 
             default:
-                this.fight(png, turnoGiocatore, turnoPng, scn);
+                this.fight(personaggio, turnoGiocatore, turnoPng, scn);
                 break;
         }
 
     }
-    public void fightDinamic(Png png, int turnoGiocatore, int turnoPng) {
+    public void fightDinamic(Personaggio personaggio, int turnoGiocatore, int turnoPng) {
 
 
         if(turnoGiocatore > turnoPng){
             Messaggio.addMessaggio("IL PRIMO AD ATTACCARE SEI TU ' " + this.getNome() +" '");
-            this.attack(png);
+            this.attack(personaggio);
 
-            if(png.isVivo()){
+            if(personaggio.isVivo()){
 
-                png.attack(this);
+                personaggio.attack(this);
             }
         }
         else{
 
-            Messaggio.addMessaggio("IL PRIMO AD ATTACCARE E' ' " + png.getNome() +" '");
-            png.attack(this);
+            Messaggio.addMessaggio("IL PRIMO AD ATTACCARE E' ' " + personaggio.getNome() +" '");
+            personaggio.attack(this);
 
             if(this.isVivo()) {
-                this.attack(png);
+                this.attack(personaggio);
             }
         }
 
@@ -715,13 +766,13 @@ public class Giocatore extends Personaggio{
             Runtime.getRuntime().exit(404);
 
         }/**--- SE IL PNG MUORE LASCIA L'ORO ---**/
-        else if(!png.isVivo()) {
+        else if(!personaggio.isVivo()) {
 
-            Dungeon.setPosizioneMappa(new Posizione(png.getRighe(), png.getColonne(), " ", true));
+            Dungeon.setPosizioneMappa(new Posizione(personaggio.getRighe(), personaggio.getColonne(), " ", true));
 
-            this.takeGold(png);
+            this.takeGold(personaggio);
 
-            Messaggio.addMessaggio("MIO PRODE AVVENTURIERO '" + this.getNome() + "' HAI SCONFITTO '" + png.getNome() + "'");
+            Messaggio.addMessaggio("MIO PRODE AVVENTURIERO '" + this.getNome() + "' HAI SCONFITTO '" + personaggio.getNome() + "'");
             if(Game.isTerminal()) {
                 Dungeon.showDungeon();
             }
@@ -806,7 +857,7 @@ public class Giocatore extends Personaggio{
     public Razza getRazza() {return razza;}
     public static Arma getArma(){return arma;} /**--- STATIC: USATO IN UNA SOPRACLASSE --**/
     public HashMap<Integer, Oggetto> getInventario() {return inventario;}
-    public Png getNemico() {
+    public Personaggio getNemico() {
         return nemico;
     }
     private int getPesoInventario() {

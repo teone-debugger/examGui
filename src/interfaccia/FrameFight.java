@@ -42,6 +42,8 @@ public class FrameFight extends Frame{
                     //png.attack(this);
                     Dungeon.getGiocatore().getNemico().attack(Dungeon.getGiocatore());
                 }
+                FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
+                Messaggio.clearMesaggio();
             }
         });
             //cura.setMargin(new Insets(10,10,10,10));
@@ -52,6 +54,7 @@ public class FrameFight extends Frame{
         fuga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                FrameGame.getMessaggi().setText("MIO PAVIDO AVVENTURIERO, SEI FUGGITO DA '" + Dungeon.getGiocatore().getNemico().getNome() + "'");
                 setVisible(false);
             }
         });
@@ -99,15 +102,21 @@ public class FrameFight extends Frame{
         if(!Dungeon.getGiocatore().isVivo()){
 
             FrameGame.getMessaggi().setText("MI DISPIACE MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " SEI MORTO IN QUEST'AVVENTURA");
-            setVisible(false);
         }
         if(!Dungeon.getGiocatore().getNemico().isVivo()){
 
             FrameGame.getMessaggi().setText("MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " HAI SCONFITTO " + Dungeon.getGiocatore().getNemico().getNome());
-            setVisible(false);
+
         }
 
         /**--- CAMBIO LE STATS SULLA FINESTRA PRINCIPALE (OPZIONALE NON BELLISSIMO VEDI TU GIAN :) ) ---**/
-        FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()) + "\n" + Giocatore.statsToString(Dungeon.getGiocatore().getNemico()));
+        if(Dungeon.getGiocatore().isVivo() && Dungeon.getGiocatore().getNemico().isVivo()) {
+
+            FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()) + "\n" + Giocatore.statsToString(Dungeon.getGiocatore().getNemico()));
+        }else{
+            FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()));
+            setVisible(false);
+        }
     }
+
 }

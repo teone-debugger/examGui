@@ -97,12 +97,28 @@ public class Personaggio extends Posizione {
             Messaggio.addMessaggio("'" + this.getNome() + "' COLPISCE...");
 
             /**--- ROLL 20 PER DANNO GIOCATORE --> PNG ---**/
-            if(personaggio.getClass().getSimpleName().equals("Png")){
+            if(!personaggio.getClass().getSimpleName().equals("Giocatore")){
+
                 personaggio.damageTaken(this.rollDWeapon(Giocatore.getArma()));
             }else{
-                personaggio.damageTaken(this.rollD4());
-            }
+               if(this.getClass().getSimpleName().equals("Png")){
 
+                   personaggio.damageTaken(this.rollD4());
+               }else{
+                   switch(this.rollD4()){
+                        case 1:
+                        case 2:
+                            personaggio.damageTaken(Drago.getDannoMorso());
+                            break;
+                        case 3:
+                            personaggio.damageTaken(Drago.getDannoZampa());
+                            break;
+                        case 4:
+                            personaggio.damageTaken(Drago.getDannoFiammata());
+                            break;
+                   }
+               }
+            }
         }else{
             Messaggio.addMessaggio("'" + personaggio.getNome() + "' HA SCHIVATO IL COLPO...");
         }
@@ -149,26 +165,26 @@ public class Personaggio extends Posizione {
 
                 if (this.puntiVita + cura < this.puntiVitaMAX) {
 
-                    System.out.println(this.nome + " TI SEI CURATO DI: " + cura);
+                    Messaggio.addMessaggio(this.nome + " TI SEI CURATO DI: " + cura);
                     this.puntiVita += cura;
                 } else {
-                    System.out.println(this.nome + " HAI RIPRISTINATO I MASSIMI PUNTI VITA: ");
+                    Messaggio.addMessaggio(this.nome + " HAI RIPRISTINATO I MASSIMI PUNTI VITA: ");
                     this.puntiVita = this.puntiVitaMAX;
                 }
                 return true;
                 //System.out.println(this.nome + " PUNTI VITA: " + this.puntiVita);
             } else {
-                System.out.println(this.nome + " NON E' PRESENTE UNA POZIONE NEL TUO INVENTARIO QUINDI NON PUOI CURARTI: ");
+                Messaggio.addMessaggio(this.nome + " NON E' PRESENTE UNA POZIONE NEL TUO INVENTARIO QUINDI NON PUOI CURARTI: ");
                 return false;
             }
         }else {
-            System.out.println("HAI GIA' I MASSIMI PUNTI VITA");
+            Messaggio.addMessaggio("HAI GIA' I MASSIMI PUNTI VITA");
             return false;
         }
     }
-    public void takeGold(Png png){
+    public void takeGold(Personaggio personaggio){
 
-        this.monete += png.getMonete();
+        this.monete += personaggio.getMonete();
         System.out.println(this.nome + " ORA HAI : " + this.monete + " MONETE D'ORO");
     }
 

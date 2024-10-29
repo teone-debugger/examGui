@@ -31,6 +31,11 @@ public class PannelloText extends JPanel {
 
         addTextArea();
     }
+    public void clearText(){
+        jtextArea.setText("");
+
+        addTextArea();
+    }
 
     public void addText(String testo){
         jtextArea.append(testo + "\n");
@@ -46,6 +51,7 @@ public class PannelloText extends JPanel {
 
         add(jtextArea);
     }
+
 
     public JTextArea getJtextArea() {
         return jtextArea;

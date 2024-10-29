@@ -2,16 +2,10 @@ package messaggi;
 
 public class Messaggio {
 
-    private static String messaggio;
+    private static String messaggio = "";
 
     public  Messaggio(){
-
     }
-
-    public Messaggio(String m) {
-        messaggio = m;
-    }
-
 
     public static String getMessaggio() {
         return messaggio;

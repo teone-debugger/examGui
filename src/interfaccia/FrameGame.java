@@ -1,6 +1,7 @@
 package interfaccia;
 
 import gioco.*;
+import messaggi.Messaggio;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,12 +90,30 @@ public class FrameGame extends Frame{
                         break;
                 }
 
+                Messaggio.clearMesaggio();
                 posizioniTrovate.clear();
                 mappa.setText(Dungeon.dungeonToString());
                 posizione = Dungeon.getGiocatore().aroundGui();
+
                 //posizioniTrovate.add(posizione);
 
                 mappa.getJtextArea().requestFocus();
+
+
+                /**--- MOSTRO LE STATS DELLE DUE ARMI ---**/
+                if(posizione != null && posizione.getClass().getSimpleName().equals("Arma")) {
+
+                    if (Giocatore.getArma() != null) {
+
+                        Messaggio.addMessaggio("ARMA TROVATA " + ((Arma) posizione).getDescrizione() + ": DANNO d" + ((Arma) posizione).getDado()
+                                + "\n" + "ARMA EQUIPAGGIATA " + Giocatore.getArma().getDescrizione() + ": DANNO d" + Giocatore.getArma().getDado());
+                    } else {
+                        Messaggio.addMessaggio("ARMA TROVATA " + ((Arma) posizione).getDescrizione() + ": DANNO d" + ((Arma) posizione).getDado());
+
+                    }
+                }
+                messaggi.setText(Messaggio.getMessaggio());
+
             }
 
             @Override
@@ -162,38 +181,25 @@ public class FrameGame extends Frame{
 
                     if(posizione != null) {
 
-                        /*{if(posizione.getClass().getSimpleName().equals("Png")) {
 
-                            oldPosizione = posizione;
-                            //posizione = null;
+                            Dungeon.getGiocatore().takeUpGui(posizione);
+                            //Messaggio.clearMesaggio();
+                            messaggi.clearText();
 
+                            if (!posizione.getClass().getSimpleName().equals("Porta"))
+                                posizioniTrovate.add(posizione);
 
+                            if (/*!isFind(posizione)*/ !posizioniTrovate.contains(posizione)) {
 
+                                if (!posizione.getClass().getSimpleName().equals("Png"))
+                                    posizione = Dungeon.getGiocatore().aroundGui();
+
+                            }
+                            inventario.setText(Giocatore.inventarioToString());
+                            messaggi.setText(Messaggio.getMessaggio());
+                            mappa.setText(Dungeon.dungeonToString());
                         }
-                        if(FrameGame.posizione != FrameGame.oldPosizione) {
-                            FrameGame.posizione = Dungeon.getGiocatore().aroundGui();
-                        }
-                        Dungeon.getGiocatore().takeUpGui(FrameGame.posizione);
-                        inventario.setText(Giocatore.inventarioToString());
-                        mappa.setText(Dungeon.dungeonToString());
-                        oldPosizione = posizione;}*/
 
-                        Dungeon.getGiocatore().takeUpGui(posizione);
-
-                        if(!posizione.getClass().getSimpleName().equals("Porta"))
-                            posizioniTrovate.add(posizione);
-
-                        if(/*!isFind(posizione)*/ !posizioniTrovate.contains(posizione)){
-
-                            if(!posizione.getClass().getSimpleName().equals("Png"))
-                                posizione = Dungeon.getGiocatore().aroundGui();
-
-                        }
-                        inventario.setText(Giocatore.inventarioToString());
-                        mappa.setText(Dungeon.dungeonToString());
-
-
-                    }
 
                 }//esle if(fe.getJButton().equals(barraStrumenti.getCura())) Dungeon.getGiocatore().heal();
 

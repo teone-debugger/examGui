@@ -89,14 +89,19 @@ public class Dungeon{
 
                 if(i < 10) {
 
-                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne);
+                    /**--- OSTILI ---**/
+
+                    Png.generateDialoghiOstili();
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  25, 7, 150);
                 }else {
 
-                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  25, 7, 150);
+                    /**--- NON OSTILI ---**/
+                    Png.generateDialoghiNonOstili();
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne);
 
                 }
             } else {
-                i--;    /**--- ASSICURO DI AVERE SEMPRE UN MASSIMO OGGETTI ---**/
+                i--;    /**--- ASSICURO DI AVERE SEMPRE UN MASSIMO PNG ---**/
             }
         }
     }

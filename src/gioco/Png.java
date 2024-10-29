@@ -6,7 +6,10 @@ public class Png extends Personaggio {
     private String dialogo;
     private boolean ostile;
 
-    private static int count = 1;
+    private static HashMap<Integer, String> dialoghiOstili;
+    private static HashMap<Integer, String> dialoghiNonOstili;
+
+    private static int count = 0;
 
     /**--- COSTRUTTORE PNG OSTILI ---**/
     public Png(int righe, int colonne, int puntiVita, int puntiArmatura, int monete) {
@@ -16,8 +19,9 @@ public class Png extends Personaggio {
 
         count++;
 
-        this.dialogo = generateDialoghiOstili();
+        this.dialogo = selectDialoghiOstili();
     }
+
 
     /**--- COSTRUTTORE NON PNG OSTILI ---**/
     public Png(int righe, int colonne) {
@@ -27,8 +31,9 @@ public class Png extends Personaggio {
 
         count++;
 
-        this.dialogo = generateDialoghiNonOstili();
+        this.dialogo = selectDialoghiNonOstili();
     }
+
 
     /**--- STATIC: PERCHE' RICHIAMATO NEL COSTRUTTORE DELLA SUPERCLASSE ---**/ /**--- PASSA IL METODO AL COSTRUTTORE DI PERSONAGGIO ---**/
     private static String generateNome(){
@@ -61,36 +66,42 @@ public class Png extends Personaggio {
 
     }
 
-    private String generateDialoghiOstili(){
-        HashMap<Integer, String> dialoghi = new HashMap<>();
-        dialoghi.put(1,"non mi piacciono quelli della tua razza");
-        dialoghi.put(2,"quelli come te li mangio a colazione");
-        dialoghi.put(3,"ti ammazzo");
-        dialoghi.put(4,"vedi di sparire");
-        dialoghi.put(5,"ora le prendi");
-        dialoghi.put(6,"provare a parlare con me è stata la peggiore delle tue idee");
-        dialoghi.put(7, "TODO");
-        dialoghi.put(8,"TODO");
-        dialoghi.put(9,"TODO");
-        dialoghi.put(10,"TODO");
+    public static void generateDialoghiOstili(){
+        dialoghiOstili = new HashMap<>();
 
-        return dialoghi.get(count);
+        dialoghiOstili.put(1,"NON MI PIACCIONO QUELLI DELLA TUA RAZZA");
+        dialoghiOstili.put(2,"QUELLI COME TE LI MANGIO A COLAZIONE");
+        dialoghiOstili.put(3,"TI AMMAZZO");
+        dialoghiOstili.put(4,"VEDI DI SPARIRE");
+        dialoghiOstili.put(5,"OR ALE PRENDI");
+        dialoghiOstili.put(6,"PROVARE A PARLARE CON ME E' STATA LA PEGGIORE DELLE TUE IDEE");
+        dialoghiOstili.put(7, "GGGG");
+        dialoghiOstili.put(8,"TODO");
+        dialoghiOstili.put(9,"TODO");
+        dialoghiOstili.put(10,"TODO");
+    }
+    private String selectDialoghiOstili() {
+        return dialoghiOstili.get(count);
     }
 
-    private String generateDialoghiNonOstili(){
-        HashMap<Integer, String> dialoghi = new HashMap<>();
-        dialoghi.put(11,"TODO");
-        dialoghi.put(12,"TODO");
-        dialoghi.put(13,"TODO");
-        dialoghi.put(14,"TODO");
-        dialoghi.put(15,"TODO");
-        dialoghi.put(16,"TODO");
-        dialoghi.put(17, "TODO");
-        dialoghi.put(18,"TODO");
-        dialoghi.put(19,"TODO");
-        dialoghi.put(20,"TODO");
+    public static void generateDialoghiNonOstili(){
+        dialoghiNonOstili = new HashMap<>();
 
-        return dialoghi.get(count);
+        dialoghiNonOstili.put(11,"TODO");
+        dialoghiNonOstili.put(12,"TODO");
+        dialoghiNonOstili.put(13,"TODO");
+        dialoghiNonOstili.put(14,"TODO");
+        dialoghiNonOstili.put(15,"TODO");
+        dialoghiNonOstili.put(16,"TODO");
+        dialoghiNonOstili.put(17, "TODO");
+        dialoghiNonOstili.put(18,"TODO");
+        dialoghiNonOstili.put(19,"TODO");
+        dialoghiNonOstili.put(20,"TODO");
+
+    }
+    private String selectDialoghiNonOstili() {
+        return dialoghiNonOstili.get(count);
+
     }
 
     public String getDialogo() {return dialogo;}
