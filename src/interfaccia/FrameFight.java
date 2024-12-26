@@ -52,7 +52,7 @@ public class FrameFight extends JFrame{
         //add(backgroundLabel);
 
         characterPanel = getImmagine();
-        characterPanel.setBounds(50, 250, 300, 300);
+        characterPanel.setBounds(50, 250, 200, 200);
         //add(characterPanel);
 
         enemyPanel = new ImagePanel("src/images/nemici/ghost.png", 200, 200);
