@@ -315,7 +315,7 @@ public class FrameFight extends JFrame{
             Graphics2D g2d = (Graphics2D) g.create();
 
             /**--- GENERA EXCEPTION ---**/
-            //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,opacity));
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,opacity));
 
             g2d.drawImage(image, 0, 0, null);
             g2d.dispose();
