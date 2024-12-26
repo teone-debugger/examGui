@@ -55,7 +55,7 @@ public class FrameFight extends JFrame{
         characterPanel.setBounds(50, 250, 200, 200);
         //add(characterPanel);
 
-        enemyPanel = new ImagePanel("src/images/nemici/ghost.png", 200, 200);
+        enemyPanel = getNemico();
         enemyPanel.setBounds(500, 150, 200,  200);
         //add(enemyPanel);
 
@@ -241,6 +241,48 @@ public class FrameFight extends JFrame{
             }
             return immagine;
 
+    }
+
+    private ImagePanel getNemico() {
+        ImagePanel immagine;
+        int randomNumber = (int) (Math.random()*7)+1;
+
+        switch(randomNumber){
+            case 0:
+                immagine = new ImagePanel("src/images/nemici/ghost.png", 300, 300);
+                break;
+
+            case 1:
+                immagine = new ImagePanel("src/images/nemici/image.png", 300, 300);
+                break;
+
+            case 2:
+                immagine = new ImagePanel("src/images/nemici/image (1).png", 300, 300);
+                break;
+
+            case 3:
+                immagine = new ImagePanel("src/images/nemici/image (2).png", 300, 300);
+                break;
+
+            case 4:
+                immagine = new ImagePanel("src/images/nemici/image (3).png", 300, 300);
+                break;
+
+            case 5:
+                immagine = new ImagePanel("src/images/nemici/image (9).png", 300, 300);
+                break;
+
+            case 6:
+                immagine = new ImagePanel("src/images/nemici/image (10).png", 300, 300);
+                break;
+
+            default:
+                immagine = new ImagePanel("src/images/nemici/image (21).png", 300, 300);
+                break;
+        }
+
+        randomNumber = 0;
+        return immagine;
     }
 
     private String toStringRazza(Razza razza) {return razza + "";}
