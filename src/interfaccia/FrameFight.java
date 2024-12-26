@@ -390,11 +390,31 @@ public class FrameFight extends JFrame{
 
     private JLabel createNameLabel(String nome, Font font){
         JLabel nameLabel = new JLabel(nome, SwingConstants.CENTER);
+        int typingDelay = 1;
         nameLabel.setFont(font);
         nameLabel.setForeground(Color.WHITE);
         nameLabel.setBackground(Color.BLACK);
         nameLabel.setOpaque(true);
         nameLabel.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+
+        //effetto di scrittura
+        Timer typingTimer = new Timer(typingDelay, new ActionListener() {
+            private int charIndex = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               if(charIndex < nome.length()) {
+                nameLabel.setText(nameLabel.getText() + nome.charAt(charIndex));
+                repaint();
+                charIndex ++;
+               } else {
+                ((Timer) e.getSource()).stop();
+               }
+            }
+        });
+
+        typingTimer.setInitialDelay(0);
+        typingTimer.start();
         return nameLabel;
     }
 
