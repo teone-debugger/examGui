@@ -62,11 +62,12 @@ public class FrameFight extends JFrame{
         scalePanels(200, 200, 200, 200);
 
         //barre della vita
-        charactHealthBar = createHealthBar(Dungeon.getGiocatore().getPuntiVita());
-        charactHealthBar.setBounds(50, 230,characterPanel.getWidth(), 20);
+        charactHealthBar = createHealthBar(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita());
+        charactHealthBar.setBounds(50, 230, 200, 20);
+        updateHealthBarColor(charactHealthBar);
 
-        enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita());
-        enemyHealthBar.setBounds(500, 130,enemyPanel.getWidth(), 20);
+        enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita(), Dungeon.getGiocatore().getNemico().getPuntiVita());
+        enemyHealthBar.setBounds(500, 130, 200, 20);
 
         //carico il font personalizzato
         Font alagardFont;
@@ -103,6 +104,9 @@ public class FrameFight extends JFrame{
                 }
                 FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
                 Messaggio.clearMesaggio();
+
+                charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
+                updateHealthBarColor(charactHealthBar);
             }
         });
         
@@ -125,6 +129,12 @@ public class FrameFight extends JFrame{
                 FrameGame.getMessaggi().setText("");
                 actionAttacca();
                 Messaggio.clearMesaggio();
+
+                charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
+                updateHealthBarColor(charactHealthBar);
+                
+                enemyHealthBar.setValue(Dungeon.getGiocatore().getNemico().getPuntiVita());
+                updateHealthBarColor(enemyHealthBar);
             }
         });
 
@@ -303,19 +313,21 @@ public class FrameFight extends JFrame{
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g.create();
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,opacity));
+
+            /**--- GENERA EXCEPTION ---**/
+            //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,opacity));
+
             g2d.drawImage(image, 0, 0, null);
             g2d.dispose();
         }
     }
 
-    private JProgressBar createHealthBar(int health) {
-        JProgressBar healthBar = new JProgressBar(0, health);
+    private JProgressBar createHealthBar(int maxHealth, int health) {
+        JProgressBar healthBar = new JProgressBar(0, maxHealth);
         healthBar.setValue(health);
         healthBar.setStringPainted(false);
         healthBar.setForeground(Color.GREEN);
         healthBar.setBackground(Color.DARK_GRAY);
-
         healthBar.setBorder(new LineBorder(Color.BLACK, 5));
 
         return healthBar;
