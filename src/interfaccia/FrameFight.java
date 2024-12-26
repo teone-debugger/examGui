@@ -52,7 +52,7 @@ public class FrameFight extends JFrame{
         //add(backgroundLabel);
 
         characterPanel = getImmagine();
-        characterPanel.setBounds(50, 250, 200, 200);
+        characterPanel.setBounds(50, 250, 300, 300);
         //add(characterPanel);
 
         enemyPanel = new ImagePanel("src/images/nemici/ghost.png", 200, 200);
@@ -63,10 +63,10 @@ public class FrameFight extends JFrame{
 
         //barre della vita
         charactHealthBar = createHealthBar(Dungeon.getGiocatore().getPuntiVita());
-        charactHealthBar.setBounds(50, 230, 200, 20);
+        charactHealthBar.setBounds(50, 230,characterPanel.getWidth(), 20);
 
         enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita());
-        enemyHealthBar.setBounds(500, 130, 200, 20);
+        enemyHealthBar.setBounds(500, 130,enemyPanel.getWidth(), 20);
 
         //carico il font personalizzato
         Font alagardFont;
