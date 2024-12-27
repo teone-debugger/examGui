@@ -26,6 +26,9 @@ public class FrameFight extends JFrame{
     private JLabel charactNameLabel;
     private JLabel enemyNameLabel;
 
+    private JLabel characterHPLabel;
+    private JLabel enemyHPLabel;
+
     private JProgressBar charactHealthBar;
     private JProgressBar enemyHealthBar;
 
@@ -82,12 +85,29 @@ public class FrameFight extends JFrame{
             alagardFont = new Font("Serif", Font.PLAIN, 24); // Font di fallback
         }
 
+        Font bodyFont;
+        try {
+            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("src/font/Perfect DOS VGA 437.ttf")).deriveFont(20f);
+            GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            te.registerFont(bodyFont);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            bodyFont = new Font("Serif", Font.PLAIN, 20);
+        }
+
         //etichette nome
         charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), alagardFont);
         positionNameLabel(charactNameLabel, charactHealthBar);
+        characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), bodyFont);
+        characterHPLabel.setBounds(charactHealthBar.getX() - 30, charactHealthBar.getY(), 150, 20);
 
         enemyNameLabel = createNameLabel(Dungeon.getGiocatore().getNemico().getNome(), alagardFont);
         positionNameLabel(enemyNameLabel, enemyHealthBar);
+        int puntiVitaNemicoMAX = Dungeon.getGiocatore().getNemico().getPuntiVita();
+        enemyHPLabel = createHPLabel(puntiVitaNemicoMAX, puntiVitaNemicoMAX, bodyFont);
+        enemyHPLabel.setBounds(enemyHealthBar.getX() - 30, enemyHealthBar.getY(), 50, 20);
+
         
         //pulsanti
         cura = new JButton("CURA");
@@ -107,6 +127,7 @@ public class FrameFight extends JFrame{
 
                 charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
                 updateHealthBarColor(charactHealthBar);
+                updateHPlabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita());
             }
         });
         
@@ -132,9 +153,11 @@ public class FrameFight extends JFrame{
 
                 charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
                 updateHealthBarColor(charactHealthBar);
+                updateHPlabel(Dungeon.getGiocatore().getPuntiVitaMAX(),Dungeon.getGiocatore().getPuntiVita());
                 
                 enemyHealthBar.setValue(Dungeon.getGiocatore().getNemico().getPuntiVita());
                 updateHealthBarColor(enemyHealthBar);
+                updateHPlabel(puntiVitaNemicoMAX, Dungeon.getGiocatore().getNemico().getPuntiVita());
             }
         });
 
@@ -146,6 +169,9 @@ public class FrameFight extends JFrame{
 
         add(enemyHealthBar);
         add(charactHealthBar);
+
+        add(characterHPLabel);
+        add(enemyHPLabel);
         
         //aggiungo le immagini in sequenza in base a cosa va sopra o sotto
         add(characterPanel);
@@ -386,6 +412,33 @@ public class FrameFight extends JFrame{
         } else {
             healthBar.setForeground(Color.RED);
         }
+    }
+
+    private JLabel createHPLabel(int vitaMax, int vitaAttuale, Font font) {
+        JLabel HPlabel = new JLabel(vitaAttuale + "/" + vitaMax, SwingConstants.CENTER);
+        HPlabel.setFont(font);
+        HPlabel.setForeground(Color.WHITE);
+        HPlabel.setBackground(Color.BLACK);
+        HPlabel.setOpaque(true);
+        HPlabel.setBorder(BorderFactory.createEmptyBorder(2,5,2,5));
+        return HPlabel;
+    }
+
+    private void updateHPlabel(int puntiVitaMax, int puntiVita) {
+
+        Font bodyFont;
+        try {
+            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("src/font/Perfect DOS VGA 437.ttf")).deriveFont(20f);
+            GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            te.registerFont(bodyFont);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            bodyFont = new Font("Serif", Font.PLAIN, 20);
+        }
+
+        createHPLabel(puntiVitaMax, puntiVita, bodyFont);
+        
     }
 
     private JLabel createNameLabel(String nome, Font font){
