@@ -8,6 +8,7 @@ import messaggi.Messaggio;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.border.AbstractBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -66,11 +67,11 @@ public class FrameFight extends JFrame{
 
         //barre della vita
         charactHealthBar = createHealthBar(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita());
-        charactHealthBar.setBounds(50, 230, characterPanel.getWidth(), 20);
+        charactHealthBar.setBounds(50, 230, characterPanel.getWidth(), 30);
         updateHealthBarColor(charactHealthBar);
 
         enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita(), Dungeon.getGiocatore().getNemico().getPuntiVita());
-        enemyHealthBar.setBounds(500, 130, enemyPanel.getWidth(), 20);
+        enemyHealthBar.setBounds(500, 130, enemyPanel.getWidth(), 30);
 
         //carico il font personalizzato
         Font alagardFont;
@@ -87,7 +88,7 @@ public class FrameFight extends JFrame{
 
         Font bodyFont;
         try {
-            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("src/font/Perfect DOS VGA 437.ttf")).deriveFont(20f);
+            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("src/font/Perfect DOS VGA 437.ttf")).deriveFont(14f);
             GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
             te.registerFont(bodyFont);
         }
@@ -100,13 +101,12 @@ public class FrameFight extends JFrame{
         charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), alagardFont);
         positionNameLabel(charactNameLabel, charactHealthBar);
         characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), bodyFont);
-        characterHPLabel.setBounds(charactHealthBar.getX() - 30, charactHealthBar.getY(), 150, 20);
+        characterHPLabel.setBounds(charactHealthBar.getX() - 50, charactHealthBar.getY(), 50, 30);
 
         enemyNameLabel = createNameLabel(Dungeon.getGiocatore().getNemico().getNome(), alagardFont);
         positionNameLabel(enemyNameLabel, enemyHealthBar);
-        int puntiVitaNemicoMAX = Dungeon.getGiocatore().getNemico().getPuntiVita();
-        enemyHPLabel = createHPLabel(puntiVitaNemicoMAX, puntiVitaNemicoMAX, bodyFont);
-        enemyHPLabel.setBounds(enemyHealthBar.getX() - 30, enemyHealthBar.getY(), 50, 20);
+        enemyHPLabel = createHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita(), bodyFont);
+        enemyHPLabel.setBounds(enemyHealthBar.getX() - 50, enemyHealthBar.getY(), 50, 30);
 
         
         //pulsanti
@@ -127,7 +127,7 @@ public class FrameFight extends JFrame{
 
                 charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
                 updateHealthBarColor(charactHealthBar);
-                updateHPlabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita());
+                updateCharacterHPLabel(Dungeon.getGiocatore().getPuntiVita(), Dungeon.getGiocatore().getPuntiVitaMAX());
             }
         });
         
@@ -153,11 +153,11 @@ public class FrameFight extends JFrame{
 
                 charactHealthBar.setValue(Dungeon.getGiocatore().getPuntiVita());
                 updateHealthBarColor(charactHealthBar);
-                updateHPlabel(Dungeon.getGiocatore().getPuntiVitaMAX(),Dungeon.getGiocatore().getPuntiVita());
+                updateCharacterHPLabel(Dungeon.getGiocatore().getPuntiVita(),Dungeon.getGiocatore().getPuntiVitaMAX());
                 
                 enemyHealthBar.setValue(Dungeon.getGiocatore().getNemico().getPuntiVita());
                 updateHealthBarColor(enemyHealthBar);
-                updateHPlabel(puntiVitaNemicoMAX, Dungeon.getGiocatore().getNemico().getPuntiVita());
+                updateEnemyHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVita(), Dungeon.getGiocatore().getNemico().getPuntiVitaMAX());
             }
         });
 
@@ -271,7 +271,7 @@ public class FrameFight extends JFrame{
 
     private ImagePanel getNemico() {
         ImagePanel immagine;
-        int randomNumber = (int) (Math.random()*7)+1;
+        int randomNumber = (int) (Math.random()*6)+1;
 
         switch(randomNumber){
             case 0:
@@ -420,25 +420,18 @@ public class FrameFight extends JFrame{
         HPlabel.setForeground(Color.WHITE);
         HPlabel.setBackground(Color.BLACK);
         HPlabel.setOpaque(true);
-        HPlabel.setBorder(BorderFactory.createEmptyBorder(2,5,2,5));
+        HPlabel.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
         return HPlabel;
     }
 
-    private void updateHPlabel(int puntiVitaMax, int puntiVita) {
+    public void updateCharacterHPLabel(int currentHealth, int maxHealth) {
+        characterHPLabel.setText(currentHealth + "/" + maxHealth);
+        characterHPLabel.repaint();
+    }
 
-        Font bodyFont;
-        try {
-            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("src/font/Perfect DOS VGA 437.ttf")).deriveFont(20f);
-            GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            te.registerFont(bodyFont);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            bodyFont = new Font("Serif", Font.PLAIN, 20);
-        }
-
-        createHPLabel(puntiVitaMax, puntiVita, bodyFont);
-        
+    public void updateEnemyHPLabel(int currentHealth, int maxHealth){
+        enemyHPLabel.setText(currentHealth + "/" + maxHealth);
+        enemyHPLabel.repaint();
     }
 
     private JLabel createNameLabel(String nome, Font font){
