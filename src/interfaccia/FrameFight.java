@@ -8,8 +8,9 @@ import messaggi.Messaggio;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.border.AbstractBorder;
-
+import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,11 +58,13 @@ public class FrameFight extends JFrame{
 
         characterPanel = getImmagine();
         characterPanel.setBounds(50, 250, 200, 200);
-        //add(characterPanel);
+        BlurredEllipsePanel ellipsePanel = new BlurredEllipsePanel(Color.WHITE, 0.2F, 40);
+        ellipsePanel.setBounds(characterPanel.getX()-50, characterPanel.getY()-50, 300, 300);
 
         enemyPanel = getNemico();
         enemyPanel.setBounds(500, 150, 200,  200);
-        //add(enemyPanel);
+        BlurredEllipsePanel ellipsePanel2 = new BlurredEllipsePanel(Color.WHITE, 0.2f, 40);
+        ellipsePanel2.setBounds(enemyPanel.getX()-50, enemyPanel.getY()-50, 300, 300);
 
         scalePanels(200, 200, 200, 200);
 
@@ -176,6 +179,9 @@ public class FrameFight extends JFrame{
         //aggiungo le immagini in sequenza in base a cosa va sopra o sotto
         add(characterPanel);
         add(enemyPanel);
+
+        add(ellipsePanel);
+        add(ellipsePanel2);
 
         add(backgroundLabel);
 
@@ -322,7 +328,7 @@ public class FrameFight extends JFrame{
     }
 
     private void startFadeIn(){
-        Timer timer = new Timer(100, new ActionListener() {
+        Timer timer = new Timer(80, new ActionListener() {
             private float opacity = 0f;
 
             @Override
@@ -452,6 +458,62 @@ public class FrameFight extends JFrame{
         int labelHeight = nameLabel.getPreferredSize().height;
 
         nameLabel.setBounds(barX + 5, barY - labelHeight, labelWidth, labelHeight);
+    }
+
+    public class BlurredEllipsePanel extends JPanel {
+        private final Color color;
+        private final float opacity;
+        private final int blurRadius;
+
+        public BlurredEllipsePanel(Color color, float opacity, int blurRadius) {
+            this.color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (opacity * 255));
+            this.opacity = opacity;
+            this.blurRadius = blurRadius;
+            setOpaque(false);
+        }
+
+        @Override
+        
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            int width = getWidth();
+            int height = getHeight();
+
+            BufferedImage ellipseImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = ellipseImage.createGraphics();
+
+            g2d.setColor(color);
+            g2d.fillOval(blurRadius, blurRadius, width-2*blurRadius, height-2*blurRadius);
+            g2d.dispose();
+
+            BufferedImage blurredImage = applyGaussianBlur(ellipseImage,blurRadius);
+
+            g.drawImage(blurredImage, 0, 0, null);
+        }
+
+        private BufferedImage applyGaussianBlur(BufferedImage src, int radius)  {
+            int size = radius * 2 + 1;
+            float[] weights = new float[size * size];
+            float sigma = radius / 3.0f;
+            float sum = 0f;
+
+            for (int y = -radius; y<= radius; y++) {
+                for(int x = -radius; x<= radius; x++) {
+                    float weight = (float) Math.exp(-(x*x + y*y) / (2*sigma*sigma));
+                    weights[(y+radius)*size + (x+radius)] = weight;
+                    sum += weight;
+                }
+            }
+
+            for (int i = 0; i< weights.length; i++) {
+                weights[i] /= sum;
+            }
+
+            Kernel kernel = new Kernel(size, size, weights);
+            ConvolveOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
+            return op.filter(src, null);
+        }
     }
 
     private void actionAttacca(){
