@@ -5,7 +5,6 @@ import gioco.Giocatore;
 import gioco.Razza;
 import gioco.Classe;
 import messaggi.Messaggio;
-
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.image.BufferedImage;
@@ -141,6 +140,7 @@ public class FrameFight extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrameGame.getMessaggi().setText("MIO PAVIDO AVVENTURIERO, SEI FUGGITO DA '" + Dungeon.getGiocatore().getNemico().getNome() + "'");
+                handleFuga();
                 setVisible(false);
             }
         });
@@ -194,6 +194,36 @@ public class FrameFight extends JFrame{
 
         setVisible(true);
 
+    }
+
+    private void handleDeath(boolean isDead, String nome) {
+        String message;
+        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
+
+        if(isDead) {
+            message = "Purtroppo mio giovane " + nome + " sei morto, ti ricorderemo calorosamente.... forse";
+        } else {
+            message = "Mio prode avventuriero, hai sconfitto " + nome + "!!!";
+        }
+
+        EventScreen eventScreen = new EventScreen(message, hintImagePath);
+        eventScreen.showScreen(this);
+    }
+
+    private void handleNoArmi() {
+        String message = "Pensavi di combattere senza nessuna arma per caso?? AHAHAHA";
+        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
+
+        EventScreen eventScreen = new EventScreen(message, hintImagePath);
+        eventScreen.showScreen(this);
+    }
+
+    private void handleFuga(){
+        String message = "Qualcuno qua se l'è fatta sotto AHAHAHAHA";
+        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
+
+        EventScreen eventScreen = new EventScreen(message, hintImagePath);
+        eventScreen.showScreen(this);
     }
 
     private ImagePanel getImmagine(){
@@ -525,6 +555,7 @@ public class FrameFight extends JFrame{
             FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
         }else{
 
+            handleNoArmi();
             setVisible(false);
             FrameGame.getMessaggi().setText("NON PUOI COMBATTERE " + Dungeon.getGiocatore().getNemico().getNome() + " NON HAI UN ARMA");
         }
@@ -532,12 +563,13 @@ public class FrameFight extends JFrame{
         /**--- ALLA MORTE DI UNO DEI DUE SCOMPARE LA FINESTRA ---**/
         if(!Dungeon.getGiocatore().isVivo()){
 
+            handleDeath(Dungeon.getGiocatore().isVivo(), Dungeon.getGiocatore().getNome());
             FrameGame.getMessaggi().setText("MI DISPIACE MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " SEI MORTO IN QUEST'AVVENTURA");
         }
         if(!Dungeon.getGiocatore().getNemico().isVivo()){
 
+            handleDeath(Dungeon.getGiocatore().isVivo(), Dungeon.getGiocatore().getNemico().getNome());
             FrameGame.getMessaggi().setText("MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " HAI SCONFITTO " + Dungeon.getGiocatore().getNemico().getNome());
-
         }
 
         /**--- CAMBIO LE STATS SULLA FINESTRA PRINCIPALE (OPZIONALE NON BELLISSIMO VEDI TU GIAN :) ) ---**/
