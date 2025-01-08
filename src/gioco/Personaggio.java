@@ -1,6 +1,8 @@
 package gioco;
 
 import messaggi.Messaggio;
+import interfaccia.ImagePanel;
+import javax.swing.*;
 
 public class Personaggio extends Posizione {
 
@@ -11,6 +13,8 @@ public class Personaggio extends Posizione {
     private int monete;
 
     private boolean vivo;
+
+    private ImagePanel immagine;
 
     public Personaggio(int righe, int colonne, String tipo, String nome, int puntiVita, int puntiArmatura, int monete) {
         super(righe, colonne, tipo);
@@ -210,6 +214,14 @@ public class Personaggio extends Posizione {
 
     public boolean isVivo() {
         return vivo;
+    }
+
+    public ImagePanel getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(ImagePanel immagine) {
+        this.immagine = immagine;
     }
 
 }

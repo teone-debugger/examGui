@@ -1,6 +1,9 @@
 package gioco;
 
+import java.awt.Image;
 import java.util.HashMap;
+
+import interfaccia.ImagePanel;
 
 public class Png extends Personaggio {
     private String dialogo;
@@ -12,8 +15,10 @@ public class Png extends Personaggio {
     private static int count = 0;
 
     /**--- COSTRUTTORE PNG OSTILI ---**/
-    public Png(int righe, int colonne, int puntiVita, int puntiArmatura, int monete) {
+    public Png(int righe, int colonne, int puntiVita, int puntiArmatura, int monete, ImagePanel immagine) {
         super(righe, colonne, "§", generateNome(), puntiVita, puntiArmatura, monete);
+
+        setImmagine(immagine);
 
         this.ostile = true;
 
@@ -75,10 +80,10 @@ public class Png extends Personaggio {
         dialoghiOstili.put(4,"VEDI DI SPARIRE");
         dialoghiOstili.put(5,"OR ALE PRENDI");
         dialoghiOstili.put(6,"PROVARE A PARLARE CON ME E' STATA LA PEGGIORE DELLE TUE IDEE");
-        dialoghiOstili.put(7, "GGGG");
-        dialoghiOstili.put(8,"TODO");
-        dialoghiOstili.put(9,"TODO");
-        dialoghiOstili.put(10,"TODO");
+        dialoghiOstili.put(7, "TI FACCIO A FETTE");
+        dialoghiOstili.put(8,"TI FARO' A PEZZI");
+        dialoghiOstili.put(9,"VIVA GIGI FINIZZI");
+        dialoghiOstili.put(10,"VUOI VEDERE COSA SUCCEDE?");
     }
     private String selectDialoghiOstili() {
         return dialoghiOstili.get(count);
@@ -87,16 +92,16 @@ public class Png extends Personaggio {
     public static void generateDialoghiNonOstili(){
         dialoghiNonOstili = new HashMap<>();
 
-        dialoghiNonOstili.put(11,"TODO");
-        dialoghiNonOstili.put(12,"TODO");
-        dialoghiNonOstili.put(13,"TODO");
-        dialoghiNonOstili.put(14,"TODO");
-        dialoghiNonOstili.put(15,"TODO");
-        dialoghiNonOstili.put(16,"TODO");
-        dialoghiNonOstili.put(17, "TODO");
-        dialoghiNonOstili.put(18,"TODO");
-        dialoghiNonOstili.put(19,"TODO");
-        dialoghiNonOstili.put(20,"TODO");
+        dialoghiNonOstili.put(11,"VIVA GIGI FINIZZI");
+        dialoghiNonOstili.put(12,"BELLA GIORNATA OGGI");
+        dialoghiNonOstili.put(13,"HAI VISTO IL MIO GATTO?");
+        dialoghiNonOstili.put(14,"CIAO");
+        dialoghiNonOstili.put(15,"HAI PREGIUDUIZI SUI MIEI SIMILI?");
+        dialoghiNonOstili.put(16,"IL DRAGO E' NELL'ULTIMA STANZA");
+        dialoghiNonOstili.put(17, "... ... ...");
+        dialoghiNonOstili.put(18,"CORPO DI MILLE BALENE");
+        dialoghiNonOstili.put(19,"OCCHIO AI BRUTTI CEFFI NEI DINTORNI");
+        dialoghiNonOstili.put(20,"VAMOS A LA PLAYA");
 
     }
     private String selectDialoghiNonOstili() {

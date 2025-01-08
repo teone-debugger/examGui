@@ -74,7 +74,6 @@ public class Giocatore extends Personaggio{
     
                     Messaggio.addMessaggio("VUOI OLTREPASSARE LA PORTA? ");
                     break;
-    
             }
         }
         public Posizione aroundGui(){
@@ -242,8 +241,7 @@ public class Giocatore extends Personaggio{
     
         private void goThroughGui(Porta porta, String direzione) {
             if(!porta.isBloccata()){
-    
-    
+        
                         switch(direzione.toLowerCase()){
     
                             case "up":
@@ -287,6 +285,8 @@ public class Giocatore extends Personaggio{
                                 break;
                         }
     
+                }else{
+                    System.out.println("porta bloccata");
                 }
     
         }
@@ -434,15 +434,13 @@ public class Giocatore extends Personaggio{
         }
     
         private void goThrough(Porta p, String direzione, Scanner scn) {
-    
-            if(!p.isBloccata()){
-    
-                System.out.print("vuoi oltrepassare la porta? " + direzione + " (yes/y - no/n) ");
+            
+            System.out.print("vuoi oltrepassare la porta? " + direzione + " (yes/y - no/n) ");
     
                 switch(scn.nextLine().toLowerCase()){
                     case "yes":
                     case "y":
-    
+                    if(!p.isBloccata()){
                         switch(direzione.toLowerCase()){
     
                             case "up":
@@ -488,6 +486,9 @@ public class Giocatore extends Personaggio{
     
                         Dungeon.showDungeon();
                         findOggettiPng(scn);
+                    }else{
+                        System.out.println("porta bloccata");
+                    }
     
                         break;
                     case "no":
@@ -499,7 +500,7 @@ public class Giocatore extends Personaggio{
                         break;
                 }
     
-            }
+            
         }
         private void takeUp(Oggetto oggetto, String direzione, Scanner scn){
     

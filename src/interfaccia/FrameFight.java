@@ -57,13 +57,9 @@ public class FrameFight extends JFrame{
 
         characterPanel = getImmagine();
         characterPanel.setBounds(50, 250, 200, 200);
-        BlurredEllipsePanel ellipsePanel = new BlurredEllipsePanel(Color.WHITE, 0.2F, 40);
-        ellipsePanel.setBounds(characterPanel.getX()-50, characterPanel.getY()-50, 300, 300);
 
-        enemyPanel = getNemico();
+        enemyPanel = Dungeon.getGiocatore().getNemico().getImmagine();
         enemyPanel.setBounds(500, 150, 200,  200);
-        BlurredEllipsePanel ellipsePanel2 = new BlurredEllipsePanel(Color.WHITE, 0.2f, 40);
-        ellipsePanel2.setBounds(enemyPanel.getX()-50, enemyPanel.getY()-50, 300, 300);
 
         scalePanels(200, 200, 200, 200);
 
@@ -180,9 +176,6 @@ public class FrameFight extends JFrame{
         add(characterPanel);
         add(enemyPanel);
 
-        add(ellipsePanel);
-        add(ellipsePanel2);
-
         add(backgroundLabel);
 
         //animazione fade in
@@ -193,6 +186,7 @@ public class FrameFight extends JFrame{
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         setVisible(true);
+        setResizable(false);
 
     }
 
@@ -305,7 +299,7 @@ public class FrameFight extends JFrame{
 
     }
 
-    private ImagePanel getNemico() {
+    /*private ImagePanel getNemico() {
         ImagePanel immagine;
         int randomNumber = (int) (Math.random()*6)+1;
 
@@ -345,7 +339,7 @@ public class FrameFight extends JFrame{
 
         randomNumber = 0;
         return immagine;
-    }
+    }*/
 
     private String toStringRazza(Razza razza) {return razza + "";}
     private String toStringClasse(Classe classe) {return classe + "";}
@@ -386,44 +380,6 @@ public class FrameFight extends JFrame{
     private void scalePanels(int characterWidth, int characterHeight, int enemyWidth, int enemyHeight) {
         characterPanel.setScaledSize(characterWidth, characterHeight);
         enemyPanel.setScaledSize(enemyWidth, enemyHeight);
-    }
-
-    private class ImagePanel extends JPanel{
-        private Image image;
-        private float opacity = 0f;
-
-        public ImagePanel(String imagePath, int width, int height) {
-            super();
-            try{
-                image = new ImageIcon(imagePath).getImage().getScaledInstance(width, height, image.SCALE_SMOOTH);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            setOpaque(false);
-        }
-
-        public void setOpacity(float opacity) {
-            this.opacity = opacity;
-            repaint();
-        }
-
-        public void setScaledSize(int width, int height) {
-            image = image.getScaledInstance(width, height, image.SCALE_SMOOTH);
-            repaint();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2d = (Graphics2D) g.create();
-
-            /**--- GENERA EXCEPTION ---**/
-            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,opacity));
-
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-        }
     }
 
     private JProgressBar createHealthBar(int maxHealth, int health) {
@@ -488,62 +444,6 @@ public class FrameFight extends JFrame{
         int labelHeight = nameLabel.getPreferredSize().height;
 
         nameLabel.setBounds(barX + 5, barY - labelHeight, labelWidth, labelHeight);
-    }
-
-    public class BlurredEllipsePanel extends JPanel {
-        private final Color color;
-        private final float opacity;
-        private final int blurRadius;
-
-        public BlurredEllipsePanel(Color color, float opacity, int blurRadius) {
-            this.color = new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (opacity * 255));
-            this.opacity = opacity;
-            this.blurRadius = blurRadius;
-            setOpaque(false);
-        }
-
-        @Override
-        
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-            int width = getWidth();
-            int height = getHeight();
-
-            BufferedImage ellipseImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = ellipseImage.createGraphics();
-
-            g2d.setColor(color);
-            g2d.fillOval(blurRadius, blurRadius, width-2*blurRadius, height-2*blurRadius);
-            g2d.dispose();
-
-            BufferedImage blurredImage = applyGaussianBlur(ellipseImage,blurRadius);
-
-            g.drawImage(blurredImage, 0, 0, null);
-        }
-
-        private BufferedImage applyGaussianBlur(BufferedImage src, int radius)  {
-            int size = radius * 2 + 1;
-            float[] weights = new float[size * size];
-            float sigma = radius / 3.0f;
-            float sum = 0f;
-
-            for (int y = -radius; y<= radius; y++) {
-                for(int x = -radius; x<= radius; x++) {
-                    float weight = (float) Math.exp(-(x*x + y*y) / (2*sigma*sigma));
-                    weights[(y+radius)*size + (x+radius)] = weight;
-                    sum += weight;
-                }
-            }
-
-            for (int i = 0; i< weights.length; i++) {
-                weights[i] /= sum;
-            }
-
-            Kernel kernel = new Kernel(size, size, weights);
-            ConvolveOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
-            return op.filter(src, null);
-        }
     }
 
     private void actionAttacca(){
