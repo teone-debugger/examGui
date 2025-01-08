@@ -7,7 +7,18 @@ public class Porta extends Posizione {
     public Porta(int riga, int colonna, String tipo) {
         super(riga,colonna, tipo);
 
-        bloccata = false;
+        if((int)(Math.random() * 30) == 0) {
+            bloccata = true;
+        } else {
+            bloccata = false;
+        }
+    }
+
+    public Porta(int riga, int colonna, String tipo , boolean bloccata) {
+        super(riga,colonna, tipo);
+
+            this.bloccata = bloccata;
+        
     }
 
     public boolean isBloccata() {

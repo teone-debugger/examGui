@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class EventScreen extends JPanel{
+public class EventScreen extends JLayeredPane {
     private JLabel messageLabel;
     private JLabel hintLabel;
 
@@ -46,9 +46,11 @@ public class EventScreen extends JPanel{
     }
 
     public void showScreen(JFrame parentFrame) {
-        parentFrame.getContentPane().add(this);
+        this.setBounds(0, 0, parentFrame.getWidth(), parentFrame.getHeight());
+        parentFrame.setLayeredPane(this);
         parentFrame.revalidate();
         parentFrame.repaint();
+        SwingUtilities.updateComponentTreeUI(this);
         requestFocusInWindow();
     }
 

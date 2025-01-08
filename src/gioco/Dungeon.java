@@ -1,6 +1,7 @@
 package gioco;
 
 import java.lang.Class;
+import interfaccia.ImagePanel;
 
 public class Dungeon{
 
@@ -16,6 +17,9 @@ public class Dungeon{
     private static Giocatore giocatore;
     private Drago drago;
 
+    private ImagePanel immagineNemico;
+
+
     public Dungeon(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){
         Dungeon.righe = righe;
         Dungeon.colonne = colonne;
@@ -23,6 +27,7 @@ public class Dungeon{
         this.maxPng = 20;
         this.giocatore = giocatore;
         this.drago = drago;
+        drago.setImmagine(new ImagePanel("src/images/nemici/image (20).png", 300, 300));
 
         this.divisoreColonne = divisoreColonne;
         this.divisoreRighe = divisoreRighe;
@@ -92,7 +97,9 @@ public class Dungeon{
                     /**--- OSTILI ---**/
 
                     Png.generateDialoghiOstili();
-                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  25, 7, 150);
+                    int vita = setPuntiVitaPng();
+
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  vita, 7, 150, immagineNemico);
                 }else {
 
                     /**--- NON OSTILI ---**/
@@ -105,6 +112,43 @@ public class Dungeon{
             }
         }
     }
+    private int setPuntiVitaPng(){
+        int selettore =  (int) (Math.random() *  100 + 1);
+
+        if(selettore <= 30){
+            immagineNemico  = new ImagePanel("src/images/nemici/image (10).png", 300, 300);
+            return 8;
+
+        }else if( selettore <= 45){
+            immagineNemico = new ImagePanel("src/images/nemici/image (1).png", 300, 300);
+            return 12;
+
+        }else if( selettore <= 55){
+            immagineNemico = new ImagePanel("src/images/nemici/ghost.png", 300, 300);
+            return 15;
+
+        }else if( selettore <= 68){
+            immagineNemico = new ImagePanel("src/images/nemici/image (2).png", 300, 300);
+            return 18;
+
+        }else if( selettore <= 75){
+            immagineNemico = new ImagePanel("src/images/nemici/image (3).png", 300, 300);
+            return 21;
+
+        }else if( selettore <= 88){
+            immagineNemico = new ImagePanel("src/images/nemici/image (9).png", 300, 300);
+            return 24;
+
+        }else if( selettore <= 98){
+            immagineNemico = new ImagePanel("src/images/nemici/image.png", 300, 300);
+            return 27;
+
+        }else{
+            immagineNemico = new ImagePanel("src/images/nemici/image (21).png", 300, 300);
+            return 33;
+        }
+        }
+
 
     private void setWallsMappa(int r, int c){
 
