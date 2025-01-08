@@ -3,8 +3,12 @@ package saveManager;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.StorageClient;
+import com.google.cloud.storage.Bucket;
+import com.google.cloud.storage.Blob;
 
 import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
 
 public class FirebaseInitializer {
@@ -20,7 +24,7 @@ public class FirebaseInitializer {
         try {
             FileInputStream serviceAccount = new FileInputStream("src/key/examgui-4a40b-35ff981a418b.json");
 
-            FirebaseOptions options = new FirebaseOptions.builder()
+            FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setStorageBucket("examgui-4a40b.appspot.com")
                     .build();
@@ -37,7 +41,7 @@ public class FirebaseInitializer {
         Bucket bucket = StorageClient.getInstance().bucket();
 
         try {
-            File file = new File();
+            File file = new File("salvataggi/" + filename);
             FileInputStream fis = new FileInputStream("salvataggi/" + filename);
 
             byte[] data = new byte[(int) file.length()];
