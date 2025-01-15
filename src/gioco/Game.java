@@ -110,7 +110,7 @@ public class Game {
 
 
     public static boolean isWin(){
-        return false;
+        return Dungeon.getDrago().getPuntiVita() <= 0;
     }
 
     public void play(){

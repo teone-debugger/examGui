@@ -12,7 +12,6 @@ public class FrameGame extends Frame{
 
     private static Posizione posizione;
     //private static Posizione oldPosizione;
-    private ArrayList<Posizione> posizioniTrovate;
 
     private PannelloText mappa;
     private static PannelloTitled inventario;
@@ -29,7 +28,6 @@ public class FrameGame extends Frame{
 
         widthMappa = getWidth() * 58 /100;
         heightMappa = getHeight() * 60 /100;
-        posizioniTrovate = new ArrayList<>();
 
         creazioneLatoSX();
         creazioneLatoDX();
@@ -90,11 +88,11 @@ public class FrameGame extends Frame{
                         break;
                 }
 
+                Dungeon.getGiocatore().getPosizioniTrovate().clear();
+
                 Messaggio.clearMesaggio();
-                posizioniTrovate.clear();
                 mappa.setText(Dungeon.dungeonToString());
                 posizione = Dungeon.getGiocatore().aroundGui();
-
                 //posizioniTrovate.add(posizione);
 
                 mappa.getJtextArea().requestFocus();
@@ -180,30 +178,90 @@ public class FrameGame extends Frame{
 
 
                     if(posizione != null) {
+                        //messaggi.clearText();
+                        Dungeon.getGiocatore().takeUpGui(posizione);
+                        messaggi.setText(Messaggio.getMessaggio());
+                        Messaggio.clearMesaggio();
+                        inventario.setText(Giocatore.inventarioToString());
+                        
 
+                        if(posizione.getClass().getSimpleName().equals("Porta") ) {
+                            
+                            if(((Porta) posizione).isBloccata()) {
 
-                            Dungeon.getGiocatore().takeUpGui(posizione);
-                            //Messaggio.clearMesaggio();
-                            messaggi.clearText();
+                                
+                                /**--- SE E' UNA PORTA BLOCCATA LA SBLOCCO ---**/
+                                if(Giocatore.searchInInventory("CHIAVE") ) {
+                                    if(barraStrumenti.isClicked()){
+                                        Giocatore.removeFromInventory("CHIAVE");
 
-                            if (!posizione.getClass().getSimpleName().equals("Porta"))
-                                posizioniTrovate.add(posizione);
+                                        System.out.println("CHIAVE RIMOSSA DALL'INVENTARIO");
 
-                            if (/*!isFind(posizione)*/ !posizioniTrovate.contains(posizione)) {
-
-                                if (!posizione.getClass().getSimpleName().equals("Png"))
-                                    posizione = Dungeon.getGiocatore().aroundGui();
-
+                                        barraStrumenti.setClicked(false);
+                                        ((Porta) posizione).setBloccata(false);
+                                        mappa.setText(Dungeon.dungeonToString());
+                                        messaggi.setText("PORTA SBLOCCATA!!!");
+                                    }else{
+                                        barraStrumenti.setClicked(true);
+                                    }
+                                }
+                                
                             }
-                            inventario.setText(Giocatore.inventarioToString());
-                            messaggi.setText(Messaggio.getMessaggio());
-                            mappa.setText(Dungeon.dungeonToString());
-                        }
+                            
 
+                        }else{
+                            //Messaggio.clearMesaggio();
+                            
+
+                            posizione = Dungeon.getGiocatore().aroundGui();
+                            //System.out.println("POSIZIONE: " + posizione.getClass());
+
+                            if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
+                                messaggi.setText(Messaggio.getMessaggio());
+                            }
+                        }
+                        mappa.setText(Dungeon.dungeonToString());
+                            //messaggi.setText(Messaggio.getMessaggio());
+                            
+                            
+                            
+
+                            //Messaggio.clearMesaggio();
+                            /*mappa.setText(Dungeon.dungeonToString());
+
+                            posizione = Dungeon.getGiocatore().aroundGui();
+                            //System.out.println("POSIZIONE: " + posizione.getClass());
+
+                            if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
+                                messaggi.setText(Messaggio.getMessaggio());
+                            }*/
+                        
+                    }
+
+
+                }else if(fe.getJButton().equals(barraStrumenti.getNegativo())){
+
+                    if(posizione != null) {
+
+                        if(posizione.getClass().getSimpleName().equals("Porta")) {
+                                
+                            if(((Porta) posizione).isBloccata() && Giocatore.searchInInventory("CHIAVE")) {
+
+                                barraStrumenti.setClicked(false);
+                                messaggi.setText("NON HAI SBLOCCATO LA PORTA");
+                            }
+                        }else{
+                            /**--- CAMBIO INTERAZIONE ---**/
+                        
+                            posizione = Dungeon.getGiocatore().aroundGui();
+                            messaggi.setText(Messaggio.getMessaggio());
+                        }
+                    }
 
                 }//esle if(fe.getJButton().equals(barraStrumenti.getCura())) Dungeon.getGiocatore().heal();
 
 
+                mappa.getJtextArea().requestFocus();
                 mappa.getJtextArea().requestFocus();
                 SwingUtilities.updateComponentTreeUI(FrameGame.this);
 

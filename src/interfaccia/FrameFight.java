@@ -134,7 +134,10 @@ public class FrameFight extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 FrameGame.getMessaggi().setText("MIO PAVIDO AVVENTURIERO, SEI FUGGITO DA '" + Dungeon.getGiocatore().getNemico().getNome() + "'");
                 handleFuga();
-                setVisible(false);
+                setVisible(true);
+
+                 /**--- PERDE ORO SE FUGGE ---**/
+                 Dungeon.getGiocatore().loseGold();
             }
         });
 
@@ -200,7 +203,7 @@ public class FrameFight extends JFrame{
     }
 
     private void handleNoArmi() {
-        String message = "Pensavi di combattere senza nessuna arma per caso?? AHAHAHA";
+        String message = "PENSAVI DI POTER COMBATTERE SENZA UN ARMA PER CASO?? AHAHAHA";
         String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
 
         EventScreen eventScreen = new EventScreen(message, hintImagePath);
@@ -208,7 +211,7 @@ public class FrameFight extends JFrame{
     }
 
     private void handleFuga(){
-        String message = "Qualcuno qua se l'è fatta sotto AHAHAHAHA";
+        String message = "QUALCUNO QUA SE L'E' FATTA SOTTO AHAHAHAHA";
         String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
 
         EventScreen eventScreen = new EventScreen(message, hintImagePath);
@@ -507,7 +510,7 @@ public class FrameFight extends JFrame{
         }else{
 
             handleNoArmi();
-            setVisible(false);
+            setVisible(true);
             FrameGame.getMessaggi().setText("NON PUOI COMBATTERE " + Dungeon.getGiocatore().getNemico().getNome() + " NON HAI UN ARMA");
         }
 

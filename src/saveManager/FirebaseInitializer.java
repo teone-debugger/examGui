@@ -19,7 +19,7 @@ public class FirebaseInitializer {
         initializeFirebase();
         this.initialized = true;
     }
-
+//C:\Program Files\Eclipse Adoptium\jre-8.0.432.6-hotspot\
     public static void initializeFirebase() {
         try {
             FileInputStream serviceAccount = new FileInputStream("src/key/examgui-4a40b-35ff981a418b.json");

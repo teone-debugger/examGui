@@ -1,10 +1,14 @@
 package gioco;
 
 import interfaccia.FrameFight;
+import interfaccia.FrameGame;
 import messaggi.Messaggio;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import org.checkerframework.checker.units.qual.A;
 
 
 public class Giocatore extends Personaggio{
@@ -19,6 +23,8 @@ public class Giocatore extends Personaggio{
         //private HashMap <Integer,Oggetto> armi; /**--- COSI' DA NON SCORRERE TUTTO L'INVENTARIO ---**/
         private static Arma arma;
         private Personaggio nemico;
+
+        private ArrayList<Posizione> posizioniTrovate;
     
         /**--- ARMA EQUIPAGGIATA ---**/
     
@@ -31,6 +37,8 @@ public class Giocatore extends Personaggio{
             this.pesoMax = 500;
     
             inventario = new HashMap<>();
+            posizioniTrovate = new ArrayList<>();
+
             //this.armi = new HashMap<>();
         }
     
@@ -48,7 +56,7 @@ public class Giocatore extends Personaggio{
             }*/
     
         }
-    
+        
         public void messagge(Posizione p){
             switch (p.getClass().getSimpleName()) {
                 case "Png":
@@ -79,48 +87,72 @@ public class Giocatore extends Personaggio{
         public Posizione aroundGui(){
     
             /**--- UP ---**/
-    
-                switch(Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].getClass().getSimpleName()){
+            Posizione p = Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()];
+
+                switch(p.getClass().getSimpleName()){
                     case "Oggetto":
                     case "Arma":
                     case "Png":
                     case "Drago":
-                        messagge(Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()]);
-                        return Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()];
+                    if(!posizioniTrovate.contains(p)){
+
+                        posizioniTrovate.add(p);
+                        messagge(p);
+                        return p;
+                    }
     
                 }
     
     
             /**--- DOWN ---**/
-            switch(Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()].getClass().getSimpleName()){
+            p = Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()];
+
+            switch(p.getClass().getSimpleName()){
                 case "Oggetto":
                 case "Arma":
                 case "Png":
                 case "Drago":
-                    messagge(Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()]);
-                    return Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()];
+                if(!posizioniTrovate.contains(p)){
+
+                    posizioniTrovate.add(p);
+                    messagge(p);
+                    return p;
+                }
     
             }
     
             /**--- LEFT ---**/
-            switch(Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1].getClass().getSimpleName()){
+            p = Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1];
+
+            switch(p.getClass().getSimpleName()){
                 case "Oggetto":
                 case "Arma":
                 case "Png":
                 case "Drago":
-                    messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1]);
-                    return Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1];
+
+                if(!posizioniTrovate.contains(p)){
+
+                    posizioniTrovate.add(p);
+                    messagge(p);
+                    return p;
+                }
     
             }
     
             /**--- RIGHT ---**/
-            switch(Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1].getClass().getSimpleName()){
+            p = Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1];
+
+            switch(p.getClass().getSimpleName()){
                 case "Oggetto":
                 case "Arma":
                 case "Png":
                 case "Drago":
-                    messagge(Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1]);
-                    return Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1];
+                if(!posizioniTrovate.contains(p)){
+
+                    posizioniTrovate.add(p);
+                    messagge(p);
+                    return p;
+                }
     
             }
     
@@ -179,8 +211,12 @@ public class Giocatore extends Personaggio{
                 } else if (((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(Giocatore.classe)) {
                     if (oggetto.getPeso() + getPesoInventario() <= pesoMax) {
                         inventario.put(oggetto.getIndex(), oggetto);
-    
-                        arma = (Arma)oggetto;
+                        
+                        if(arma != null && arma.getDado() < ((Arma) oggetto).getDado() ){
+                            arma = (Arma)oggetto;
+                        }else {
+                            arma = (Arma)oggetto;
+                        }
     
                         Messaggio.setMessaggio("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
                     } else {
@@ -241,7 +277,6 @@ public class Giocatore extends Personaggio{
     
         private void goThroughGui(Porta porta, String direzione) {
             if(!porta.isBloccata()){
-        
                         switch(direzione.toLowerCase()){
     
                             case "up":
@@ -284,9 +319,13 @@ public class Giocatore extends Personaggio{
                                 Dungeon.setPosizioneMappa(this);
                                 break;
                         }
-    
-                }else{
-                    System.out.println("porta bloccata");
+                    
+                }else if(searchInInventory("CHIAVE")){
+                    Messaggio.addMessaggio("PORTA BLOCCATA");
+                    Messaggio.addMessaggio("VUOI SBLOCCARE LA PORTA?");
+                    //FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
+                }else {
+                    Messaggio.addMessaggio("PORTA BLOCCATA");
                 }
     
         }
@@ -486,8 +525,26 @@ public class Giocatore extends Personaggio{
     
                         Dungeon.showDungeon();
                         findOggettiPng(scn);
+                    }else if(searchInInventory("CHIAVE")){
+                        System.out.println("PORTA BLOCCATA");
+                        System.out.println("VUOI SBLOCCARE LA PORTA? (yes/y - no/n)");
+                        switch(scn.nextLine().toLowerCase()){
+                            case "yes":
+                            case "y":
+                                p.setBloccata(false);
+                                removeFromInventory("CHIAVE");
+                                System.out.println("PORTA SBLOCCATA");
+                                break;
+                            case "no":
+                            case "n":
+                                break;
+                            default:
+                                goThrough(p, direzione, scn);
+                                break;
+
+                        }
                     }else{
-                        System.out.println("porta bloccata");
+                        System.out.println("PORTA BLOCCATA");
                     }
     
                         break;
@@ -515,7 +572,6 @@ public class Giocatore extends Personaggio{
                         if((oggetto.getPeso() + getPesoInventario()) <= pesoMax){
     
                             inventario.put(oggetto.getIndex(), oggetto);
-    
                             System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
     
                         }else {
@@ -640,8 +696,11 @@ public class Giocatore extends Personaggio{
                 case "f":
     
                     /**--- MI SI ALLONTANA PROVANDO TUTTE LE DIREZIONI (POCO SENSATO) FUNZIONA PERCHE' UNA E' SICURAMENTE OCCUPATA DAL PNG ---**/
-    
+                    loseGold();
+
                     System.out.println("SEI SCAPPATO DA '" + personaggio.getNome() + "' ");
+                    System.out.println(Messaggio.getMessaggio());
+
                     //Dungeon.showDungeon();
     
                     switch (direzione) {
@@ -791,6 +850,16 @@ public class Giocatore extends Personaggio{
     
             return null;
         }
+        public static boolean searchInInventory(String s) {
+    
+            for (Oggetto oggetto : inventario.values()) {
+                if (oggetto.getDescrizione().equals(s)) {
+                    return true;
+                }
+            }
+    
+            return false;
+        }
     
         public static void showInventario() {
     
@@ -869,6 +938,9 @@ public class Giocatore extends Personaggio{
         }
 
         return somma;
+    }
+    public ArrayList<Posizione> getPosizioniTrovate() {
+        return posizioniTrovate;
     }
 
 }

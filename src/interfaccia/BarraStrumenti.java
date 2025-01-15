@@ -11,6 +11,7 @@ public class BarraStrumenti extends JPanel{
     private JButton negativo;
 
     private FormListener formListener;
+    private boolean clicked = false;
 
     BarraStrumenti(){
         affermativo = new JButton("SI");
@@ -74,6 +75,14 @@ public class BarraStrumenti extends JPanel{
 
     public void setFormListener(FormListener formListener) {
         this.formListener = formListener;
+    }
+
+    public boolean isClicked() {
+        return clicked;
+    }
+    public void setClicked(boolean clicked) {
+        System.out.println("CLICKED");
+        this.clicked = clicked;
     }
 
 }

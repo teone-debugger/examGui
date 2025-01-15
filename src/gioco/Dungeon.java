@@ -1,6 +1,11 @@
 package gioco;
 
 import java.lang.Class;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import org.checkerframework.checker.units.qual.g;
+
 import interfaccia.ImagePanel;
 
 public class Dungeon{
@@ -15,7 +20,7 @@ public class Dungeon{
     private static int divisoreColonne;
 
     private static Giocatore giocatore;
-    private Drago drago;
+    private static Drago drago;
 
     private ImagePanel immagineNemico;
 
@@ -35,19 +40,23 @@ public class Dungeon{
         createdungeon();
 
         mappa[giocatore.getRighe()][giocatore.getColonne()] = this.giocatore;
+
+        mappa[giocatore.getRighe()+ 1][giocatore.getColonne()+1] = new Oggetto(giocatore.getRighe()+ 1,giocatore.getColonne()+1, "CHIAVE");
         mappa[drago.getRighe()][drago.getColonne()] = this.drago;
         //mappa[giocatore.getRighe() + 1][giocatore.getColonne()+ 1] = new gioco.Oggetto(giocatore.getRighe() + 1,giocatore.getColonne()+ 1 ,"POZIONE");
     }
 
     private void createdungeon(){
 
+        int index = 1;
         for(int r = 0; r < Dungeon.getRighe(); r++){
-            for(int c = 0;  c< Dungeon.getColonne(); c++){
+            for(int c = 0;  c < Dungeon.getColonne(); c++){
 
                 setWallsMappa(r,c);
-                setDoors(r, c);
+                index = setDoors(r, c, index);
             }
         }
+            
             setOggetti();
             setPng();
     }
@@ -60,12 +69,13 @@ public class Dungeon{
         int randRighe;
         int randColonne;
 
+
         for(int i = 0; i < this.maxOggetti; i++) {
+            
             randRighe = (int) (Math.random() * (getRighe() - 2) + 1);
             randColonne = (int) (Math.random() * (getColonne() - 2) + 1);
-
-            if (mappa[randRighe][randColonne].isLibera()) {
-
+           
+            if (mappa[randRighe][randColonne].isLibera() && !aroundDoors(randRighe, randColonne)) {
                 if(i < 10){
                     mappa[randRighe][randColonne] = new Arma(randRighe, randColonne);
                 }else {
@@ -77,6 +87,7 @@ public class Dungeon{
             }
         }
     }
+    
     private void setPng() {
         /**--- MATH.RANDOM() * (MAX - MIN + 1) + MIN ---**/
         /**--- MAX = RIGHE - 2 PERCHE ARRAY PARTE DA ZERO E COSI' EVITO UN POSSIBILE MURO ---**/
@@ -90,7 +101,8 @@ public class Dungeon{
             randRighe = (int) (Math.random() * (getRighe() - 2) + 1);
             randColonne = (int) (Math.random() * (getColonne() - 2) + 1);
 
-            if (mappa[randRighe][randColonne].isLibera()) {
+
+            if (mappa[randRighe][randColonne].isLibera() && !aroundDoors(randRighe, randColonne)) {
 
                 if(i < 10) {
 
@@ -112,6 +124,16 @@ public class Dungeon{
             }
         }
     }
+    private boolean aroundDoors(int r, int c){
+
+        if(mappa[r-1][c].getClass().getSimpleName().equals("Porta") || mappa[r+1][c].getClass().getSimpleName().equals("Porta") ||
+                mappa[r][c-1].getClass().getSimpleName().equals("Porta") || mappa[r][c+1].getClass().getSimpleName().equals("Porta")){
+
+            return true;
+        }
+        return false;
+    }
+
     private int setPuntiVitaPng(){
         int selettore =  (int) (Math.random() *  100 + 1);
 
@@ -194,8 +216,7 @@ public class Dungeon{
 
     }
 
-    private void setDoors(int r, int c){
-
+    private int setDoors(int r, int c, int index){
         /**--- NON METTO PORTE SUI BORDI ---**/
 
         if(r != 0 && r != Dungeon.getRighe()-1 && c != 0 && c != Dungeon.getColonne()-1){
@@ -205,12 +226,39 @@ public class Dungeon{
             /**--- METTO LE PORTE SOLO SUI MURI VERTICALI  ---**/
 
             if(r % (this.divisoreRighe/2) == 0 && r % this.divisoreRighe != 0 && c % this.divisoreColonne == 0){
-                mappa[r][c] = new Porta(r, c,"#");
+                mappa[r][c] = new Porta(r, c,"#", index);
+                setPath(r, c);
+                return ++index;
             }
             if(c % (this.divisoreColonne/2) == 0 && c % this.divisoreColonne != 0 && r % this.divisoreRighe == 0){
-                mappa[r][c] = new Porta(r, c,"#");
+                mappa[r][c] = new Porta(r, c,"#", index);
+                setPath(r, c);
+                return ++index;
             }
         }
+        return index;
+    }
+    private void setPath(int r, int c){
+        /**--- PERCORSO MINIMO ---**/
+        if(getClassPosizione(r,c).getSimpleName().equals("Porta")){
+
+            Porta p = (Porta) getMappa()[r][c];
+            switch (p.getIndex()) {
+                case 1:
+                case 10:
+                case 29:
+                case 48:
+                    p.setBloccata(false);
+                    break;
+            
+                default:
+                    break;
+            }
+            if(p.getIndex() >= 58 &&  p.getIndex() <= 66){
+                p.setBloccata(false);
+            }
+        }
+
     }
 
     /**--- MOSTRA IL DUNGEON ---**/
@@ -255,4 +303,6 @@ public class Dungeon{
     public static void setPosizioneMappa(Posizione p) {
         Dungeon.mappa[p.getRighe()][p.getColonne()] = p;
     }
+
+    public static Drago getDrago() {return drago;}
 }

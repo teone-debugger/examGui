@@ -11,7 +11,8 @@ public class EventScreen extends JLayeredPane {
 
     public EventScreen(String message, String hintImagePath) {
         setLayout(null);
-        setBackground(new Color(0, 0, 0, 200));
+        setBackground(new Color(188, 201, 219, 143));
+        setForeground(new Color(58, 68, 103, 151));
         setFocusable(true);
 
         Font bodyFont;

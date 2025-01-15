@@ -39,4 +39,5 @@ public class Posizione {
 
     public void setRighe(int righe) {this.righe = righe;}
     public void setColonne(int colonne) {this.colonne = colonne;}
+    public void setTipo(String tipo) {this.tipo = tipo;}
 }

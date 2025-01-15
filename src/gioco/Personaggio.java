@@ -189,7 +189,12 @@ public class Personaggio extends Posizione {
     public void takeGold(Personaggio personaggio){
 
         this.monete += personaggio.getMonete();
-        System.out.println(this.nome + " ORA HAI : " + this.monete + " MONETE D'ORO");
+        Messaggio.addMessaggio(this.nome + " ORA HAI : " + this.monete + " MONETE D'ORO");
+    }
+    public void loseGold(){
+
+        this.monete -= 50;
+        Messaggio.addMessaggio(this.nome + " ORA HAI : " + this.monete + " MONETE D'ORO");
     }
 
     public String getNome() {

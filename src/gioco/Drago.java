@@ -33,4 +33,8 @@ public class Drago extends Personaggio {
     public static int getDannoZampa() {
         return dannoZampa;
     }
+
+    public boolean isVivo() {
+        return getPuntiVita() > 0;
+    }
 }
