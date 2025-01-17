@@ -2,6 +2,8 @@ package interfaccia;
 
 import javax.swing.*;
 
+import gioco.Giocatore;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,6 +13,7 @@ public class EventScreen extends JLayeredPane {
     private JLabel hintLabel;
     private JLabel messaggioBase;
     private JLabel gameOverLabel;
+    private JLabel winLabel;
 
     public EventScreen(String message) {
         String paolo = message;
@@ -58,11 +61,18 @@ public class EventScreen extends JLayeredPane {
         add(hintLabel);
 
         gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
-        gameOverLabel.setFont(gameOverFont.deriveFont(30f));
+        gameOverLabel.setFont(gameOverFont.deriveFont(100f));
         gameOverLabel.setForeground(Color.RED);
-        gameOverLabel.setBounds(100, 200, 600, 300);
+        gameOverLabel.setBounds(100, 150, 600, 200);
         add(gameOverLabel);
         gameOverLabel.setVisible(false);
+
+        winLabel = new JLabel("HAI VINTO", SwingConstants.CENTER);
+        winLabel.setFont(gameOverFont.deriveFont(100f));
+        winLabel.setForeground(Color.YELLOW);
+        winLabel.setBounds(100, 150, 600, 200);
+        add(winLabel);
+        winLabel.setVisible(false);
 
         if(paolo=="") {
             gameOver();
@@ -72,7 +82,7 @@ public class EventScreen extends JLayeredPane {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    closeScreen();
+                    closeScreen(paolo);
                 }
             }
         });
@@ -96,16 +106,18 @@ public class EventScreen extends JLayeredPane {
     }
 
     public void gameOver() {
-        System.out.println("entrata gameOver");
         messaggioBase.setVisible(false);
         messageLabel.setVisible(false);
         gameOverLabel.setVisible(true);
     }
 
-    private void closeScreen() {
+    private void closeScreen(String total) {
         Window parentWindow = SwingUtilities.getWindowAncestor(this);
         if(parentWindow != null) {
             parentWindow.dispose();
+            if(total=="") {
+                Runtime.getRuntime().exit(404);
+            }
         }
     }
 }

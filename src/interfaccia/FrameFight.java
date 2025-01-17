@@ -195,7 +195,7 @@ public class FrameFight extends JFrame{
             message = "Mio prode avventuriero, hai sconfitto " + nome + "!!!";
             EventScreen eventScreen = new EventScreen(message);
             eventScreen.showScreen(this);
-        } if(!isDead) {
+        } else {
             message="";
             EventScreen eventScreen = new EventScreen(message);
             eventScreen.showScreen(this);

@@ -823,8 +823,7 @@ public class Giocatore extends Personaggio{
                 Messaggio.addMessaggio("MIO PRODE AVVENTURIERO '" + this.getNome() + "' SEI STATO SFORTUNATO HAI PERSO IN QUEST'AVEVNTURA");
                 Dungeon.showDungeon();
                 Giocatore.showInventario();/**--- STATIC O NON MOSTRIAMOLO ---**/
-    
-                Runtime.getRuntime().exit(404);
+                //Runtime.getRuntime().exit(404);
     
             }/**--- SE IL PNG MUORE LASCIA L'ORO ---**/
             else if(!personaggio.isVivo()) {
