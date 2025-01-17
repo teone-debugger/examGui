@@ -13,6 +13,7 @@ public class EventScreen extends JLayeredPane {
     private JLabel gameOverLabel;
 
     public EventScreen(String message) {
+        String paolo = message;
         setLayout(null);
         setFocusable(true);
 
@@ -37,8 +38,11 @@ public class EventScreen extends JLayeredPane {
             e.printStackTrace();
             gameOverFont = new Font("Serif", Font.PLAIN, 15);
         }
-        
 
+        if(paolo=="") {
+            gameOver();
+        }
+        
         messaggioBase = new JLabel("UNA VOCE LONTANA RIECHEGGIA NEL DUNGEON:", SwingConstants.CENTER);
         messaggioBase.setForeground(Color.RED);
         messaggioBase.setFont(bodyFont.deriveFont(15f));
