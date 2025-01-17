@@ -2,8 +2,6 @@ package interfaccia;
 
 import javax.swing.*;
 
-import gioco.Giocatore;
-
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -109,6 +107,12 @@ public class EventScreen extends JLayeredPane {
         messaggioBase.setVisible(false);
         messageLabel.setVisible(false);
         gameOverLabel.setVisible(true);
+    }
+
+    public void winScreen(){
+        messaggioBase.setVisible(false);
+        messageLabel.setVisible(false);
+        winLabel.setVisible(true);
     }
 
     private void closeScreen(String total) {
