@@ -4,6 +4,7 @@ import interfaccia.FrameFight;
 import interfaccia.FrameGame;
 import messaggi.Messaggio;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -29,12 +30,12 @@ public class Giocatore extends Personaggio{
         /**--- ARMA EQUIPAGGIATA ---**/
     
         public Giocatore(String nome, int puntiVita, int puntiArmatura, int monete, Classe classe, Razza razza, int righe, int colonne){
-            super(righe, colonne, String.valueOf(nome.charAt(0)),nome,puntiVita,puntiArmatura,monete);
-    
+            super(righe, colonne,String.valueOf(nome.charAt(0)),nome,puntiVita,puntiArmatura,monete);
+
             this.classe = classe;
             this.razza = razza;
             this.puntiEsperienza = 0;
-            this.pesoMax = 500;
+            this.pesoMax = 500; 
     
             inventario = new HashMap<>();
             posizioniTrovate = new ArrayList<>();

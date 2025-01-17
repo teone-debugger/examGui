@@ -190,31 +190,30 @@ public class FrameFight extends JFrame{
 
     private void handleDeath(boolean isDead, String nome) {
         String message;
-        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
 
-        if(isDead) {
-            message = "Purtroppo mio giovane " + nome + " sei morto, ti ricorderemo calorosamente.... forse";
-        } else {
+        if(!isDead) {
             message = "Mio prode avventuriero, hai sconfitto " + nome + "!!!";
+            EventScreen eventScreen = new EventScreen(message);
+            eventScreen.showScreen(this);
+        } else {
+            message="";
+            EventScreen eventScreen = new EventScreen(message);
+            eventScreen.gameOver();
+            eventScreen.showScreen(this);
         }
-
-        EventScreen eventScreen = new EventScreen(message, hintImagePath);
-        eventScreen.showScreen(this);
     }
 
     private void handleNoArmi() {
         String message = "PENSAVI DI POTER COMBATTERE SENZA UN ARMA PER CASO?? AHAHAHA";
-        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
 
-        EventScreen eventScreen = new EventScreen(message, hintImagePath);
+        EventScreen eventScreen = new EventScreen(message);
         eventScreen.showScreen(this);
     }
 
     private void handleFuga(){
         String message = "QUALCUNO QUA SE L'E' FATTA SOTTO AHAHAHAHA";
-        String hintImagePath = "src/images/background/enter-button-sticker-pixel-art-260nw-1988589401.jpg";
 
-        EventScreen eventScreen = new EventScreen(message, hintImagePath);
+        EventScreen eventScreen = new EventScreen(message);
         eventScreen.showScreen(this);
     }
 
