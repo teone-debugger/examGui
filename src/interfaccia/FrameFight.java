@@ -191,14 +191,13 @@ public class FrameFight extends JFrame{
     private void handleDeath(boolean isDead, String nome) {
         String message;
 
-        if(!isDead) {
+        if(isDead) {
             message = "Mio prode avventuriero, hai sconfitto " + nome + "!!!";
             EventScreen eventScreen = new EventScreen(message);
             eventScreen.showScreen(this);
-        } else {
+        } if(!isDead) {
             message="";
             EventScreen eventScreen = new EventScreen(message);
-            eventScreen.gameOver();
             eventScreen.showScreen(this);
         }
     }
@@ -419,11 +418,13 @@ public class FrameFight extends JFrame{
         if(!Dungeon.getGiocatore().isVivo()){
 
             handleDeath(Dungeon.getGiocatore().isVivo(), Dungeon.getGiocatore().getNome());
+            setVisible(true);
             FrameGame.getMessaggi().setText("MI DISPIACE MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " SEI MORTO IN QUEST'AVVENTURA");
         }
         if(!Dungeon.getGiocatore().getNemico().isVivo()){
 
             handleDeath(Dungeon.getGiocatore().isVivo(), Dungeon.getGiocatore().getNemico().getNome());
+            setVisible(true);
             FrameGame.getMessaggi().setText("MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " HAI SCONFITTO " + Dungeon.getGiocatore().getNemico().getNome());
         }
 
@@ -433,7 +434,7 @@ public class FrameFight extends JFrame{
             FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()) + "\n" + Giocatore.statsToString(Dungeon.getGiocatore().getNemico()));
         }else{
             FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()));
-            setVisible(false);
+            //setVisible(false);
         }
     }
 

@@ -38,10 +38,6 @@ public class EventScreen extends JLayeredPane {
             e.printStackTrace();
             gameOverFont = new Font("Serif", Font.PLAIN, 15);
         }
-
-        if(paolo=="") {
-            gameOver();
-        }
         
         messaggioBase = new JLabel("UNA VOCE LONTANA RIECHEGGIA NEL DUNGEON:", SwingConstants.CENTER);
         messaggioBase.setForeground(Color.RED);
@@ -62,11 +58,15 @@ public class EventScreen extends JLayeredPane {
         add(hintLabel);
 
         gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
-        gameOverLabel.setFont(gameOverFont);
+        gameOverLabel.setFont(gameOverFont.deriveFont(30f));
         gameOverLabel.setForeground(Color.RED);
         gameOverLabel.setBounds(100, 200, 600, 300);
         add(gameOverLabel);
         gameOverLabel.setVisible(false);
+
+        if(paolo=="") {
+            gameOver();
+        }
 
         addKeyListener(new KeyAdapter() {
             @Override
@@ -96,6 +96,7 @@ public class EventScreen extends JLayeredPane {
     }
 
     public void gameOver() {
+        System.out.println("entrata gameOver");
         messaggioBase.setVisible(false);
         messageLabel.setVisible(false);
         gameOverLabel.setVisible(true);
