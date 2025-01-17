@@ -61,14 +61,14 @@ public class EventScreen extends JLayeredPane {
         add(hintLabel);
 
         gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
-        gameOverLabel.setFont(gameOverFont.deriveFont(100f));
+        gameOverLabel.setFont(gameOverFont.deriveFont(110f));
         gameOverLabel.setForeground(Color.RED);
         gameOverLabel.setBounds(100, 150, 600, 200);
         add(gameOverLabel);
         gameOverLabel.setVisible(false);
 
         winLabel = new JLabel("HAI VINTO", SwingConstants.CENTER);
-        winLabel.setFont(gameOverFont.deriveFont(100f));
+        winLabel.setFont(gameOverFont.deriveFont(110f));
         winLabel.setForeground(Color.YELLOW);
         winLabel.setBounds(100, 150, 600, 200);
         add(winLabel);
