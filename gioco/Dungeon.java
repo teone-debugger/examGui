@@ -1,0 +1,308 @@
+package gioco;
+
+import java.lang.Class;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import org.checkerframework.checker.units.qual.g;
+
+import interfaccia.ImagePanel;
+
+public class Dungeon{
+
+    private static Posizione mappa[][];
+    private static int righe;
+    private static int colonne;
+    private final int maxOggetti;
+    private final int maxPng;
+
+    private static int divisoreRighe;
+    private static int divisoreColonne;
+
+    private static Giocatore giocatore;
+    private static Drago drago;
+
+    private ImagePanel immagineNemico;
+
+
+    public Dungeon(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){
+        Dungeon.righe = righe;
+        Dungeon.colonne = colonne;
+        this.maxOggetti = 30;
+        this.maxPng = 20;
+        this.giocatore = giocatore;
+        this.drago = drago;
+        drago.setImmagine(new ImagePanel("src/images/nemici/image (20).png", 300, 300));
+
+        this.divisoreColonne = divisoreColonne;
+        this.divisoreRighe = divisoreRighe;
+        mappa = new Posizione[righe][colonne];
+        createdungeon();
+
+        mappa[giocatore.getRighe()][giocatore.getColonne()] = this.giocatore;
+
+        mappa[giocatore.getRighe()+ 1][giocatore.getColonne()+1] = new Oggetto(giocatore.getRighe()+ 1,giocatore.getColonne()+1, "CHIAVE");
+        mappa[drago.getRighe()][drago.getColonne()] = this.drago;
+        //mappa[giocatore.getRighe() + 1][giocatore.getColonne()+ 1] = new gioco.Oggetto(giocatore.getRighe() + 1,giocatore.getColonne()+ 1 ,"POZIONE");
+    }
+
+    private void createdungeon(){
+
+        int index = 1;
+        for(int r = 0; r < Dungeon.getRighe(); r++){
+            for(int c = 0;  c < Dungeon.getColonne(); c++){
+
+                setWallsMappa(r,c);
+                index = setDoors(r, c, index);
+            }
+        }
+            
+            setOggetti();
+            setPng();
+    }
+
+    private void setOggetti() {
+        /**--- MATH.RANDOM() * (MAX - MIN + 1) + MIN ---**/
+        /**--- MAX = RIGHE - 2 PERCHE ARRAY PARTE DA ZERO E COSI' EVITO UN POSSIBILE MURO ---**/
+        /**--- MIN = 1 PERCHE ARRAY PARTE DA ZERO E COSI' EVITO UN POSSIBILE MURO ---**/
+
+        int randRighe;
+        int randColonne;
+
+
+        for(int i = 0; i < this.maxOggetti; i++) {
+            
+            randRighe = (int) (Math.random() * (getRighe() - 2) + 1);
+            randColonne = (int) (Math.random() * (getColonne() - 2) + 1);
+           
+            if (mappa[randRighe][randColonne].isLibera() && !aroundDoors(randRighe, randColonne)) {
+                if(i < 10){
+                    mappa[randRighe][randColonne] = new Arma(randRighe, randColonne);
+                }else {
+                    mappa[randRighe][randColonne] = new Oggetto(randRighe, randColonne);
+                }
+
+            } else {
+                i--;    /**--- ASSICURO DI AVERE SEMPRE UN MASSIMO OGGETTI ---**/
+            }
+        }
+    }
+    
+    private void setPng() {
+        /**--- MATH.RANDOM() * (MAX - MIN + 1) + MIN ---**/
+        /**--- MAX = RIGHE - 2 PERCHE ARRAY PARTE DA ZERO E COSI' EVITO UN POSSIBILE MURO ---**/
+        /**--- MIN = 1 PERCHE ARRAY PARTE DA ZERO E COSI' EVITO UN POSSIBILE MURO ---**/
+
+        int randRighe;
+        int randColonne;
+
+
+        for(int i = 0; i < this.maxPng; i++) {
+            randRighe = (int) (Math.random() * (getRighe() - 2) + 1);
+            randColonne = (int) (Math.random() * (getColonne() - 2) + 1);
+
+
+            if (mappa[randRighe][randColonne].isLibera() && !aroundDoors(randRighe, randColonne)) {
+
+                if(i < 10) {
+
+                    /**--- OSTILI ---**/
+
+                    Png.generateDialoghiOstili();
+                    int vita = setPuntiVitaPng();
+
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  vita, 7, 150, immagineNemico);
+                }else {
+
+                    /**--- NON OSTILI ---**/
+                    Png.generateDialoghiNonOstili();
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne);
+
+                }
+            } else {
+                i--;    /**--- ASSICURO DI AVERE SEMPRE UN MASSIMO PNG ---**/
+            }
+        }
+    }
+    private boolean aroundDoors(int r, int c){
+
+        if(mappa[r-1][c].getClass().getSimpleName().equals("Porta") || mappa[r+1][c].getClass().getSimpleName().equals("Porta") ||
+                mappa[r][c-1].getClass().getSimpleName().equals("Porta") || mappa[r][c+1].getClass().getSimpleName().equals("Porta")){
+
+            return true;
+        }
+        return false;
+    }
+
+    private int setPuntiVitaPng(){
+        int selettore =  (int) (Math.random() *  100 + 1);
+
+        if(selettore <= 30){
+            immagineNemico  = new ImagePanel("src/images/nemici/image (10).png", 300, 300);
+            return 8;
+
+        }else if( selettore <= 45){
+            immagineNemico = new ImagePanel("src/images/nemici/image (1).png", 300, 300);
+            return 12;
+
+        }else if( selettore <= 55){
+            immagineNemico = new ImagePanel("src/images/nemici/ghost.png", 300, 300);
+            return 15;
+
+        }else if( selettore <= 68){
+            immagineNemico = new ImagePanel("src/images/nemici/image (2).png", 300, 300);
+            return 18;
+
+        }else if( selettore <= 75){
+            immagineNemico = new ImagePanel("src/images/nemici/image (3).png", 300, 300);
+            return 21;
+
+        }else if( selettore <= 88){
+            immagineNemico = new ImagePanel("src/images/nemici/image (9).png", 300, 300);
+            return 24;
+
+        }else if( selettore <= 98){
+            immagineNemico = new ImagePanel("src/images/nemici/image.png", 300, 300);
+            return 27;
+
+        }else{
+            immagineNemico = new ImagePanel("src/images/nemici/image (21).png", 300, 300);
+            return 33;
+        }
+        }
+
+
+    private void setWallsMappa(int r, int c){
+
+        /**--- RIGHE  ---**/
+
+        if(r % this.divisoreRighe == 0){
+            mappa[r][c] = new Muro(r, c,"-");
+        }else{
+
+            mappa[r][c] = new Posizione(r, c," ", true);
+
+        }
+
+        /**--- COLONNE ---**/
+
+        if(c % this.divisoreColonne == 0) {
+
+            if (r != 0 && r != Dungeon.getRighe() - 1){
+                mappa[r][c] = new Muro(r, c, "|");
+            }
+
+        } /**--- NO ELSE ALTRIMENTI SI SOVRASCRIVONO I MURI ORIZZONTALI ---**/
+
+
+        /**--- ANGOLI ---**/
+
+       // if(r == 0 && c == 0){ /**--- ANGOLO ALTO A SINISTRA ---**/
+
+         //   mappa[r][c] = new gioco.Muro(r, c,"╔");
+
+        //}else if(r == 0 && c == gioco.Dungeon.getColonne()-1){/**--- ANGOLO ALTO A DESTRA ---**/
+
+        //    mappa[r][c] = new gioco.Muro(r, c,"╗");
+
+       // } else if (r == gioco.Dungeon.getRighe()-1 && c == 0) {/**--- ANGOLO BASSO A SINISTRA ---**/
+
+        //    mappa[r][c] = new gioco.Muro(r, c,"╚");
+
+       // } else if (r == gioco.Dungeon.getRighe()-1 && c == gioco.Dungeon.getColonne()-1) {/**--- ANGOLO BASSO A DESTRA ---**/
+
+         //   mappa[r][c] = new gioco.Muro(r, c,"╝");
+        //}
+
+    }
+
+    private int setDoors(int r, int c, int index){
+        /**--- NON METTO PORTE SUI BORDI ---**/
+
+        if(r != 0 && r != Dungeon.getRighe()-1 && c != 0 && c != Dungeon.getColonne()-1){
+
+            /**--- METTO LE PORTE OGNI DUE RIGHE(CENTRO STANZA)  ---**/
+            /**--- CONTROLLO SUGLI INCROCI(NON DEVE ESSERCI)  ---**/
+            /**--- METTO LE PORTE SOLO SUI MURI VERTICALI  ---**/
+
+            if(r % (this.divisoreRighe/2) == 0 && r % this.divisoreRighe != 0 && c % this.divisoreColonne == 0){
+                mappa[r][c] = new Porta(r, c,"#", index);
+                setPath(r, c);
+                return ++index;
+            }
+            if(c % (this.divisoreColonne/2) == 0 && c % this.divisoreColonne != 0 && r % this.divisoreRighe == 0){
+                mappa[r][c] = new Porta(r, c,"#", index);
+                setPath(r, c);
+                return ++index;
+            }
+        }
+        return index;
+    }
+    private void setPath(int r, int c){
+        /**--- PERCORSO MINIMO ---**/
+        if(getClassPosizione(r,c).getSimpleName().equals("Porta")){
+
+            Porta p = (Porta) getMappa()[r][c];
+            switch (p.getIndex()) {
+                case 1:
+                case 10:
+                case 29:
+                case 48:
+                    p.setBloccata(false);
+                    break;
+            
+                default:
+                    break;
+            }
+            if(p.getIndex() >= 58 &&  p.getIndex() <= 66){
+                p.setBloccata(false);
+            }
+        }
+
+    }
+
+    /**--- MOSTRA IL DUNGEON ---**/
+    public static void showDungeon(){
+        for(int r = 0; r < getRighe(); r++){
+            for(int c = 0; c < getColonne(); c++){
+                System.out.print(mappa[r][c].getTipo());
+            }
+            System.out.println();
+        }
+    }
+
+    /**--- STESSO SOPRA MA CREA UNA STRINGA ---**/
+    public static String  dungeonToString(){
+        String str = "";
+        for(int r = 0; r < getRighe(); r++){
+            for(int c = 0; c < getColonne(); c++){
+
+                str += mappa[r][c].getTipo();
+            }
+
+            str += "\n";
+        }
+        return str;
+    }
+
+    public static Posizione[][] getMappa() {return mappa;}
+
+    /**--- SINGOLA POSIZIONE ---**/
+    public static Class<?> getClassPosizione(int righe, int colonne){
+
+        return getMappa()[righe][colonne].getClass();
+    }
+
+    public static int getRighe() {return righe;}
+    public static int getColonne() {return colonne;}
+    public static Giocatore getGiocatore() {return giocatore;}
+
+    public static  int getDivisoreRighe() {return divisoreRighe;}
+    public static int getDivisoreColonne() {return divisoreColonne;}
+
+    public static void setPosizioneMappa(Posizione p) {
+        Dungeon.mappa[p.getRighe()][p.getColonne()] = p;
+    }
+
+    public static Drago getDrago() {return drago;}
+}
