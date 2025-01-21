@@ -27,7 +27,7 @@
 ---
 ### This game is brought to you by:
 - Gianluca Frassoni (GitHub: GianSette)
-- Matteo (GitHub: Teone-Debugger)
+- Matteo Milan (GitHub: Teone-Debugger)
 - Cezar Cosmin Stefan Tordai (GitHub:)
 ---
 ### What is Dungeons and Dragons?
@@ -54,9 +54,8 @@ ___Are you going to defeat the mighty Aurelion Sol?___
 
 ---
 ### How to Play
- __Visit [manual website]() to read the game manual in a fancy way__
 
- __Or you can read the pdf file attached here --->__
+ __[You can read the pdf file attached here](MANUALE.pdf)__
 
 ---
 ### System Documentation
