@@ -56,6 +56,7 @@ ___Are you going to defeat the mighty Aurelion Sol?___
 ### How to Play
 
  __[You can read the pdf file attached here](MANUALE.pdf)__
+ ***freely inspired by GTA:SAN ANDREAS "Local Business Advertiser's Guide"***
 
 ---
 ### System Documentation
