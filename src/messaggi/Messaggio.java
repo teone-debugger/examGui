@@ -2,9 +2,18 @@ package messaggi;
 
 public class Messaggio {
 
+    private static Messaggio instance = null;
     private static String messaggio = "";
 
-    public  Messaggio(){
+    private  Messaggio(){
+    }
+
+    public static Messaggio getIstance(){
+        if(instance == null){
+            instance = new Messaggio();
+        }
+        
+        return instance;
     }
 
     public static String getMessaggio() {

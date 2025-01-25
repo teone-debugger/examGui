@@ -1,0 +1,57 @@
+package interfaccia.frameBlocks;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class PannelloText extends JPanel {
+
+    private JTextArea jtextArea;
+
+    public PannelloText(){
+
+        setLayout(new BorderLayout());
+
+        this.jtextArea = new JTextArea();
+
+    }
+
+    public void dimension(Dimension dimension){
+        setPreferredSize(dimension);
+    }
+    public void setColor(Color background , Color foreground){
+        jtextArea.setBackground(background);
+        jtextArea.setForeground(foreground);
+        setBackground(background);
+    }
+
+    public void setText(String testo){
+        jtextArea.setText(testo);
+
+        addTextArea();
+    }
+    public void clearText(){
+        jtextArea.setText("");
+
+        addTextArea();
+    }
+
+    public void addText(String testo){
+        jtextArea.append(testo + "\n");
+
+        addTextArea();
+    }
+
+    private void addTextArea(){
+
+        jtextArea.setEditable(false);
+        jtextArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
+        jtextArea.setPreferredSize(this.getPreferredSize());
+
+        add(jtextArea);
+    }
+
+
+    public JTextArea getJtextArea() {
+        return jtextArea;
+    }
+}

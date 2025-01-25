@@ -1,8 +1,5 @@
 package interfaccia;
 
-import gioco.Dungeon;
-
-
 import javax.swing.*;
 import java.awt.*;
 
