@@ -41,11 +41,7 @@ public class ModelOggetto {
             indiceMappa++;
         }
 
-        System.out.println(index);
-        String s = descrizione.get(index);
-        System.out.println(s);
-
-        return s; 
+        return descrizione.get(index); 
 
     }
 

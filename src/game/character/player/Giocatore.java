@@ -16,8 +16,6 @@ import messaggi.Messaggio;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.checkerframework.checker.units.qual.A;
-
 
 public class Giocatore extends Personaggio{
 
@@ -184,7 +182,7 @@ public class Giocatore extends Personaggio{
                         Messaggio.setMessaggio("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
     
                     } else {
-                        Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                        Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... \nINVENTARIO PIENO");
                     }
     
                     /**--- SE L'ARMA E' IL BASTONE O UN ARMA CON LA STESSA RAZZA LA RACCOGLIE ---**/
@@ -200,11 +198,11 @@ public class Giocatore extends Personaggio{
     
                         Messaggio.setMessaggio("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
                     } else {
-                        Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                        Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... \nINVENTARIO PIENO");
                     }
                 } else {
     
-                    Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA... RAZZE INCOMPATIBILI");
+                    Messaggio.setMessaggio("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA...  \nRAZZE INCOMPATIBILI");
                 }
                 Dungeon.setPosizioneMappa(new Posizione(oggetto.getRighe(), oggetto.getColonne()));
     
@@ -563,7 +561,7 @@ public class Giocatore extends Personaggio{
                             System.out.println("HAI RACCOLTO '" + oggetto.getDescrizione() + "'");
     
                         }else {
-                            System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                            System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... \nINVENTARIO PIENO");
                         }
                     }else if(((Arma) oggetto).getClasse() == null || ((Arma) oggetto).getClasse().equals(Giocatore.classe)) {
                         if (oggetto.getPeso() + inventario.getPesoInventory() <= inventario.getPesoMax()) {
@@ -595,11 +593,11 @@ public class Giocatore extends Personaggio{
                             }
     
                         } else {
-                            System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... INVENTARIO PIENO");
+                            System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'OGGETTO... \nINVENTARIO PIENO");
                         }
                     }else {
     
-                        System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA... RAZZE INCOMPATIBILI");
+                        System.out.println("MIO CARO '" + this.getNome() + "' NON PUOI RACCOGLIERE L'ARMA... \nRAZZE INCOMPATIBILI");
                     }
                     Dungeon.setPosizioneMappa(new Posizione(oggetto.getRighe(), oggetto.getColonne()));
                     Dungeon.showDungeon();

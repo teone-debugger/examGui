@@ -2,6 +2,8 @@ package interfaccia.framesFight;
 
 import javax.swing.*;
 
+import util.StringUtils;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -18,58 +20,34 @@ public class EventScreen extends JLayeredPane {
         String controllo = message;
         setLayout(null);
         setFocusable(true);
-
-        //Creazione font base
-        Font bodyFont;
-        try {
-            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("resources/font/Perfect DOS VGA 437.ttf")).deriveFont(17f);
-            GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            te.registerFont(bodyFont);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            bodyFont = new Font("Serif", Font.PLAIN, 25);
-        }
-
-        //Creazione font game over/win
-        Font gameOverFont;
-        try {
-            gameOverFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("resources/font/alagard.ttf")).deriveFont(25f);
-            GraphicsEnvironment ye = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ye.registerFont(gameOverFont);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            gameOverFont = new Font("Serif", Font.PLAIN, 15);
-        }
         
         messaggioBase = new JLabel("UNA VOCE LONTANA RIECHEGGIA NEL DUNGEON:", SwingConstants.CENTER);
         messaggioBase.setForeground(Color.RED);
-        messaggioBase.setFont(bodyFont.deriveFont(15f));
+        messaggioBase.setFont(StringUtils.getBodyFont(15f));
         messaggioBase.setBounds(100, 80, 600, 100);
         add(messaggioBase);
 
         messageLabel = new JLabel(message, SwingConstants.CENTER);
         messageLabel.setForeground(Color.WHITE);
-        messageLabel.setFont(bodyFont);
+        messageLabel.setFont(StringUtils.getBodyDefaultFont());
         messageLabel.setBounds(100, 200, 600, 100);
         add(messageLabel);
 
         String hint = "PREMI 'ENTER' PER USCIRE";
         hintLabel = new JLabel(hint, SwingConstants.CENTER);
         hintLabel.setBounds(295, 400, 200, 50);
-        hintLabel.setFont(bodyFont.deriveFont(13f));
+        hintLabel.setFont(StringUtils.getBodyFont(13f));
         add(hintLabel);
 
         gameOverLabel = new JLabel("Game Over", SwingConstants.CENTER);
-        gameOverLabel.setFont(gameOverFont.deriveFont(110f));
+        gameOverLabel.setFont(StringUtils.getGameOverFont(110f));
         gameOverLabel.setForeground(Color.RED);
         gameOverLabel.setBounds(100, 150, 600, 200);
         add(gameOverLabel);
         gameOverLabel.setVisible(false);
 
         winLabel = new JLabel("HAI VINTO", SwingConstants.CENTER);
-        winLabel.setFont(gameOverFont.deriveFont(110f));
+        winLabel.setFont(StringUtils.getGameOverFont(110f));
         winLabel.setForeground(Color.YELLOW);
         winLabel.setBounds(100, 150, 600, 200);
         add(winLabel);

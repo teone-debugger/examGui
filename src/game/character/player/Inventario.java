@@ -13,7 +13,7 @@ public class Inventario {
 
     //Metodo costruttore
     private Inventario() {
-        this.pesoMax = 300;
+        this.pesoMax = 500;
         inventario = new HashMap<>();
     }
 

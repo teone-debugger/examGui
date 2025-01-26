@@ -12,7 +12,6 @@ import interfaccia.multimedia.FormListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import interfaccia.Frame;
 import game.items.view.*;
 import game.character.player.Giocatore;
@@ -140,7 +139,6 @@ public class FrameGame extends Frame{
         mappa = new PannelloText();
         mappa.setColor(Color.BLACK, Color.GREEN);
 
-        System.out.println(widthMappa);
         mappa.dimension(new Dimension(widthMappa, heightMappa));
         /*mappa.getJtextArea().setRows(Dungeon.getRighe());
         mappa.getJtextArea().setColumns(Dungeon.getColonne());*/

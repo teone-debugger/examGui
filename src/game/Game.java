@@ -1,8 +1,7 @@
 package game;
 
 import game.character.player.Giocatore;
-import game.Dungeon;
-import interfaccia.FrameMenu.FrameSelection;
+import interfaccia.FrameMenu.FrameMenu;
 import game.enums.*;
 import game.character.enemies.Drago;
 
@@ -139,7 +138,8 @@ public class Game {
 
     private void playGui() {
 
-        new FrameSelection();
+        new FrameMenu();
+        //new FrameSelection();
 
     }
 

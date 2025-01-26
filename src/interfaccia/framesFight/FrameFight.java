@@ -5,6 +5,8 @@ import game.Game;
 import game.character.player.Giocatore;
 import game.enums.*;
 import messaggi.Messaggio;
+import util.StringUtils;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -48,7 +50,7 @@ public class FrameFight extends JFrame{
  
 
         //carico le immagini e setto nemico e pg princ
-        backgroundLabel = new JLabel(scaleImage("src/images/background/backgroundBase.png", 800, 600));
+        backgroundLabel = new JLabel(scaleImage("resources/images/background/backgroundBase.png", 800, 600));
         backgroundLabel.setBounds(0, 0, 800, 600);
 
         characterPanel = getImmagine();
@@ -66,46 +68,23 @@ public class FrameFight extends JFrame{
 
         enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita(), Dungeon.getGiocatore().getNemico().getPuntiVita());
         enemyHealthBar.setBounds(500, 130, enemyPanel.getWidth(), 30);
-
-        //carico il font personalizzato
-        Font alagardFont;
-        try {
-            alagardFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("resources/font/alagard.ttf")).deriveFont(24f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(alagardFont); // Registra il font
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            alagardFont = new Font("Serif", Font.PLAIN, 24); // Font di fallback
-        }
-
-        Font bodyFont;
-        try {
-            bodyFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("resources/font/Perfect DOS VGA 437.ttf")).deriveFont(14f);
-            GraphicsEnvironment te = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            te.registerFont(bodyFont);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            bodyFont = new Font("Serif", Font.PLAIN, 20);
-        }
+        
 
         //etichette nome
-        charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), alagardFont);
+        charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), StringUtils.getAlagardDefaultFont());
         positionNameLabel(charactNameLabel, charactHealthBar);
-        characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), bodyFont);
+        characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), StringUtils.getBodyDefaultFont());
         characterHPLabel.setBounds(charactHealthBar.getX() - 50, charactHealthBar.getY(), 50, 30);
 
-        enemyNameLabel = createNameLabel(Dungeon.getGiocatore().getNemico().getNome(), alagardFont);
+        enemyNameLabel = createNameLabel(Dungeon.getGiocatore().getNemico().getNome(), StringUtils.getAlagardDefaultFont());
         positionNameLabel(enemyNameLabel, enemyHealthBar);
-        enemyHPLabel = createHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita(), bodyFont);
+        enemyHPLabel = createHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita(), StringUtils.getBodyDefaultFont());
         enemyHPLabel.setBounds(enemyHealthBar.getX() - 50, enemyHealthBar.getY(), 50, 30);
 
         
         //pulsanti
         cura = new JButton("CURA");
-            setupButton(cura, 300, 500, alagardFont);
+            setupButton(cura, 300, 500, StringUtils.getAlagardDefaultFont());
 
         cura.addActionListener(new ActionListener() {
             @Override
@@ -127,7 +106,7 @@ public class FrameFight extends JFrame{
         });
         
         fuga = new JButton("FUGA");
-            setupButton(fuga, 550, 500, alagardFont);
+            setupButton(fuga, 550, 500, StringUtils.getAlagardDefaultFont());
 
         fuga.addActionListener(new ActionListener() {
             @Override
@@ -142,7 +121,7 @@ public class FrameFight extends JFrame{
         });
 
         attacca = new JButton("ATTACCA");
-            setupButton(attacca, 50, 500, alagardFont);
+            setupButton(attacca, 50, 500, StringUtils.getAlagardDefaultFont());
         attacca.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -229,15 +208,15 @@ public class FrameFight extends JFrame{
                    
                     switch (classe) {
                         case "LADRO":
-                            immagine = new ImagePanel("src/images/pg principali/UMANO/UMANOLADRO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOLADRO.png", 200, 200);
                             break;
                     
                         case "MAGO":
-                            immagine = new ImagePanel("src/images/pg principali/UMANO/UMANOMAGO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOMAGO.png", 200, 200);
                             break;
 
                         case "BARBARO":
-                            immagine = new ImagePanel("src/images/pg principali/UMANO/UMANOBARBARO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOBARBARO.png", 200, 200);
                             break;
 
                         default:
@@ -250,15 +229,15 @@ public class FrameFight extends JFrame{
 
                     switch (classe) {
                         case "LADRO":
-                            immagine = new ImagePanel("src/images/pg principali/NANO/NANOLADRO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOLADRO.png", 200, 200);
                             break;
                     
                         case "MAGO":
-                            immagine = new ImagePanel("src/images/pg principali/NANO/NANOMAGO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOMAGO.png", 200, 200);
                             break;
 
                         case "BARBARO":
-                            immagine = new ImagePanel("src/images/pg principali/NANO/NANOBARBARO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOBARBARO.png", 200, 200);
                             break;
 
                         default:
@@ -270,15 +249,15 @@ public class FrameFight extends JFrame{
                 case "ELFO":
                     switch (classe) {
                         case "LADRO":
-                            immagine = new ImagePanel("src/images/pg principali/ELFO/ELFOLADRO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOLADRO.png", 200, 200);
                             break;
                     
                         case "MAGO":
-                            immagine = new ImagePanel("src/images/pg principali/ELFO/ELFOMAGO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOMAGO.png", 200, 200);
                             break;
 
                         case "BARBARO":
-                            immagine = new ImagePanel("src/images/pg principali/ELFO/ELFOBARBARO.png", 200, 200);
+                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOBARBARO.png", 200, 200);
                             break;
 
                         default:
@@ -288,7 +267,7 @@ public class FrameFight extends JFrame{
                     break;
 
                 default:
-                    immagine = new ImagePanel("src/images/pg principali/ELFO/image (12).png", 200, 200);
+                    immagine = new ImagePanel("resources/images/pg principali/ELFO/image (12).png", 200, 200);
                     break;
 
             }

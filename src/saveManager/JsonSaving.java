@@ -2,12 +2,11 @@ package saveManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gioco.Game;
+import game.Game;
 
 public class JsonSaving {
 

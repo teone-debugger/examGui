@@ -71,7 +71,7 @@ public class FrameSelection extends interfaccia.Frame{
         /**--- COMPONENTI NOME ---**/
         textNome = new JTextField(15);
         //textNome.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
-        textNome.setFont(StringUtils.getAlagardFont());
+        textNome.setFont(StringUtils.getAlagardFont(17f));
         textNome.setToolTipText("NOME GIOCATORE");
 
         /**--- SCRIVE LE LETTERE SEMPRE IN MAIUSCOLO ---**/
@@ -110,7 +110,7 @@ public class FrameSelection extends interfaccia.Frame{
         pannelloNome.add(textNome, BorderLayout.CENTER);
 
         start = new JButton("GIUOCA!");
-        start.setFont(StringUtils.getAlagardFont());
+        start.setFont(StringUtils.getAlagardFont(18f));
         start.setMargin(new Insets(10,10,10,10));
         start.addActionListener(new ActionListener() {
             @Override
@@ -128,6 +128,27 @@ public class FrameSelection extends interfaccia.Frame{
 
                 new FrameGame();
                 FrameSelection.this.dispose();
+            }
+        });
+        
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+                    razza = bgRazza.getSelection().getActionCommand();
+                    classe = bgClasse.getSelection().getActionCommand();
+                    if(textNome.getText().equals("")){
+                        nome = "HAL";
+                    }else {
+                        nome = textNome.getText();
+                    }
+
+                    Dungeon.getInstance(17, 81, 4, 8, Game.createGiocatoreGui(razza, classe, nome), new Drago());
+
+                    new FrameGame();
+                    FrameSelection.this.dispose();
+                }
             }
         });
 
@@ -152,7 +173,7 @@ public class FrameSelection extends interfaccia.Frame{
         JRadioButton button = new JRadioButton(title);
         button.setActionCommand(title);
         //button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 20));
-        button.setFont(StringUtils.getAlagardFont());
+        button.setFont(StringUtils.getAlagardFont(18f));
         return button;
     }
 }
