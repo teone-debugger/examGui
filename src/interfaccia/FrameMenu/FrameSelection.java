@@ -109,7 +109,7 @@ public class FrameSelection extends interfaccia.Frame{
         pannelloNome.add(labelNome, BorderLayout.WEST);
         pannelloNome.add(textNome, BorderLayout.CENTER);
 
-        start = new JButton("GIUOCA!");
+        start = new JButton("PARTI ALLA VOLTA DEL DUNGEON!");
         start.setFont(StringUtils.getAlagardFont(18f));
         start.setMargin(new Insets(10,10,10,10));
         start.addActionListener(new ActionListener() {
@@ -177,3 +177,4 @@ public class FrameSelection extends interfaccia.Frame{
         return button;
     }
 }
+

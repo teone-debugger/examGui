@@ -17,8 +17,6 @@ public class FrameMenu extends interfaccia.Frame{
     private PannelloTitled pannelloMenu;
 
 
-    //private JButton newGame;
-    //private JButton loadGAme;
     private JLabel newGamLabel;
     private JLabel loadGamLabel;
     private ImageIcon titleIcon = interfaccia.framesFight.FrameFight.scaleImage("resources/images/logo/logo_Pixel.png", 400, 300);
