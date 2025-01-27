@@ -7,6 +7,7 @@ import com.google.firebase.cloud.StorageClient;
 import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Blob;
 
+
 import java.io.FileInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class FirebaseInitializer {
         try {
             FileInputStream serviceAccount = new FileInputStream("resources/firebase/key/examgui-4a40b-35ff981a418b.json");
 
-            FirebaseOptions options = new FirebaseOptions.Builder()
+            FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setStorageBucket("examgui-4a40b.appspot.com")
                     .build();
