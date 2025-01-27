@@ -25,6 +25,10 @@ public class FrameMenu extends interfaccia.Frame{
     private ImageIcon backgroundTitle;
     private JLabel titleBackground;
     private JLabel titleIconJLabel = new JLabel(titleIcon);
+    private ImageIcon outlineNewGame = interfaccia.framesFight.FrameFight.scaleImage("resources/images/outline/outline nuova partita.png", 200, 50);
+    private JLabel outlineNewGamLabel= new JLabel(outlineNewGame);
+    private ImageIcon outlineLoadGame = interfaccia.framesFight.FrameFight.scaleImage("resources/images/outline/carica partita outline.png", 200, 50);
+    private JLabel outlineLoadGamLabel= new JLabel(outlineLoadGame);
 
     //Metodo Costruttore
     public FrameMenu(){
@@ -54,6 +58,9 @@ public class FrameMenu extends interfaccia.Frame{
             }
         });
 
+        outlineNewGamLabel.setBounds(580, 350, 200, 50);
+        outlineLoadGamLabel.setBounds(580, 400, 200, 50);
+
         // Configurazione Frame
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -66,6 +73,8 @@ public class FrameMenu extends interfaccia.Frame{
         //aggiunta componenti in ordine
         add(newGamLabel);
         add(loadGamLabel);
+        add(outlineNewGamLabel);
+        add(outlineLoadGamLabel);
 
         add(titleIconJLabel);
 
