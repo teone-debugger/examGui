@@ -73,12 +73,12 @@ public class FrameFight extends JFrame{
         //etichette nome
         charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), StringUtils.getAlagardDefaultFont());
         positionNameLabel(charactNameLabel, charactHealthBar);
-        characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), StringUtils.getBodyDefaultFont());
+        characterHPLabel = createHPLabel(Dungeon.getGiocatore().getPuntiVitaMAX(), Dungeon.getGiocatore().getPuntiVita(), StringUtils.getBodyFont(13));
         characterHPLabel.setBounds(charactHealthBar.getX() - 50, charactHealthBar.getY(), 50, 30);
 
         enemyNameLabel = createNameLabel(Dungeon.getGiocatore().getNemico().getNome(), StringUtils.getAlagardDefaultFont());
         positionNameLabel(enemyNameLabel, enemyHealthBar);
-        enemyHPLabel = createHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita(), StringUtils.getBodyDefaultFont());
+        enemyHPLabel = createHPLabel(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita(), StringUtils.getBodyFont(13));
         enemyHPLabel.setBounds(enemyHealthBar.getX() - 50, enemyHealthBar.getY(), 50, 30);
 
         
