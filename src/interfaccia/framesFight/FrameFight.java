@@ -305,7 +305,7 @@ public class FrameFight extends JFrame{
     }
 
     //scaling delle immagini che ho importato e dei Panel
-    private ImageIcon scaleImage(String imagePath, int width, int height) {
+    public static ImageIcon scaleImage(String imagePath, int width, int height) {
         ImageIcon originalIcon = new ImageIcon(imagePath);
         Image scaledImage = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaledImage);
