@@ -44,9 +44,6 @@ public class FrameGame extends Frame{
         this.addWindowListener(new WindowAdapter() {
             public void windowActivated(WindowEvent e) {
                 mappa.getJtextArea().requestFocusInWindow();
-
-                /**--- AGGIORNAMENTO FRAME ---**/
-                // SwingUtilities.updateComponentTreeUI(FrameGame.this);
             }
         });
 
@@ -140,8 +137,6 @@ public class FrameGame extends Frame{
         mappa.setColor(Color.BLACK, Color.GREEN);
 
         mappa.dimension(new Dimension(widthMappa, heightMappa));
-        /*mappa.getJtextArea().setRows(Dungeon.getRighe());
-        mappa.getJtextArea().setColumns(Dungeon.getColonne());*/
         mappa.setText(Dungeon.dungeonToString());
 
 
@@ -183,6 +178,10 @@ public class FrameGame extends Frame{
 
 
                     if(posizione != null) {
+
+                        System.out.println("POSIZIONE attuale si: " + Dungeon.getGiocatore().getRighe() + " " + Dungeon.getGiocatore().getColonne());
+
+
                         //messaggi.clearText();
                         Dungeon.getGiocatore().takeUpGui(posizione);
                         messaggi.setText(Messaggio.getMessaggio());
@@ -215,31 +214,14 @@ public class FrameGame extends Frame{
                             
 
                         }else{
-                            //Messaggio.clearMesaggio();
-                            
 
                             posizione = Dungeon.getGiocatore().aroundGui();
-                            //System.out.println("POSIZIONE: " + posizione.getClass());
 
                             if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
                                 messaggi.setText(Messaggio.getMessaggio());
                             }
                         }
                         mappa.setText(Dungeon.dungeonToString());
-                            //messaggi.setText(Messaggio.getMessaggio());
-                            
-                            
-                            
-
-                            //Messaggio.clearMesaggio();
-                            /*mappa.setText(Dungeon.dungeonToString());
-
-                            posizione = Dungeon.getGiocatore().aroundGui();
-                            //System.out.println("POSIZIONE: " + posizione.getClass());
-
-                            if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
-                                messaggi.setText(Messaggio.getMessaggio());
-                            }*/
                         
                     }
 
@@ -269,31 +251,29 @@ public class FrameGame extends Frame{
                     FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()));
                     FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
                     Messaggio.clearMesaggio();
+
+                }else if(fe.getJButton().equals(barraStrumenti.getBack())) {
+
+                    if(Dungeon.getGiocatore().getBackRoom()==null){
+                        messaggi.setText("NON PUOI TORNARE INDIETRO!!!");
+                    }else{
+                        System.out.println("POSIZIONE attuale back: " + Dungeon.getGiocatore().getRighe() + " " + Dungeon.getGiocatore().getColonne());
+                        
+                        Dungeon.getGiocatore().setRighe(Dungeon.getGiocatore().getBackRoom().getRighe());
+                        Dungeon.getGiocatore().setColonne(Dungeon.getGiocatore().getBackRoom().getColonne());
+
+                        Dungeon.setPosizioneMappa(Dungeon.getGiocatore());
+                    }
                 }
 
 
+                mappa.setText(Dungeon.dungeonToString());
                 mappa.getJtextArea().requestFocus();
                 mappa.getJtextArea().requestFocus();
                 SwingUtilities.updateComponentTreeUI(FrameGame.this);
 
             }
         });
-
-        /*{barraStrumenti.setTextListener(new TextListener(){
-
-            @Override
-            public void printText(String testo) {
-                if(barraStrumenti.getPremuto().equals(barraStrumenti.getAffermativo())) {
-
-                    inventario.setTextLable(testo);
-
-                }else if (barraStrumenti.getPremuto().equals(barraStrumenti.getNegativo())){
-
-                    statistiche.setText(testo);
-                }
-
-            }
-        });}*/
 
         /**--- CREAZIONE PANNELLO MESSAGGI ---**/
         messaggi = new PannelloTitled("MESSAGGI");
@@ -309,17 +289,6 @@ public class FrameGame extends Frame{
         /**--- INSERIMENTO PANNELLO: messaggi ---**/
         insertComponent(1,2, 0.01, 0.01, 1, 1, GridBagConstraints.PAGE_END, messaggi);
     }
-
-    /**--- CONTROLLA LE POSIZIONE TRA LE POSIZIONI TROVATE ---**/
-    /*private boolean isFind(Posizione posizione){
-
-        for (Posizione value : posizioniTrovate) {
-            if (value.equals(posizione)) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public PannelloText getMappa() {
         return mappa;

@@ -1,6 +1,7 @@
 package interfaccia.FrameMenu;
 
 import interfaccia.frameBlocks.PannelloTitled;
+import saveManager.FirebaseInitializer;
 import util.StringUtils;
 
 
@@ -53,6 +54,9 @@ public class FrameMenu extends interfaccia.Frame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 //aggiungere codice per caricare partita
+
+                FirebaseInitializer.getInstance();
+
             }
         });
 

@@ -29,6 +29,10 @@ public class Giocatore extends Personaggio{
     private Personaggio nemico;
     private ArrayList<Posizione> posizioniTrovate;
 
+    private Posizione p=null;
+    private Posizione p2=null;
+    private boolean isNew=true;
+
     private ControllerGiocatore controllerGiocatore = ControllerGiocatore.getInstance();
     
         //Metodo costruttore
@@ -264,6 +268,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setRighe(this.getRighe()-2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                    
+                                } else {
+                                    p=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -274,7 +287,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setRighe(this.getRighe()+2);
-    
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                } else {
+                                    p=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
+
                                 Dungeon.setPosizioneMappa(this);
                                 break;
     
@@ -284,6 +305,14 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setColonne(this.getColonne()-2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                } else {
+                                    p=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -294,6 +323,14 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setColonne(this.getColonne()+2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                } else {
+                                    p=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -302,7 +339,6 @@ public class Giocatore extends Personaggio{
                 }else if(inventario.searchInInventory("CHIAVE")){
                     Messaggio.addMessaggio("PORTA BLOCCATA");
                     Messaggio.addMessaggio("VUOI SBLOCCARE LA PORTA?");
-                    //FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
                 }else {
                     Messaggio.addMessaggio("PORTA BLOCCATA");
                 }
@@ -344,7 +380,6 @@ public class Giocatore extends Personaggio{
             findOggettiPng(scn);
     
             /**--- UP DOOR---**/
-            /*Dungeon.getClassPosizione(this.getRighe() - 1, this.getColonne()).getSimpleName()*/
             if (Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
     
                 goThrough((Porta) Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()], "up", scn);
@@ -828,6 +863,11 @@ public class Giocatore extends Personaggio{
                 }
             }
         }
+
+    public Posizione getBackRoom(){
+        Dungeon.setPosizioneMappa(new Posizione(p2.getRighe(), p2.getColonne()));
+        return p;
+    }
     
     /**---- UTIL METHODS: GETTER ----**/
     

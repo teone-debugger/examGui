@@ -13,16 +13,13 @@ import java.io.IOException;
 
 public class FirebaseInitializer {
 
+    private static FirebaseInitializer instance = null;
     private boolean initialized = false;
 
-    public FirebaseInitializer() {
-        initializeFirebase();
-        this.initialized = true;
-    }
-//C:\Program Files\Eclipse Adoptium\jre-8.0.432.6-hotspot\
-    public static void initializeFirebase() {
+    //Metodo costruttore
+    private FirebaseInitializer() {
         try {
-            FileInputStream serviceAccount = new FileInputStream("src/key/examgui-4a40b-35ff981a418b.json");
+            FileInputStream serviceAccount = new FileInputStream("resources/firebase/key/examgui-4a40b-35ff981a418b.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -33,6 +30,15 @@ public class FirebaseInitializer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.initialized = true;
+    }
+    public static FirebaseInitializer getInstance() {
+        if(instance == null){
+            instance = new FirebaseInitializer();
+        }
+
+        return instance;
+        
     }
 
     public boolean saveToCloud(String filename) {
@@ -41,15 +47,15 @@ public class FirebaseInitializer {
         Bucket bucket = StorageClient.getInstance().bucket();
 
         try {
-            File file = new File("salvataggi/" + filename);
-            FileInputStream fis = new FileInputStream("salvataggi/" + filename);
+            File file = new File("resources/firebase/savesLogs/" + filename);
+            FileInputStream fis = new FileInputStream("resources/firebase/savesLogs/" + filename);
 
             byte[] data = new byte[(int) file.length()];
 
             fis.read(data);
             fis.close();
 
-            bucket.create(filename.replace("salvataggi/", ""), data, "application/json");
+            bucket.create(filename.replace("resources/firebase/savesLogs/", ""), data, "application/json");
             return true;
 
         } catch (IOException e) {
@@ -65,7 +71,7 @@ public class FirebaseInitializer {
         
         if (filename == null) return false;
         Bucket bucket = StorageClient.getInstance().bucket();
-        Blob blob = bucket.get(filename.replace("salvataggi/", ""));
+        Blob blob = bucket.get(filename.replace("resources/firebase/savesLogs/", ""));
         if (blob != null) blob.delete();
 
         return true;

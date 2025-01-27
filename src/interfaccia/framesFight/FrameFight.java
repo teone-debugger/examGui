@@ -165,6 +165,7 @@ public class FrameFight extends JFrame{
 
         setVisible(true);
         setResizable(false);
+        setLocation(FrameGame.getWindows()[0].getX(), FrameGame.getWindows()[0].getY());
 
     }
 
@@ -180,6 +181,12 @@ public class FrameFight extends JFrame{
             EventScreen eventScreen = new EventScreen(message);
             eventScreen.showScreen(this);
         }
+    }
+
+    private void handleWin(String messaggio) {
+        String message = messaggio;
+        EventScreen eventScreen = new EventScreen(message);
+        eventScreen.showScreen(this);
     }
 
     private void handleNoArmi() {
@@ -417,7 +424,8 @@ public class FrameFight extends JFrame{
             //setVisible(false);
         }
          if(Game.isWin()){
-            setVisible(false);
+            handleWin("win");
+            setVisible(true);
             FrameGame.getMessaggi().setText("HAI VINTO L'AVVENTURA!!!");
          }
     }

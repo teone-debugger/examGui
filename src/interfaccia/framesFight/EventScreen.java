@@ -57,6 +57,10 @@ public class EventScreen extends JLayeredPane {
             gameOver();
         }
 
+        if(controllo=="win") {
+            winScreen();
+        }
+
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -105,6 +109,9 @@ public class EventScreen extends JLayeredPane {
         if(parentWindow != null) {
             parentWindow.dispose();
             if(total=="") {
+                Runtime.getRuntime().exit(404);
+            }
+            if(total=="win") {
                 Runtime.getRuntime().exit(404);
             }
         }

@@ -12,6 +12,9 @@ public class Posizione {
         this.colonne = colonne;
         this.tipo = tipo;
         libera = false;
+        if(tipo==" ") {
+            libera = true;
+        }
     }
 
     //Metodo costruttore 

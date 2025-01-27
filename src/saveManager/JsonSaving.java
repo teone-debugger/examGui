@@ -10,6 +10,8 @@ import game.Game;
 
 public class JsonSaving {
 
+
+    //Metodo per salvare i dati di gioco su file
     public static void saveToFile(Game game, String filename) {
         ObjectMapper mapper = new ObjectMapper();
 
@@ -27,6 +29,8 @@ public class JsonSaving {
         } 
     }
 
+
+    //Metodo per caricare i file da file
     public static Game loadFromFile(String filename) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 

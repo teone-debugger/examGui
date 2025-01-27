@@ -43,7 +43,7 @@ public final class Dungeon{
 
         mappa[giocatore.getRighe()][giocatore.getColonne()] = this.giocatore;
 
-        mappa[giocatore.getRighe()+ 1][giocatore.getColonne()+1] = new Oggetto(giocatore.getRighe()+ 1,giocatore.getColonne()+1, "CHIAVE");
+        //mappa[giocatore.getRighe()+ 1][giocatore.getColonne()+1] = new Oggetto(giocatore.getRighe()+ 1,giocatore.getColonne()+1, "CHIAVE");
         mappa[drago.getRighe()][drago.getColonne()] = this.drago;
         //mappa[giocatore.getRighe() + 1][giocatore.getColonne()+ 1] = new gioco.Oggetto(giocatore.getRighe() + 1,giocatore.getColonne()+ 1 ,"POZIONE");
     }
@@ -289,9 +289,9 @@ public final class Dungeon{
     /**--- METODI GETTER ---**/
     
     //Metodo per prendere la posizione del giocatore
-    public static Class<?> getPosizione(int righe, int colonne){
+    public static Posizione getPosizione(int righe, int colonne){
 
-        return getMappa()[righe][colonne].getClass();
+        return getMappa()[righe][colonne];
     }
 
     //Metodo per prendere la classe di una posizione del dungeon
