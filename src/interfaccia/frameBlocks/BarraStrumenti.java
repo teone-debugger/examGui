@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import interfaccia.multimedia.FormEvent;
 import interfaccia.multimedia.FormListener;
+import util.StringUtils;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,23 +17,14 @@ public class BarraStrumenti extends JPanel{
     private JButton cura;
     private JButton back;
 
+    private JButton salva;
+
     private FormListener formListener;
     private boolean clicked = false;
 
     public BarraStrumenti(){
 
-        Font alagardFont;
-        try {
-            alagardFont = Font.createFont(Font.TRUETYPE_FONT, new java.io.File("resources/font/alagard.ttf")).deriveFont(18f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(alagardFont); // Registra il font
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            alagardFont = new Font("Serif", Font.PLAIN, 24); // Font di fallback
-        }
-
+        //Bottone per eseguire l'azione
         affermativo = new JButton("SI");
         affermativo.addActionListener(new ActionListener() {
             @Override
@@ -44,8 +36,9 @@ public class BarraStrumenti extends JPanel{
                 }
             }
         });
-        affermativo.setFont(alagardFont);
-
+        affermativo.setFont(StringUtils.getAlagardDefaultFont());
+        
+        //Bottone per non eseguire l'azione
         negativo = new JButton("NO");
         negativo.addActionListener(new ActionListener() {
             @Override
@@ -57,8 +50,9 @@ public class BarraStrumenti extends JPanel{
                 }
             }
         });
-        negativo.setFont(alagardFont);
-
+        negativo.setFont(StringUtils.getAlagardDefaultFont());
+        
+        //Bottone per curarsi
         cura = new JButton("CURA");
         cura.addActionListener(new ActionListener() {
             @Override
@@ -70,8 +64,9 @@ public class BarraStrumenti extends JPanel{
                 }
             }
         });
-        cura.setFont(alagardFont);
+        cura.setFont(StringUtils.getAlagardDefaultFont());
 
+        //Bottone per tornare alla vecchia stanza
         back = new JButton("INDIETRO");
         back.addActionListener(new ActionListener() {
             @Override
@@ -83,7 +78,21 @@ public class BarraStrumenti extends JPanel{
                 }
             }
         });
-        back.setFont(alagardFont);
+        back.setFont(StringUtils.getAlagardDefaultFont());
+
+        //Bottone per salvare la partita
+        salva = new JButton("SALVA");
+        salva.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FormEvent formEvent = new FormEvent(this, "back", (JButton)e.getSource());
+
+                if(formListener != null){
+                    formListener.formEvent(formEvent);
+                }
+            }
+        });
+        salva.setFont(StringUtils.getAlagardDefaultFont());
 
         setLayout(new GridBagLayout());
 
@@ -111,6 +120,12 @@ public class BarraStrumenti extends JPanel{
         //gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.LINE_END;
         add(back);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        //gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        add(salva);
     }
 
     public void setColor(Color background , Color foreground){
@@ -139,6 +154,10 @@ public class BarraStrumenti extends JPanel{
 
     public JButton getBack() {
         return back;
+    }
+
+    public JButton getSalva() {
+        return salva;
     }
 
     public void setFormListener(FormListener formListener) {

@@ -1,15 +1,16 @@
 package game;
 
+import java.io.*;
 import java.lang.Class;
 
 import game.character.player.Giocatore;
 import game.items.view.*;
 import game.character.enemies.*;
 import game.room.*;
-import interfaccia.multimedia.ImagePanel;
 
-public final class Dungeon{
+public final class Dungeon implements Serializable{
 
+    private static final long serialVersionUID = 1L;
 
     private static Dungeon instance = null;
 
@@ -25,7 +26,6 @@ public final class Dungeon{
     private static Giocatore giocatore;
     private static Drago drago;
 
-    private ImagePanel immagineNemico;
 
     //Costruttore della classe
     private Dungeon(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){
@@ -53,6 +53,10 @@ public final class Dungeon{
         if(instance == null){
             instance = new Dungeon(righe, colonne, divisoreRighe, divisoreColonne, giocatore, drago);
         }
+        return instance;
+    }
+
+    public static Dungeon getInstance(){
         return instance;
     }
 
@@ -122,9 +126,8 @@ public final class Dungeon{
                     /**--- OSTILI ---**/
 
                     //Png.generateDialoghiOstili();
-                    int vita = setPuntiVitaPng();
 
-                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  vita, 7, 150, immagineNemico);
+                    mappa[randRighe][randColonne] = new Png(randRighe, randColonne,  7, 150);
                 }else {
 
                     /**--- NON OSTILI ---**/
@@ -148,44 +151,6 @@ public final class Dungeon{
         }
         return false;
     }
-
-    //Metodo per inserire l'immagine del nemico in base al punteggio vita
-    private int setPuntiVitaPng(){
-        int selettore =  (int) (Math.random() *  100 + 1);
-
-        if(selettore <= 30){
-            immagineNemico  = new ImagePanel("resources/images/nemici/image (10).png", 300, 300);
-            return 8;
-
-        }else if( selettore <= 45){
-            immagineNemico = new ImagePanel("resources/images/nemici/image (1).png", 300, 300);
-            return 12;
-
-        }else if( selettore <= 55){
-            immagineNemico = new ImagePanel("resources/images/nemici/ghost.png", 300, 300);
-            return 15;
-
-        }else if( selettore <= 68){
-            immagineNemico = new ImagePanel("resources/images/nemici/image (2).png", 300, 300);
-            return 18;
-
-        }else if( selettore <= 75){
-            immagineNemico = new ImagePanel("resources/images/nemici/image (3).png", 300, 300);
-            return 21;
-
-        }else if( selettore <= 88){
-            immagineNemico = new ImagePanel("resources/images/nemici/image (9).png", 300, 300);
-            return 24;
-
-        }else if( selettore <= 98){
-            immagineNemico = new ImagePanel("resources/images/nemici/image.png", 300, 300);
-            return 27;
-
-        }else{
-            immagineNemico = new ImagePanel("resources/images/nemici/image (21).png", 300, 300);
-            return 33;
-        }
-        }
 
     //Metodo per inserire i muri nel dungeon
     private void setWallsMappa(int r, int c){
@@ -285,6 +250,24 @@ public final class Dungeon{
         return str;
     }
 
+    /**--- IMPLEMENTAZIONE DEI METODI DELL'INTERFACCIA Serializable --**/
+
+    public static void serialize(Dungeon dungeon, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(dungeon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Dungeon deserialize(String filePath) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (Dungeon) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**--- METODI GETTER ---**/
     

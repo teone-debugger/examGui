@@ -2,6 +2,8 @@ package game.character.enemies;
 
 import java.util.HashMap;
 
+import interfaccia.multimedia.ImagePanel;
+
 public class ControllerPng {
     
     private static ControllerPng instance = null;
@@ -84,5 +86,64 @@ public class ControllerPng {
         return dialoghiNonOstili.get(count);
 
     }
+
+    //Metodo per settale punti vita
+    public static int setPuntiVitaPng(){
+        int selettore =  (int) (Math.random() *  100 + 1);
+
+        if(selettore <= 30){
+            return 8;
+
+        }else if( selettore <= 45){
+            return 12;
+
+        }else if( selettore <= 55){
+            return 15;
+
+        }else if( selettore <= 68){
+            return 18;
+
+        }else if( selettore <= 75){
+            return 21;
+
+        }else if( selettore <= 88){
+            return 24;
+
+        }else if( selettore <= 98){
+            return 27;
+
+        }else{
+            return 33;
+        }
+    }
+    //Metodo per inserire l'immagine del nemico in base al punteggio vita
+    public ImagePanel setImmaginePng(int vita){
+
+        if(vita == 8){
+            return new ImagePanel("resources/images/nemici/image (10).png", 300, 300);
+
+        }else if( vita == 12){
+            return new ImagePanel("resources/images/nemici/image (1).png", 300, 300);
+
+        }else if( vita == 15){
+            return new ImagePanel("resources/images/nemici/ghost.png", 300, 300);
+
+        }else if( vita == 18){
+            return new ImagePanel("resources/images/nemici/image (2).png", 300, 300);
+
+        }else if( vita == 21){
+            return new ImagePanel("resources/images/nemici/image (3).png", 300, 300);
+
+        }else if( vita == 24){
+            return new ImagePanel("resources/images/nemici/image (9).png", 300, 300);
+
+        }else if( vita == 27){
+            return new ImagePanel("resources/images/nemici/image.png", 300, 300);
+
+        }else{
+            return new ImagePanel("resources/images/nemici/image (21).png", 300, 300);
+        }
+    }
+
 
 }

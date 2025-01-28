@@ -12,7 +12,7 @@ public class Drago extends Personaggio {
     private static int dannoZampa;
 
     public Drago() {
-        super(14,76, "£", "AURELION SOL", 2, 12, 1000);
+        super(14,76, "£", "AURELION SOL", 45, 12, 1000);
 
         dannoMorso = 4;
         dannoFiammata = 8;

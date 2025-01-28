@@ -1,6 +1,8 @@
 package game;
 
-public class Posizione {
+import java.io.Serializable;
+
+public class Posizione implements Serializable{
     int righe;
     int colonne;
     String tipo;

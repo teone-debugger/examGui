@@ -21,7 +21,7 @@ public class FrameGame extends Frame{
     private static Posizione posizione;
     //private static Posizione oldPosizione;
 
-    private PannelloText mappa;
+    private static PannelloText mappa;
     private static PannelloTitled inventario;
     private static PannelloTitled statistiche;
     private static PannelloTitled messaggi;
@@ -32,6 +32,7 @@ public class FrameGame extends Frame{
 
     public FrameGame() {
         super("D&D");
+
 
 
         widthMappa = getWidth() * 58 /100;
@@ -66,24 +67,24 @@ public class FrameGame extends Frame{
                         case KeyEvent.VK_UP:
 
                             messaggi.setText("");
-                            Dungeon.getGiocatore().move("up", Game.getScn());
+                            Dungeon.getGiocatore().move("up");
                             break;
                         case KeyEvent.VK_DOWN:
 
                             messaggi.setText("");
-                            Dungeon.getGiocatore().move("down", Game.getScn());
+                            Dungeon.getGiocatore().move("down");
 
                             break;
                         case KeyEvent.VK_LEFT:
 
                             messaggi.setText("");
-                            Dungeon.getGiocatore().move("left", Game.getScn());
+                            Dungeon.getGiocatore().move("left");
 
                             break;
                         case KeyEvent.VK_RIGHT:
 
                             messaggi.setText("");
-                            Dungeon.getGiocatore().move("right", Game.getScn());
+                            Dungeon.getGiocatore().move("right");
 
                             break;
                         default:
@@ -176,99 +177,27 @@ public class FrameGame extends Frame{
             public void formEvent(FormEvent fe) {
                 if(fe.getJButton().equals(barraStrumenti.getAffermativo())){
 
-
-                    if(posizione != null) {
-
-                        System.out.println("POSIZIONE attuale si: " + Dungeon.getGiocatore().getRighe() + " " + Dungeon.getGiocatore().getColonne());
-
-
-                        //messaggi.clearText();
-                        Dungeon.getGiocatore().takeUpGui(posizione);
-                        messaggi.setText(Messaggio.getMessaggio());
-                        Messaggio.clearMesaggio();
-                        inventario.setText(Giocatore.getInventory().inventoryToString());
-                        
-
-                        if(posizione.getClass().getSimpleName().equals("Porta") ) {
-                            
-                            if(((Porta) posizione).isBloccata()) {
-
-                                
-                                /**--- SE E' UNA PORTA BLOCCATA LA SBLOCCO ---**/
-                                if(Giocatore.getInventory().searchInInventory("CHIAVE") ) {
-                                    if(barraStrumenti.isClicked()){
-                                        Giocatore.getInventory().removeFromInventory("CHIAVE");
-
-                                        System.out.println("CHIAVE RIMOSSA DALL'INVENTARIO");
-
-                                        barraStrumenti.setClicked(false);
-                                        ((Porta) posizione).setBloccata(false);
-                                        mappa.setText(Dungeon.dungeonToString());
-                                        messaggi.setText("PORTA SBLOCCATA!!!");
-                                    }else{
-                                        barraStrumenti.setClicked(true);
-                                    }
-                                }
-                                
-                            }
-                            
-
-                        }else{
-
-                            posizione = Dungeon.getGiocatore().aroundGui();
-
-                            if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
-                                messaggi.setText(Messaggio.getMessaggio());
-                            }
-                        }
-                        mappa.setText(Dungeon.dungeonToString());
-                        
-                    }
-
+                    FrameGame.this.actionAffermativo();
 
                 }else if(fe.getJButton().equals(barraStrumenti.getNegativo())){
 
-                    if(posizione != null) {
-
-                        if(posizione.getClass().getSimpleName().equals("Porta")){
-                                
-                            if(((Porta) posizione).isBloccata() && Giocatore.getInventory().searchInInventory("CHIAVE")) {
-
-                                barraStrumenti.setClicked(false);
-                                messaggi.setText("NON HAI SBLOCCATO LA PORTA");
-                            }
-                        }else{
-                            /**--- CAMBIO INTERAZIONE ---**/
-                        
-                            posizione = Dungeon.getGiocatore().aroundGui();
-                            messaggi.setText(Messaggio.getMessaggio());
-                        }
-                    }
+                    FrameGame.this.actionNegativo();
 
                 }else if(fe.getJButton().equals(barraStrumenti.getCura())) {
 
-                    Dungeon.getGiocatore().heal();
-                    FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()));
-                    FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
-                    Messaggio.clearMesaggio();
+                    FrameGame.this.actionCura();
 
                 }else if(fe.getJButton().equals(barraStrumenti.getBack())) {
 
-                    if(Dungeon.getGiocatore().getBackRoom()==null){
-                        messaggi.setText("NON PUOI TORNARE INDIETRO!!!");
-                    }else{
-                        System.out.println("POSIZIONE attuale back: " + Dungeon.getGiocatore().getRighe() + " " + Dungeon.getGiocatore().getColonne());
-                        
-                        Dungeon.getGiocatore().setRighe(Dungeon.getGiocatore().getBackRoom().getRighe());
-                        Dungeon.getGiocatore().setColonne(Dungeon.getGiocatore().getBackRoom().getColonne());
+                    FrameGame.this.actionBack();
 
-                        Dungeon.setPosizioneMappa(Dungeon.getGiocatore());
-                    }
+                }else if(fe.getJButton().equals(barraStrumenti.getSalva())) {
+                    
+                    FrameGame.this.actionSalva();
                 }
 
 
                 mappa.setText(Dungeon.dungeonToString());
-                mappa.getJtextArea().requestFocus();
                 mappa.getJtextArea().requestFocus();
                 SwingUtilities.updateComponentTreeUI(FrameGame.this);
 
@@ -290,7 +219,97 @@ public class FrameGame extends Frame{
         insertComponent(1,2, 0.01, 0.01, 1, 1, GridBagConstraints.PAGE_END, messaggi);
     }
 
-    public PannelloText getMappa() {
+    public void actionAffermativo(){
+        if(posizione != null) {
+
+            //messaggi.clearText();
+            Dungeon.getGiocatore().takeUpGui(posizione);
+            messaggi.setText(Messaggio.getMessaggio());
+            Messaggio.clearMesaggio();
+            inventario.setText(Giocatore.getInventory().inventoryToString());
+            
+
+            if(posizione.getClass().getSimpleName().equals("Porta") ) {
+                
+                if(((Porta) posizione).isBloccata()) {
+
+                    
+                    /**--- SE E' UNA PORTA BLOCCATA LA SBLOCCO ---**/
+                    if(Giocatore.getInventory().searchInInventory("CHIAVE") ) {
+                        if(barraStrumenti.isClicked()){
+                            Giocatore.getInventory().removeFromInventory("CHIAVE");
+
+                            System.out.println("CHIAVE RIMOSSA DALL'INVENTARIO");
+
+                            barraStrumenti.setClicked(false);
+                            ((Porta) posizione).setBloccata(false);
+                            mappa.setText(Dungeon.dungeonToString());
+                            messaggi.setText("PORTA SBLOCCATA!!!");
+                        }else{
+                            barraStrumenti.setClicked(true);
+                        }
+                    }
+                    
+                }
+                
+
+            }else{
+
+                posizione = Dungeon.getGiocatore().aroundGui();
+
+                if(posizione!= null && !posizione.getClass().getSimpleName().equals("Porta")){
+                    messaggi.setText(Messaggio.getMessaggio());
+                }
+            }
+            mappa.setText(Dungeon.dungeonToString());
+            
+        }
+    }
+
+    private void actionNegativo(){
+        if(posizione != null) {
+
+            if(posizione.getClass().getSimpleName().equals("Porta")){
+                    
+                if(((Porta) posizione).isBloccata() && Giocatore.getInventory().searchInInventory("CHIAVE")) {
+
+                    barraStrumenti.setClicked(false);
+                    messaggi.setText("NON HAI SBLOCCATO LA PORTA");
+                }
+            }else{
+                /**--- CAMBIO INTERAZIONE ---**/
+            
+                posizione = Dungeon.getGiocatore().aroundGui();
+                messaggi.setText(Messaggio.getMessaggio());
+            }
+        }
+    }
+
+    private void actionCura(){
+        Dungeon.getGiocatore().heal();
+        FrameGame.getStatistiche().setText(Giocatore.statsToString(Dungeon.getGiocatore()));
+        FrameGame.getMessaggi().setText(Messaggio.getMessaggio());
+        Messaggio.clearMesaggio();
+    }
+
+    private void actionBack(){
+        if(Dungeon.getGiocatore().getBackRoom()==null){
+            messaggi.setText("NON PUOI TORNARE INDIETRO!!!");
+        }else{
+            
+            Dungeon.getGiocatore().setRighe(Dungeon.getGiocatore().getBackRoom().getRighe());
+            Dungeon.getGiocatore().setColonne(Dungeon.getGiocatore().getBackRoom().getColonne());
+
+            Dungeon.setPosizioneMappa(Dungeon.getGiocatore());
+        }
+    }
+
+    private void actionSalva(){
+        this.dispose();
+        Game.saveGame();
+    }
+
+    public static PannelloText getMappa() {
         return mappa;
     }
 

@@ -1,21 +1,22 @@
 package game;
 
 import game.character.player.Giocatore;
+
+import com.google.api.client.json.Json;
+
+import game.Dungeon;
 import interfaccia.FrameMenu.FrameMenu;
 import game.enums.*;
-import game.character.enemies.Drago;
+import saveManager.JsonSaving;
 
-import java.util.Scanner;
+import messaggi.Scn;
+
+import game.character.enemies.Drago;
 
 public class Game {
 
     private static boolean terminal;
 
-    private static Scanner scn = new Scanner(System.in);
-
-    public static Scanner getScn() {
-        return scn;
-    }
     private static int selectPuntiVita(Razza razza) {
         switch(razza){
             case ELFO:
@@ -83,19 +84,19 @@ public class Game {
 
     public Giocatore createGiocatoreTerminal(){
         System.out.print("INSERISCI NOME GIOCATORE: ");
-        String nome = scn.next().toUpperCase();
+        String nome = Scn.getInstance().next().toUpperCase();
 
         String s = " ";
 
         while(!s.equals("umano") && !s.equals("u") && !s.equals("elfo") && !s.equals("e") && !s.equals("nano") && !s.equals("n")) {
             System.out.println("SCEGLI LA RAZZA GIOCATORE: (UMANO/U - ELFO/E - NANO/N)");
-            s = scn.next().toLowerCase();
+            s = Scn.getInstance().next().toLowerCase();
         }
         Razza razza = selectRazza(s);
 
         while(!s.equals("mago") && !s.equals("m") && !s.equals("ladro") && !s.equals("l") && !s.equals("barbaro") && !s.equals("b")) {
             System.out.println("SCEGLI LA CLASSE GIOCATORE: (MAGO/M - LADRO/L - BARBARO/B)");
-            s = scn.next().toLowerCase();
+            s = Scn.getInstance().next().toLowerCase();
         }
         Classe classe = selectClasse(s);
 
@@ -111,14 +112,9 @@ public class Game {
 
     }
 
-
-    public static boolean isWin(){
-        return Dungeon.getDrago().getPuntiVita() <= 0 || Dungeon.getGiocatore().getMonete() >= 1800;
-    }
-
     public void play(){
         System.out.println("DO YOU PREFER TO PLAY WITH GUI/G OR TERMINAL/T: ");
-        switch (scn.nextLine().toLowerCase()) {
+        switch (Scn.getInstance().nextLine().toLowerCase()) {
             case "g":
             case "gui":
                 terminal = false;
@@ -157,12 +153,11 @@ public class Game {
         Dungeon.showDungeon();
 
         String str;
-        Scanner scn = new Scanner(System.in);
 
         while (!isWin()) {
 
             System.out.print("select direction (up/u - down/d - left/l - right/r) to move \n or press 'i' for the inventory or press 's' for stats: ");
-            str = scn.nextLine();
+            str = Scn.getInstance().nextLine();
 
             if (str.equalsIgnoreCase("i")) {
 
@@ -173,9 +168,9 @@ public class Game {
                 Dungeon.getGiocatore().showStats();
 
             } else {
-                Dungeon.getGiocatore().move(str, scn);
+                Dungeon.getGiocatore().move(str);
                 try {
-                    Dungeon.getGiocatore().around(getScn());
+                    Dungeon.getGiocatore().around();
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -186,6 +181,14 @@ public class Game {
         }
     }
 
+    public static void saveGame(){
+        JsonSaving.saveToFile(Dungeon.getInstance(), "resources/firebase/savesLogs/save.json");
+    }
+
+    public static boolean isWin(){
+        return Dungeon.getDrago().getPuntiVita() <= 0 || Dungeon.getGiocatore().getMonete() >= 1800;
+    }
+    
     public static boolean isTerminal() {
         return terminal;
     }

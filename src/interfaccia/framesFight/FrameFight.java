@@ -53,7 +53,7 @@ public class FrameFight extends JFrame{
         backgroundLabel = new JLabel(scaleImage("resources/images/background/backgroundBase.png", 800, 600));
         backgroundLabel.setBounds(0, 0, 800, 600);
 
-        characterPanel = getImmagine();
+        characterPanel = Dungeon.getGiocatore().getImmagine();
         characterPanel.setBounds(50, 250, 200, 200);
 
         enemyPanel = Dungeon.getGiocatore().getNemico().getImmagine();
@@ -66,9 +66,9 @@ public class FrameFight extends JFrame{
         charactHealthBar.setBounds(50, 230, characterPanel.getWidth(), 30);
         updateHealthBarColor(charactHealthBar);
 
-        enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVita(), Dungeon.getGiocatore().getNemico().getPuntiVita());
+        enemyHealthBar = createHealthBar(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX(), Dungeon.getGiocatore().getNemico().getPuntiVita());
         enemyHealthBar.setBounds(500, 130, enemyPanel.getWidth(), 30);
-        
+        updateHealthBarColor(enemyHealthBar);
 
         //etichette nome
         charactNameLabel = createNameLabel(Dungeon.getGiocatore().getNome(), StringUtils.getAlagardDefaultFont());
@@ -203,88 +203,6 @@ public class FrameFight extends JFrame{
         eventScreen.showScreen(this);
     }
 
-    private ImagePanel getImmagine(){
-            ImagePanel immagine;
-            Dungeon.getGiocatore();
-
-            String razza = toStringRazza(Giocatore.getRazza());
-            String classe = toStringClasse(Giocatore.getClasse());
-
-            switch(razza) {
-                case "UMANO":
-                   
-                    switch (classe) {
-                        case "LADRO":
-                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOLADRO.png", 200, 200);
-                            break;
-                    
-                        case "MAGO":
-                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOMAGO.png", 200, 200);
-                            break;
-
-                        case "BARBARO":
-                            immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOBARBARO.png", 200, 200);
-                            break;
-
-                        default:
-                            immagine = new ImagePanel(classe, 200, 200);
-                            break;
-                    }
-                    break;
-
-                case "NANO":
-
-                    switch (classe) {
-                        case "LADRO":
-                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOLADRO.png", 200, 200);
-                            break;
-                    
-                        case "MAGO":
-                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOMAGO.png", 200, 200);
-                            break;
-
-                        case "BARBARO":
-                            immagine = new ImagePanel("resources/images/pg principali/NANO/NANOBARBARO.png", 200, 200);
-                            break;
-
-                        default:
-                            immagine = new ImagePanel(classe, 200, 200);
-                            break;
-                    }
-                    break;
-
-                case "ELFO":
-                    switch (classe) {
-                        case "LADRO":
-                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOLADRO.png", 200, 200);
-                            break;
-                    
-                        case "MAGO":
-                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOMAGO.png", 200, 200);
-                            break;
-
-                        case "BARBARO":
-                            immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOBARBARO.png", 200, 200);
-                            break;
-
-                        default:
-                            immagine = new ImagePanel(classe, 200, 200);
-                            break;
-                    }
-                    break;
-
-                default:
-                    immagine = new ImagePanel("resources/images/pg principali/ELFO/image (12).png", 200, 200);
-                    break;
-
-            }
-            return immagine;
-
-    }
-    
-    private String toStringRazza(Razza razza) {return razza + "";}
-    private String toStringClasse(Classe classe) {return classe + "";}
-
     private void setupButton(JButton button, int x, int y, Font font){
         button.setBounds(x, y, 200, 50);
         button.setFont(font);
@@ -412,6 +330,7 @@ public class FrameFight extends JFrame{
 
             handleDeath(Dungeon.getGiocatore().isVivo(), Dungeon.getGiocatore().getNemico().getNome());
             setVisible(true);
+            FrameGame.getMappa().setText(Dungeon.dungeonToString());
             FrameGame.getMessaggi().setText("MIO PRODE AVVENTURIERO " + Dungeon.getGiocatore().getNome() + " HAI SCONFITTO " + Dungeon.getGiocatore().getNemico().getNome());
         }
 

@@ -14,9 +14,7 @@ import java.awt.event.MouseEvent;
 
 public class FrameMenu extends interfaccia.Frame{
     
-
     private PannelloTitled pannelloMenu;
-
 
     private JLabel newGamLabel;
     private JLabel loadGamLabel;

@@ -1,10 +1,11 @@
 package game.character.player;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import game.items.view.Oggetto;
 
-public class Inventario {
+public class Inventario implements Serializable{
 
     private static Inventario instance = null;
 

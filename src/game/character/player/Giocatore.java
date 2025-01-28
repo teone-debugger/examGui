@@ -14,12 +14,12 @@ import interfaccia.framesFight.FrameFight;
 import messaggi.Messaggio;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import messaggi.Scn;
 
 
 public class Giocatore extends Personaggio{
 
-    private  int puntiEsperienza;
+    private int puntiEsperienza;
 
     private static Classe classe;
     private static Razza razza;
@@ -45,18 +45,20 @@ public class Giocatore extends Personaggio{
             inventario = Inventario.getInstance();
             posizioniTrovate = new ArrayList<>();
 
+            setImmagine(controllerGiocatore.getImmagine(razza, classe));
+
             //this.armi = new HashMap<>();
         }
     
         //Metodo per il movimento
-        public void move(String direzione, Scanner scn){
+        public void move(String direzione){
     
             /**--- SPOSTAMENTO ---**/
             this.movements(direzione);
     
             /*try {
     
-                around(scn);
+                around(Scn.getInstance());
             } catch (ClassNotFoundException e) {
                 System.out.println(e.getMessage());
             }*/
@@ -371,34 +373,34 @@ public class Giocatore extends Personaggio{
         }
     
         //Metodo per trovare la posizione utile attorno al giocatore
-        public void around(Scanner scn) throws ClassNotFoundException {
+        public void around() throws ClassNotFoundException {
     
             if(Game.isTerminal()) {
                 Dungeon.showDungeon();
             }
     
-            findOggettiPng(scn);
+            findOggettiPng();
     
             /**--- UP DOOR---**/
             if (Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].getClass().getSimpleName().equals("Porta")) {
     
-                goThrough((Porta) Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()], "up", scn);
+                goThrough((Porta) Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()], "up");
             }else {
     
                 /**--- DOWN DOOR---**/
                 if (Dungeon.getClassPosizione(this.getRighe() + 1, this.getColonne()).getSimpleName().equals("Porta")) {
     
-                    goThrough((Porta) Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()], "down", scn);
+                    goThrough((Porta) Dungeon.getMappa()[this.getRighe() + 1][this.getColonne()], "down");
                 }else
                 /**--- LEFT DOOR---**/
                     if (Dungeon.getClassPosizione(this.getRighe(), this.getColonne() - 1).getSimpleName().equals("Porta")) {
     
-                        goThrough((Porta) Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1], "left", scn);
+                        goThrough((Porta) Dungeon.getMappa()[this.getRighe()][this.getColonne() - 1], "left");
                     }else
                     /**--- RIGHT DOOR---**/
                         if (Dungeon.getClassPosizione(this.getRighe(), this.getColonne() + 1).getSimpleName().equals("Porta")) {
     
-                            goThrough((Porta) Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1], "right", scn);
+                            goThrough((Porta) Dungeon.getMappa()[this.getRighe()][this.getColonne() + 1], "right");
                         }
     
             }
@@ -406,7 +408,7 @@ public class Giocatore extends Personaggio{
         }
         
         //Metodo per vedere se la posizione trovata è un oggetto o un png
-        private void findOggettiPng(Scanner scn) {
+        private void findOggettiPng() {
             /**--- UP ---**/
             Posizione p;
             if (!Dungeon.getMappa()[this.getRighe() - 1][this.getColonne()].isLibera()) {
@@ -417,13 +419,13 @@ public class Giocatore extends Personaggio{
                     case "Png":
                     case "Drago":
     
-                        talk((Personaggio)p, "up", scn);
+                        talk((Personaggio)p, "up");
                         break;
                     case "Oggetto":
                     case "Arma":
                     case "Armatura":
     
-                        takeUp((Oggetto)p,"up", scn);
+                        takeUp((Oggetto)p,"up");
                         break;
                 }
     
@@ -438,13 +440,13 @@ public class Giocatore extends Personaggio{
                     case "Png":
                     case "Drago":
     
-                        talk((Personaggio)p, "up", scn);
+                        talk((Personaggio)p, "down");
                         break;
                     case "Oggetto":
                     case "Arma":
                     case "Armatura":
     
-                        takeUp((Oggetto)p,"down", scn);
+                        takeUp((Oggetto)p,"down");
                         break;
                 }
             }
@@ -458,13 +460,13 @@ public class Giocatore extends Personaggio{
                     case "Png":
                     case "Drago":
     
-                        talk((Personaggio)p, "up", scn);
+                        talk((Personaggio)p, "left");
                         break;
                     case "Oggetto":
                     case "Arma":
                     case "Armatura":
     
-                        takeUp((Oggetto)p,"left", scn);
+                        takeUp((Oggetto)p,"left");
                         break;
                 }
             }
@@ -477,13 +479,13 @@ public class Giocatore extends Personaggio{
                     case "Png":
                     case "Drago":
     
-                        talk((Personaggio)p, "up", scn);
+                        talk((Personaggio)p, "right");
                         break;
                     case "Oggetto":
                     case "Arma":
                     case "Armatura":
     
-                        takeUp((Oggetto)p,"right", scn);
+                        takeUp((Oggetto)p,"right");
                         break;
                 }
             }
@@ -491,11 +493,11 @@ public class Giocatore extends Personaggio{
         }
     
         //Metodo per oltrepassare le porte
-        private void goThrough(Porta p, String direzione, Scanner scn) {
+        private void goThrough(Porta p, String direzione) {
             
             System.out.print("vuoi oltrepassare la porta? " + direzione + " (yes/y - no/n) ");
     
-                switch(scn.nextLine().toLowerCase()){
+                switch(Scn.getInstance().nextLine().toLowerCase()){
                     case "yes":
                     case "y":
                     if(!p.isBloccata()){
@@ -543,11 +545,13 @@ public class Giocatore extends Personaggio{
                         }
     
                         Dungeon.showDungeon();
-                        findOggettiPng(scn);
+                        findOggettiPng();
                     }else if(inventario.searchInInventory("CHIAVE")){
+
                         System.out.println("PORTA BLOCCATA");
                         System.out.println("VUOI SBLOCCARE LA PORTA? (yes/y - no/n)");
-                        switch(scn.nextLine().toLowerCase()){
+
+                        switch(Scn.getInstance().nextLine().toLowerCase()){
                             case "yes":
                             case "y":
                                 p.setBloccata(false);
@@ -558,7 +562,7 @@ public class Giocatore extends Personaggio{
                             case "n":
                                 break;
                             default:
-                                goThrough(p, direzione, scn);
+                                goThrough(p, direzione);
                                 break;
 
                         }
@@ -572,7 +576,7 @@ public class Giocatore extends Personaggio{
                         Dungeon.showDungeon();
                         break;
                     default:
-                        goThrough(p, direzione, scn);
+                        goThrough(p, direzione);
                         break;
                 }
     
@@ -580,11 +584,11 @@ public class Giocatore extends Personaggio{
         }
         
         //Metodo per raccogliere gli oggetti
-        private void takeUp(Oggetto oggetto, String direzione, Scanner scn){
+        private void takeUp(Oggetto oggetto, String direzione){
     
             System.out.print("vuoi raccogliere l'oggetto? '" + direzione + "' (yes/y - no/n) ");
     
-            switch(scn.nextLine().toLowerCase()){
+            switch(Scn.getInstance().nextLine().toLowerCase()){
                 case "yes":
                 case "y":
                     System.out.println("HAI TROVATO '" + oggetto.getDescrizione() + "' \n");
@@ -610,7 +614,7 @@ public class Giocatore extends Personaggio{
     
                                 System.out.println("VUOI RACCOGLIERE L'ARMA?");
     
-                                switch (Game.getScn().nextLine().toLowerCase()) {
+                                switch (Scn.getInstance().nextLine().toLowerCase()) {
                                     case "yes":
                                     case "y":
     
@@ -644,7 +648,7 @@ public class Giocatore extends Personaggio{
                     System.out.println("non hai raccolto l'oggetto " + oggetto.getDescrizione());
                     break;
                 default:
-                    takeUp(oggetto, direzione, scn);
+                    takeUp(oggetto, direzione);
                     break;
             }
     
@@ -655,7 +659,7 @@ public class Giocatore extends Personaggio{
         }
     
         //Metodo per parlare con i png
-        private void talk(Personaggio personaggio, String direzione, Scanner scn) {
+        private void talk(Personaggio personaggio, String direzione) {
     
             this.nemico = null;
     
@@ -663,7 +667,7 @@ public class Giocatore extends Personaggio{
     
             System.out.print("vuoi parlare con  '" + personaggio.getNome() + "' ? '" + direzione + "' (yes/y - no/n) ");
     
-            switch(scn.nextLine().toLowerCase()){
+            switch(Scn.getInstance().nextLine().toLowerCase()){
                 case "yes":
                 case "y":
     
@@ -680,7 +684,7 @@ public class Giocatore extends Personaggio{
                         int turnoGiocatore = RandomUtils.rollD20();
                         int turnoPng = RandomUtils.rollD20();
     
-                        enemieInteractions(personaggio, scn, direzione, turnoGiocatore, turnoPng);
+                        enemieInteractions(personaggio, direzione, turnoGiocatore, turnoPng);
     
                     }
     
@@ -691,16 +695,16 @@ public class Giocatore extends Personaggio{
                     System.out.println("non hai parlato con " + personaggio.getNome());
                     break;
                 default:
-                    talk(personaggio, direzione, scn);
+                    talk(personaggio, direzione);
                     break;
             }
         }
         
         //Metodo per decidere cosa fare contro un png ostile
-        private void enemieInteractions(Personaggio personaggio, Scanner scn, String direzione, int turnoGiocatore, int turnoPng) {
+        private void enemieInteractions(Personaggio personaggio, String direzione, int turnoGiocatore, int turnoPng) {
     
             System.out.println("SCEGLI L'AZIONE ( COMBATTERE/C - FUGGIRE/F - STATS/S) ");
-            switch (scn.nextLine().toLowerCase()){
+            switch (Scn.getInstance().nextLine().toLowerCase()){
                 case "combattere":
                 case "c":
     
@@ -709,7 +713,7 @@ public class Giocatore extends Personaggio{
     
                         /**--- FIGHT FINCHE' SONO VIVI ---**/
                         while(personaggio.isVivo() && this.isVivo()) {
-                            this.fight(personaggio, turnoGiocatore, turnoPng, scn);
+                            this.fight(personaggio, turnoGiocatore, turnoPng);
                         }
                     }else{
                         System.out.println("NON PUOI COMBATTERE CON " + personaggio.getNome() + " NON HAI UN ARMA");
@@ -768,17 +772,17 @@ public class Giocatore extends Personaggio{
                     personaggio.showStats();
     
                 default:
-                    enemieInteractions(personaggio, scn, direzione, turnoGiocatore, turnoPng);
+                    enemieInteractions(personaggio, direzione, turnoGiocatore, turnoPng);
                     break;
             }
         }
     
         //Metodo per decidere cosa fare durante il combattimento
-        public void fight(Personaggio personaggio, int turnoGiocatore, int turnoPng, Scanner scn){
+        public void fight(Personaggio personaggio, int turnoGiocatore, int turnoPng){
     
             System.out.println("SCEGLI L'AZIONE ( ATTACCARE/A - CURA/C - STATS/S) ");
     
-            switch(scn.nextLine().toLowerCase()){
+            switch(Scn.getInstance().nextLine().toLowerCase()){
     
                 case "attaccare":
                 case "a":
@@ -794,7 +798,7 @@ public class Giocatore extends Personaggio{
                         if(this.heal()) {
                             personaggio.attack(this);
                         }else{
-                            this.fight(personaggio, turnoGiocatore, turnoPng, scn);
+                            this.fight(personaggio, turnoGiocatore, turnoPng);
                         }
     
                     System.out.println(Messaggio.getMessaggio());
@@ -808,12 +812,12 @@ public class Giocatore extends Personaggio{
                     this.showStats();
                     personaggio.showStats();
     
-                    this.fight(personaggio, turnoGiocatore, turnoPng, scn);
+                    this.fight(personaggio, turnoGiocatore, turnoPng);
     
                     break;
     
                 default:
-                    this.fight(personaggio, turnoGiocatore, turnoPng, scn);
+                    this.fight(personaggio, turnoGiocatore, turnoPng);
                     break;
             }
     

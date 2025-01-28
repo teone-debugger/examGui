@@ -9,6 +9,7 @@ import com.google.cloud.storage.Blob;
 
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -40,6 +41,31 @@ public class FirebaseInitializer {
 
         return instance;
         
+    }
+
+    public boolean downloadFromCloud(String filename, String destinationPath) {
+        if (!this.initialized) return false;
+
+        Bucket bucket = StorageClient.getInstance().bucket();
+
+        try {
+            Blob blob = bucket.get(filename);
+            if (blob == null) {
+                System.out.println("No such file exists in the bucket: " + filename);
+                return false;
+            }
+
+            byte[] content = blob.getContent();
+            try (FileOutputStream fos = new FileOutputStream(destinationPath)) {
+                fos.write(content);
+            }
+
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error downloading file " + filename + " from cloud");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean saveToCloud(String filename) {

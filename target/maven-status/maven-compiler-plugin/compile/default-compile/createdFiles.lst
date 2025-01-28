@@ -1,12 +1,12 @@
 interfaccia\FrameMenu\FrameSelection$3.class
 interfaccia\FrameMenu\FrameMenu$2.class
 game\items\view\Oggetto.class
+interfaccia\frameBlocks\BarraStrumenti$5.class
 interfaccia\framesGame\FrameGame$2.class
 game\enums\Razza.class
 game\items\model\ModelOggetto.class
 game\room\Porta.class
 interfaccia\framesFight\FrameFight$2.class
-util\ScanUtils.class
 game\items\view\Arma.class
 game\character\player\Giocatore.class
 interfaccia\framesGame\FrameGame$1.class
@@ -30,6 +30,7 @@ game\Dungeon.class
 interfaccia\framesFight\FrameFight$4.class
 game\character\enemies\Drago.class
 game\Posizione.class
+messaggi\Scn.class
 interfaccia\frameBlocks\BarraStrumenti$3.class
 interfaccia\framesGame\FrameGame.class
 game\enums\Classe.class

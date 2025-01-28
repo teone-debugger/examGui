@@ -2,7 +2,6 @@ package game.character.enemies;
 
 import game.character.Personaggio;
 
-import interfaccia.multimedia.ImagePanel;
 
 public class Png extends Personaggio {
     
@@ -13,10 +12,10 @@ public class Png extends Personaggio {
     private static int count = 1;
 
     //Metodo costruttore png ostili
-    public Png(int righe, int colonne, int puntiVita, int puntiArmatura, int monete, ImagePanel immagine) {
-        super(righe, colonne, "§", ControllerPng.generateNome(), puntiVita, puntiArmatura, monete);
+    public Png(int righe, int colonne, int puntiArmatura, int monete) {
+        super(righe, colonne, "§", ControllerPng.generateNome(), ControllerPng.setPuntiVitaPng(), puntiArmatura, monete);
 
-        setImmagine(immagine);
+        setImmagine(controllerPng.setImmaginePng(getPuntiVita()));
 
         this.ostile = true;
         count++;
