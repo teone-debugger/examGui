@@ -7,13 +7,12 @@ import messaggi.Messaggio;
 import util.RandomUtils;
 import game.character.player.Giocatore;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import game.Dungeon;
 import interfaccia.multimedia.ImagePanel;
 
-
-public class Personaggio extends Posizione{
+public class Personaggio extends Posizione {
 
     private String nome;
     private int puntiVita;
@@ -23,7 +22,7 @@ public class Personaggio extends Posizione{
 
     private boolean vivo;
 
-    @JsonIgnore
+@JsonIgnore
     private ImagePanel immagine;
 
 

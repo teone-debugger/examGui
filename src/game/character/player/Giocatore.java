@@ -29,7 +29,7 @@ public class Giocatore extends Personaggio{
     private Personaggio nemico;
     private ArrayList<Posizione> posizioniTrovate;
 
-    private Posizione p=null;
+    private Posizione posizione=null;
     private Posizione p2=null;
     private boolean isNew=true;
 
@@ -276,7 +276,7 @@ public class Giocatore extends Personaggio{
                                     isNew=false;
                                     
                                 } else {
-                                    p=p2;
+                                    posizione=p2;
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                 }
     
@@ -294,7 +294,7 @@ public class Giocatore extends Personaggio{
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                     isNew=false;
                                 } else {
-                                    p=p2;
+                                    posizione=p2;
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                 }
 
@@ -312,7 +312,7 @@ public class Giocatore extends Personaggio{
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                     isNew=false;
                                 } else {
-                                    p=p2;
+                                    posizione=p2;
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                 }
     
@@ -330,7 +330,7 @@ public class Giocatore extends Personaggio{
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                     isNew=false;
                                 } else {
-                                    p=p2;
+                                    posizione=p2;
                                     p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
                                 }
     
@@ -509,6 +509,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setRighe(this.getRighe()-2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                    
+                                } else {
+                                    posizione=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -519,6 +528,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setRighe(this.getRighe()+2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                    
+                                } else {
+                                    posizione=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -529,6 +547,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setColonne(this.getColonne()-2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                    
+                                } else {
+                                    posizione=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -539,6 +566,15 @@ public class Giocatore extends Personaggio{
     
                                 /**--- OLTREPASSO LA PORTA **/
                                 this.setColonne(this.getColonne()+2);
+
+                                if(isNew){
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                    isNew=false;
+                                    
+                                } else {
+                                    posizione=p2;
+                                    p2=Dungeon.getPosizione(this.getRighe(), this.getColonne());
+                                }
     
                                 Dungeon.setPosizioneMappa(this);
                                 break;
@@ -870,7 +906,7 @@ public class Giocatore extends Personaggio{
 
     public Posizione getBackRoom(){
         Dungeon.setPosizioneMappa(new Posizione(p2.getRighe(), p2.getColonne()));
-        return p;
+        return posizione;
     }
     
     /**---- UTIL METHODS: GETTER ----**/
