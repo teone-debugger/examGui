@@ -7,12 +7,13 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import game.Dungeon;
+import game.character.player.Giocatore;
 
 public class JsonSaving {
 
 
     //Metodo per salvare i dati di gioco su file
-    public static void saveToFile(Dungeon dungeon, String filename) {
+    public static void saveToFile(Giocatore dungeon, String filename) {
         ObjectMapper mapper = new ObjectMapper();
 
         try {

@@ -23,6 +23,7 @@ public class Personaggio extends Posizione{
 
     private boolean vivo;
 
+    @JsonIgnore
     private ImagePanel immagine;
 
 

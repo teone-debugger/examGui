@@ -3,12 +3,19 @@ package game;
 import java.io.*;
 import java.lang.Class;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import game.character.player.Giocatore;
 import game.items.view.*;
 import game.character.enemies.*;
 import game.room.*;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public final class Dungeon implements Serializable{
+
+@JsonProperty
 
     private static final long serialVersionUID = 1L;
 

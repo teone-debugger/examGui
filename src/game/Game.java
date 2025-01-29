@@ -182,7 +182,7 @@ public class Game {
     }
 
     public static void saveGame(){
-        JsonSaving.saveToFile(Dungeon.getInstance(), "resources/firebase/savesLogs/save.json");
+        JsonSaving.saveToFile(Dungeon.getGiocatore(), "resources/firebase/savesLogs/save.json");
     }
 
     public static boolean isWin(){

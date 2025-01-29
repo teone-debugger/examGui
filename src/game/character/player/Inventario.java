@@ -1,11 +1,23 @@
 package game.character.player;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import game.Dungeon;
 import game.items.view.Oggetto;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Inventario implements Serializable{
+
+@JsonProperty
 
     private static Inventario instance = null;
 
@@ -136,6 +148,23 @@ public class Inventario implements Serializable{
     //Metodo per prendere l'inventario
     public HashMap<Integer, Oggetto> getInventario() {
         return inventario;
+    }
+
+    public static void serialize(Inventario inventario, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(inventario);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Inventario deserialize(String filePath) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (Inventario) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
