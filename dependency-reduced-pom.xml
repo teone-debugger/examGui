@@ -14,7 +14,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Main-Class>main.Main</Main-Class>
+              <Main-Class>game.main.Main</Main-Class>
             </manifestEntries>
           </archive>
         </configuration>
@@ -24,7 +24,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.4.0</version>
         <configuration>
-          <mainClass>main.Main</mainClass>
+          <mainClass>game.main.Main</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -60,7 +60,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>main.Main</mainClass>
+                  <mainClass>game.main.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -100,7 +100,7 @@
     </plugins>
   </reporting>
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 </project>
