@@ -15,38 +15,32 @@ import java.io.IOException;
 
 public class FirebaseInitializer {
 
-    private static FirebaseInitializer instance = null;
+    private Bucket bucket;
     private boolean initialized = false;
 
     //Metodo costruttore
-    private FirebaseInitializer() {
+    public FirebaseInitializer() {
         try {
             FileInputStream serviceAccount = new FileInputStream("resources/firebase/key/examgui-4a40b-35ff981a418b.json");
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setStorageBucket("examgui-4a40b.appspot.com")
+                    .setStorageBucket("exam-gui.firebasestorage.app")
                     .build();
 
             FirebaseApp.initializeApp(options);
+
+            bucket = StorageClient.getInstance().bucket();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.initialized = true;
     }
-    public static FirebaseInitializer getInstance() {
-        if(instance == null){
-            instance = new FirebaseInitializer();
-        }
 
-        return instance;
-        
-    }
 
     public boolean downloadFromCloud(String filename, String destinationPath) {
         if (!this.initialized) return false;
-
-        Bucket bucket = StorageClient.getInstance().bucket();
 
         try {
             Blob blob = bucket.get(filename);
@@ -70,8 +64,6 @@ public class FirebaseInitializer {
 
     public boolean saveToCloud(String filename) {
         if (!this.initialized) return false;
-
-        Bucket bucket = StorageClient.getInstance().bucket();
 
         try {
             File file = new File("resources/firebase/savesLogs/" + filename);

@@ -311,7 +311,7 @@ public class FrameGame extends Frame{
 
     private void actionGetta(){
         String str = barraStrumenti.getInputField();
-        if(str != ""){
+        if(!str.equals("")){
             if(Giocatore.getInventory().searchInInventory(Integer.parseInt(str))){
                 
                 Giocatore.getInventory().removeFromInventory(Integer.parseInt(str));

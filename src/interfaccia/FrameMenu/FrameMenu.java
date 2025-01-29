@@ -58,14 +58,21 @@ public class FrameMenu extends interfaccia.Frame{
         loadGamLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //aggiungere codice per caricare partita
-
-                //FirebaseInitializer.getInstance();
                 try{
 
-                    FrameMenu.this.dispose();
+                    //scarica da firebase il file e lo carica, nel caso non riesca a scaricarlo parte una nuova partita
+                    /*FirebaseInitializer fb = new FirebaseInitializer();
+                    if(fb.downloadFromCloud("save.json"," resources/firebase/savesLogs/")){
+                        fb.deleteFromCloud("save.json");
+                        Giocatore g = JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json");
+                        new FrameGame(g);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "NON CI SONO PARTITE SALVATE", "ERRORE", JOptionPane.ERROR_MESSAGE);
+                        new FrameSelection();
+                    }*/
                     Giocatore g = JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json");
                     new FrameGame(g);
+                    FrameMenu.this.dispose();
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }

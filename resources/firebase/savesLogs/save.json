@@ -1,12 +1,11 @@
-<<<<<<< HEAD
 {
-  "righe" : 5,
+  "righe" : 9,
   "colonne" : 3,
-  "tipo" : "H",
+  "tipo" : "T",
   "libera" : false,
-  "nome" : "HAL",
-  "puntiVita" : 30,
-  "puntiVitaMAX" : 30,
+  "nome" : "TEO",
+  "puntiVita" : 20,
+  "puntiVitaMAX" : 20,
   "puntiArmatura" : 12,
   "monete" : 300,
   "vivo" : true,
@@ -14,6 +13,3 @@
   "posizioniTrovate" : [ ],
   "puntiEscperienza" : 0
 }
-=======
-{"righe":2,"colonne":4,"tipo":"H","libera":false,"nome":"HAL","puntiVita":30,"puntiVitaMAX":30,"puntiArmatura":12,"monete":250,"vivo":true,"nemico":{"righe":2,"colonne":5,"tipo":"§","libera":false,"nome":"LUD","puntiVita":15,"puntiVitaMAX":15,"puntiArmatura":7,"monete":150,"vivo":true,"dialogo":"VIVA GIGI FINIZZI","ostile":true},"posizioniTrovate":[{"righe":2,"colonne":5,"tipo":"§","libera":false,"nome":"LUD","puntiVita":15,"puntiVitaMAX":15,"puntiArmatura":7,"monete":150,"vivo":true,"dialogo":"VIVA GIGI FINIZZI","ostile":true}]
->>>>>>> da71d265774e0f7fefc3775c71153c8f58564aa1

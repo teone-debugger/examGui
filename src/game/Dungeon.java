@@ -5,11 +5,13 @@ import java.lang.Class;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.api.client.json.Json;
 
 import game.character.player.Giocatore;
 import game.items.view.*;
 import game.character.enemies.*;
 import game.room.*;
+import saveManager.JsonSaving;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -32,12 +34,6 @@ public final class Dungeon implements Serializable{
 
     private static Giocatore giocatore;
     private static Drago drago;
-
-
-    private Dungeon(){
-        this.maxItems = 40;
-        this.maxPng = 20;
-    }
 
     //Costruttore della classe
     private Dungeon(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){

@@ -1,5 +1,15 @@
 {
   "pesoMax" : 500,
-  "inventario" : { },
-  "pesoInventory" : 0
+  "inventario" : {
+    "10" : {
+      "righe" : 9,
+      "colonne" : 2,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 7,
+      "descrizione" : "CHIAVE",
+      "index" : 10
+    }
+  },
+  "pesoInventory" : 7
 }

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import messaggi.Scn;
+import saveManager.FirebaseInitializer;
 import saveManager.JsonSaving;
 
 
@@ -55,7 +56,16 @@ public class Giocatore extends Personaggio{
         super(0,0," "," ",0,0,0);
         this.puntiEsperienza = 0;
         try{
-
+            /*FirebaseInitializer fb = new FirebaseInitializer();
+            if(fb.downloadFromCloud("razza.json", "resources/firebase/savesLogs/")){
+                this.razza = JsonSaving.loadFromFileRazza("resources/firebase/savesLogs/razza.json");
+            }
+            if(fb.downloadFromCloud("classe.json", "resources/firebase/savesLogs/")){
+                this.classe = JsonSaving.loadFromFileClasse("resources/firebase/savesLogs/classe.json");
+            }
+            if(fb.downloadFromCloud("inventory.json", "resources/firebase/savesLogs/")){
+                inventario = JsonSaving.loadFromFileInventoy("resources/firebase/savesLogs/inventory.json");
+            }*/
             this.razza = JsonSaving.loadFromFileRazza("resources/firebase/savesLogs/razza.json");
             this.classe = JsonSaving.loadFromFileClasse("resources/firebase/savesLogs/classe.json");
             inventario = JsonSaving.loadFromFileInventoy("resources/firebase/savesLogs/inventory.json");
@@ -736,6 +746,18 @@ public class Giocatore extends Personaggio{
                 this.armi.addToInventory( oggetto);
             }*/
         }
+        public void throwObject() {
+            System.out.println("COSA VUOI BUTTARE?");
+            inventario.showInventory();
+            System.out.println("SCEGLI L'OGGETTO DA BUTTARE");
+            String oggetto = Scn.getInstance().nextLine();
+            if(inventario.searchInInventory(oggetto)){
+                inventario.removeFromInventory(oggetto);
+                System.out.println("HAI BUTTATO " + oggetto);
+            }else{
+                System.out.println("NON HAI " + oggetto);
+            }
+        }
     
         //Metodo per parlare con i png
         private void talk(Personaggio personaggio, String direzione) {
@@ -991,5 +1013,6 @@ public class Giocatore extends Personaggio{
     
     //metodo per prendere le posizionio già visitate (interfaccia grafica)
     public ArrayList<Posizione> getPosizioniTrovate() {return posizioniTrovate;}
+
 
 }
