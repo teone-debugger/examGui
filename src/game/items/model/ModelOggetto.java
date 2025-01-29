@@ -47,6 +47,7 @@ public class ModelOggetto {
 
     //Metodo per ottenere il peso dell'oggetto
     public int getPeso(String s){
+        if(s == null){return 0;}
         switch(s) {
             case "POZIONE":
                 return 10;

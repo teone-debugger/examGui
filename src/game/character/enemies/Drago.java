@@ -17,7 +17,6 @@ public class Drago extends Personaggio {
         dannoMorso = 4;
         dannoFiammata = 8;
         dannoZampa = 6;
-        setImmagine(new ImagePanel("resources/images/nemici/image (20).png", 300, 300));
         dialogo = "TU CHE OSI SVEGLIARMI DOPO IL MIO RIPOSO DI 1000 ANNI, HAI ANCHE IL CORAGGIO DI COMBATTERE CON ME?";
     }
 

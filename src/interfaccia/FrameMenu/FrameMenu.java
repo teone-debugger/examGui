@@ -71,7 +71,7 @@ public class FrameMenu extends interfaccia.Frame{
                         new FrameSelection();
                     }*/
                     Giocatore g = JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json");
-                    new FrameGame(g);
+                    new FrameGame(g, true);
                     FrameMenu.this.dispose();
                 }catch (Exception ex){
                     ex.printStackTrace();

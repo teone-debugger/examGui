@@ -1,0 +1,11 @@
+{
+  "righe" : 3,
+  "colonne" : 22,
+  "tipo" : "%",
+  "libera" : false,
+  "peso" : 200,
+  "descrizione" : "SPADA CORTA",
+  "index" : 0,
+  "dado" : 6,
+  "classe" : "BARBARO"
+}

@@ -69,6 +69,9 @@ public class Giocatore extends Personaggio{
             this.razza = JsonSaving.loadFromFileRazza("resources/firebase/savesLogs/razza.json");
             this.classe = JsonSaving.loadFromFileClasse("resources/firebase/savesLogs/classe.json");
             inventario = JsonSaving.loadFromFileInventoy("resources/firebase/savesLogs/inventory.json");
+            arma = JsonSaving.loadFromFileArma("resources/firebase/savesLogs/arma.json");
+            arma.setRighe(0);
+            System.out.println(arma.toString());
         }catch (Exception ex){
             ex.printStackTrace();
         }

@@ -1,0 +1,15 @@
+{
+  "righe" : 14,
+  "colonne" : 76,
+  "tipo" : "@",
+  "libera" : false,
+  "nome" : "AURELION SOL",
+  "puntiVita" : 45,
+  "puntiVitaMAX" : 45,
+  "puntiArmatura" : 12,
+  "monete" : 1000,
+  "vivo" : true,
+  "dannoZampa" : 6,
+  "dannoFiammata" : 8,
+  "dannoMorso" : 4
+}

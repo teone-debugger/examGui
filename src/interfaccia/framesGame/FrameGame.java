@@ -2,6 +2,7 @@ package interfaccia.framesGame;
 
 import game.Posizione;
 import messaggi.Messaggio;
+import saveManager.JsonSaving;
 import game.Game;
 import game.Dungeon;
 import game.room.*;
@@ -12,6 +13,8 @@ import interfaccia.multimedia.FormListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import interfaccia.Frame;
 import game.items.view.*;
 import game.character.enemies.Drago;
@@ -31,10 +34,18 @@ public class FrameGame extends Frame{
 
     private BarraStrumenti barraStrumenti;
 
-    public FrameGame(Giocatore g) {
+    public FrameGame(Giocatore g, boolean load) {
         super("D&D");
+        if(load){
+            try{
+                Dungeon.getInstance(17, 81, 4, 8, g, JsonSaving.loadFromFileDrago("resources/firebase/savesLogs/drago.json"));
 
-        Dungeon.getInstance(17, 81, 4, 8, g, new Drago());
+            }catch(IOException e){
+                Dungeon.getInstance(17, 81, 4, 8, g, new Drago());
+            }
+        }else{
+            Dungeon.getInstance(17, 81, 4, 8, g, new Drago());
+        }
 
         widthMappa = getWidth() * 58 /100;
         heightMappa = getHeight() * 60 /100;

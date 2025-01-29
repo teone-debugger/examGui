@@ -270,6 +270,9 @@ public class FrameFight extends JFrame{
         }else if( vita == 27){
             return new ImagePanel("resources/images/nemici/image.png", 300, 300);
 
+        }else if (vita == 45){
+            return new ImagePanel("resources/images/nemici/image (20).png", 300, 300);
+            
         }else{
             return new ImagePanel("resources/images/nemici/image (21).png", 300, 300);
         }

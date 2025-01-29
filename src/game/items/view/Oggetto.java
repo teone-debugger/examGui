@@ -24,8 +24,11 @@ public class Oggetto extends Posizione {
 
     public Oggetto() {
         super(0, 0, "*");
+        this.descrizione = ModelOggetto.generateObjects(count);
+        setPeso(controllerOggetto.getPeso(descrizione));
 
-
+        this.index = count;
+        count++;
     }
 
     public Oggetto(int righe, int colonne) {

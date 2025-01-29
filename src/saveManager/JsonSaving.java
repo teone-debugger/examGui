@@ -10,10 +10,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import game.Posizione;
+import game.character.enemies.Drago;
 import game.character.player.Giocatore;
 import game.character.player.Inventario;
 import game.enums.Classe;
 import game.enums.Razza;
+import game.items.view.Arma;
 
 public class JsonSaving {
 
@@ -74,6 +76,40 @@ public class JsonSaving {
     }
 
     public static void saveToFileRazza(Razza dungeon, String filename) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        try {
+            mapper.writeValue(new File(filename), dungeon);
+        } catch (JsonGenerationException e) {
+            System.out.println("Error generating JSON from GameData");
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            System.out.println("Error mapping JSON from GameData");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error opening file " + filename + " for writing");
+            e.printStackTrace();
+        } 
+    }
+    public static void saveToFileDrago(Drago dungeon, String filename) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        try {
+            mapper.writeValue(new File(filename), dungeon);
+        } catch (JsonGenerationException e) {
+            System.out.println("Error generating JSON from GameData");
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            System.out.println("Error mapping JSON from GameData");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error opening file " + filename + " for writing");
+            e.printStackTrace();
+        } 
+    }
+    public static void saveToFileArma(Arma dungeon, String filename) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -164,5 +200,41 @@ public class JsonSaving {
 
         return null;
     }
+
+    //Metodo per caricare i file da file
+    public static Drago loadFromFileDrago(String filename) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        try {
+            return mapper.readValue(new File(filename), Drago.class);
+        } catch (JsonGenerationException e) {
+            System.out.println("Error generating JSON from GameData");
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            System.out.println("Error mapping JSON from GameData");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    //Metodo per caricare i file da file
+    public static Arma loadFromFileArma(String filename) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        try {
+            return mapper.readValue(new File(filename), Arma.class);
+        } catch (JsonGenerationException e) {
+            System.out.println("Error generating JSON from GameData");
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            System.out.println("Error mapping JSON from GameData");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

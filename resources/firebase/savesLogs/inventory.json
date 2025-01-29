@@ -1,15 +1,71 @@
 {
   "pesoMax" : 500,
   "inventario" : {
-    "10" : {
-      "righe" : 9,
-      "colonne" : 2,
+    "0" : {
+      "righe" : 3,
+      "colonne" : 22,
+      "tipo" : "%",
+      "libera" : false,
+      "peso" : 200,
+      "descrizione" : "SPADA CORTA",
+      "index" : 0,
+      "dado" : 6,
+      "classe" : "BARBARO"
+    },
+    "17" : {
+      "righe" : 15,
+      "colonne" : 23,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 10,
+      "descrizione" : "POZIONE",
+      "index" : 17
+    },
+    "22" : {
+      "righe" : 14,
+      "colonne" : 68,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 5,
+      "descrizione" : "TAGLIACARTE",
+      "index" : 22
+    },
+    "23" : {
+      "righe" : 15,
+      "colonne" : 47,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 5,
+      "descrizione" : "PIETRA FOCAIA",
+      "index" : 23
+    },
+    "24" : {
+      "righe" : 2,
+      "colonne" : 4,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 20,
+      "descrizione" : "DIARIO VUOTO",
+      "index" : 24
+    },
+    "8" : {
+      "righe" : 13,
+      "colonne" : 71,
       "tipo" : "*",
       "libera" : false,
       "peso" : 7,
       "descrizione" : "CHIAVE",
-      "index" : 10
+      "index" : 8
+    },
+    "29" : {
+      "righe" : 13,
+      "colonne" : 47,
+      "tipo" : "*",
+      "libera" : false,
+      "peso" : 7,
+      "descrizione" : "LAPISLAZZULI",
+      "index" : 29
     }
   },
-  "pesoInventory" : 7
+  "pesoInventory" : 254
 }

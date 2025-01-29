@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import game.items.view.Arma;
 import game.items.view.Oggetto;
 
 public class Inventario implements Serializable{

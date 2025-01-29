@@ -158,7 +158,7 @@ public class Game {
                 break;
             case "load":
                 try {
-                    Dungeon.getInstance(17, 81, 4, 8, JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json"), new Drago());
+                    Dungeon.getInstance(17, 81, 4, 8, JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json"), JsonSaving.loadFromFileDrago("resources/firebase/savesLogs/drago.json"));
                     Dungeon.showDungeon();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -275,6 +275,8 @@ public class Game {
 
     public static void saveGame(){
 
+        JsonSaving.saveToFileArma(Giocatore.getArma(), "resources/firebase/savesLogs/arma.json");
+        JsonSaving.saveToFileDrago(Dungeon.getDrago(), "resources/firebase/savesLogs/drago.json");
         JsonSaving.saveToFileClasse(Giocatore.getClasse(), "resources/firebase/savesLogs/classe.json");
         JsonSaving.saveToFileRazza(Giocatore.getRazza(), "resources/firebase/savesLogs/razza.json");
         JsonSaving.saveToFileInventario(Giocatore.getInventory(), "resources/firebase/savesLogs/inventory.json");

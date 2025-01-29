@@ -1,10 +1,7 @@
 package game.character.player;
 
-import game.Dungeon;
 import game.Posizione;
 import game.character.enemies.Png;
-import game.enums.*;
-import interfaccia.multimedia.ImagePanel;
 import messaggi.Messaggio;
 
 public class ControllerGiocatore {

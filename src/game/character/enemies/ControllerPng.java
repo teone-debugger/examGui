@@ -2,8 +2,6 @@ package game.character.enemies;
 
 import java.util.HashMap;
 
-import interfaccia.multimedia.ImagePanel;
-
 public class ControllerPng {
     
     private static ControllerPng instance = null;

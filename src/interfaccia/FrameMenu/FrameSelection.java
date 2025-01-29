@@ -127,7 +127,7 @@ public class FrameSelection extends interfaccia.Frame{
 
                 Giocatore g = Game.createGiocatoreGui(razza, classe, nome);
 
-                new FrameGame(g);
+                new FrameGame(g, false);
                 FrameSelection.this.dispose();
             }
         });
