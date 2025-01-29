@@ -67,7 +67,7 @@ __[Jira Web](https://studenti-team-zw2x4sa2.atlassian.net/jira/software/projects
 __[Jira PDF](jira.pdf)__ <br>
 __[System Test Document](System_test.pdf)__ <br>
 __[System Test Report](System_Test_Report.pdf)__ <br>
-__[Design Document]()__ <br>
+__[Design Document](INSERIRE QUA NOME PDF)__ <br>
 
 ---
 ### Rights and Licenses
