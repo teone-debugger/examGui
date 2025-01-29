@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: test.java.game.room.MuroTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in test.java.game.room.MuroTest
+test.java.game.room.MuroTest.testConstructor  Time elapsed: 0.001 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [int arg0] in constructor [public test.java.game.room.MuroTest(int,int,java.lang.String)].
+

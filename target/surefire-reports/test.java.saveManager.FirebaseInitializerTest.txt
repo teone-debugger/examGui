@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: test.java.saveManager.FirebaseInitializerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.261 s <<< FAILURE! - in test.java.saveManager.FirebaseInitializerTest
+test.java.saveManager.FirebaseInitializerTest.testBlobOperations  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.<init>(FirebaseInitializerTest.java:32)
+
+test.java.saveManager.FirebaseInitializerTest.testStorageClient  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.<init>(FirebaseInitializerTest.java:32)
+
+test.java.saveManager.FirebaseInitializerTest.testInitialization  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.<init>(FirebaseInitializerTest.java:32)
+

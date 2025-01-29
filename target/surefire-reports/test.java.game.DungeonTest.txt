@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: test.java.game.DungeonTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.017 s <<< FAILURE! - in test.java.game.DungeonTest
+test.java.game.DungeonTest.testSerialization  Time elapsed: 0.009 s  <<< ERROR!
+java.io.NotSerializableException: java.lang.Object
+	at test.java.game.DungeonTest.testSerialization(DungeonTest.java:59)
+

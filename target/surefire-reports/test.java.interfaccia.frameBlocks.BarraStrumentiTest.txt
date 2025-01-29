@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: test.java.interfaccia.frameBlocks.BarraStrumentiTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.196 s <<< FAILURE! - in test.java.interfaccia.frameBlocks.BarraStrumentiTest
+test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction  Time elapsed: 0.008 s  <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction(BarraStrumentiTest.java:40)
+
+test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction(BarraStrumentiTest.java:49)
+

@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: test.java.game.character.enemies.PngTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.076 s <<< FAILURE! - in test.java.game.character.enemies.PngTest
+test.java.game.character.enemies.PngTest.testSerialization  Time elapsed: 0.062 s  <<< ERROR!
+java.io.NotSerializableException: game.character.enemies.ControllerPng
+	at test.java.game.character.enemies.PngTest.testSerialization(PngTest.java:52)
+

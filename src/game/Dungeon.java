@@ -56,7 +56,7 @@ public final class Dungeon implements Serializable{
         mappa[giocatore.getRighe()][giocatore.getColonne()] = this.giocatore;
 
         //mappa[giocatore.getRighe()+ 1][giocatore.getColonne()+1] = new Oggetto(giocatore.getRighe()+ 1,giocatore.getColonne()+1, "CHIAVE");
-        mappa[drago.getRighe()][drago.getColonne()] = this.drago;
+        mappa[drago.getRighe()][drago.getColonne()] = Dungeon.drago;
         //mappa[giocatore.getRighe() + 1][giocatore.getColonne()+ 1] = new gioco.Oggetto(giocatore.getRighe() + 1,giocatore.getColonne()+ 1 ,"POZIONE");
     }
 
