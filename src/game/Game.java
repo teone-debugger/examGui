@@ -6,6 +6,7 @@ import com.google.api.client.json.Json;
 
 import game.Dungeon;
 import interfaccia.FrameMenu.FrameMenu;
+import interfaccia.framesGame.FrameGame;
 import game.enums.*;
 import saveManager.JsonSaving;
 
@@ -156,7 +157,7 @@ public class Game {
 
         while (!isWin()) {
 
-            System.out.print("select direction (up/u - down/d - left/l - right/r) to move \n or press 'i' for the inventory or press 's' for stats: ");
+            System.out.print("select direction (up/u - down/d - left/l - right/r) to move \n or press 'i' for the inventory or press 's' for stats or press 'b' to return on the previous room: ");
             str = Scn.getInstance().nextLine();
 
             if (str.equalsIgnoreCase("i")) {
@@ -167,6 +168,20 @@ public class Game {
 
                 Dungeon.getGiocatore().showStats();
 
+            } else if (str.equalsIgnoreCase("b")) {
+                
+                if(Dungeon.getGiocatore().getBackRoom()==null){
+                    System.out.println("Non puoi tornare indietro");
+                }else{
+                    
+                    Dungeon.getGiocatore().setRighe(Dungeon.getGiocatore().getBackRoom().getRighe());
+                    Dungeon.getGiocatore().setColonne(Dungeon.getGiocatore().getBackRoom().getColonne());
+        
+                    Dungeon.setPosizioneMappa(Dungeon.getGiocatore());
+                }
+
+                Dungeon.showDungeon();
+                
             } else {
                 Dungeon.getGiocatore().move(str);
                 try {
