@@ -750,7 +750,7 @@ public class Giocatore extends Personaggio{
             System.out.println("COSA VUOI BUTTARE?");
             inventario.showInventory();
             System.out.println("SCEGLI L'OGGETTO DA BUTTARE");
-            String oggetto = Scn.getInstance().nextLine();
+            String oggetto = Scn.getInstance().nextLine().toUpperCase();
             if(inventario.searchInInventory(oggetto)){
                 inventario.removeFromInventory(oggetto);
                 System.out.println("HAI BUTTATO " + oggetto);
