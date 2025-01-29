@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: test.java.game.character.player.GiocatoreTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.459 s <<< FAILURE! - in test.java.game.character.player.GiocatoreTest
+test.java.game.character.player.GiocatoreTest.testSerialization  Time elapsed: 0.011 s  <<< ERROR!
+java.io.NotSerializableException: test.java.game.character.player.GiocatoreTest
+	at test.java.game.character.player.GiocatoreTest.testSerialization(GiocatoreTest.java:62)
+

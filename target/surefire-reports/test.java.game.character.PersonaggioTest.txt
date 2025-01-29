@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: test.java.game.character.PersonaggioTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in test.java.game.character.PersonaggioTest
+test.java.game.character.PersonaggioTest  Time elapsed: 0.001 s  <<< ERROR!
+org.junit.platform.commons.PreconditionViolationException: Class [test.java.game.character.PersonaggioTest] must declare a single constructor
+

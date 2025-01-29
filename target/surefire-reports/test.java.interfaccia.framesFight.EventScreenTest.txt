@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: test.java.interfaccia.framesFight.EventScreenTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.02 s <<< FAILURE! - in test.java.interfaccia.framesFight.EventScreenTest
+test.java.interfaccia.framesFight.EventScreenTest.testHintLabel  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+
+test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization  Time elapsed: 0.008 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+
+test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+
+test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+

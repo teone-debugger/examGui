@@ -1,0 +1,15 @@
+{
+  "righe" : 0,
+  "colonne" : 0,
+  "tipo" : " ",
+  "libera" : false,
+  "nome" : " ",
+  "puntiVita" : 0,
+  "puntiVitaMAX" : 0,
+  "puntiArmatura" : 0,
+  "monete" : 0,
+  "vivo" : true,
+  "nemico" : null,
+  "posizioniTrovate" : [ ],
+  "puntiEscperienza" : 0
+}

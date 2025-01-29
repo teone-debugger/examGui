@@ -28,7 +28,7 @@
 ### This game is brought to you by:
 - Gianluca Frassoni (GitHub: GianSette)
 - Matteo Milan (GitHub: Teone-Debugger)
-- Cezar Cosmin Stefan Tordai (GitHub:)
+- Cezar Cosmin Stefan Tordai (GitHub: Mugurel750)
 ---
 ### What is Dungeons and Dragons?
 ___Dungeons and Dragons___ is **not** only a text adventure. <br>
@@ -58,16 +58,23 @@ ___Are you going to defeat the mighty Aurelion Sol?___
  __[You can read the pdf file attached here](MANUALE.pdf)__ <br>
  ***freely inspired by GTA:SAN ANDREAS "Local Business Advertiser's Guide"***
 
+ **We recommend to play with the GUI**
+
 ---
 ### System Documentation
-
-___Coming soon___
+__[Unit Test report](Report.pdf)__ <br>
+__[Jira Web](https://studenti-team-zw2x4sa2.atlassian.net/jira/software/projects/DD10/boards/3/backlog?selectedIssue=DD10-2)__ <br>
+__[Jira PDF](jira.pdf)__ <br>
+__[System Test Document](System_test.pdf)__ <br>
+__[System Test Report](System_Test_Report.pdf)__ <br>
+__[Design Document](INSERIRE QUA NOME PDF)__ <br>
 
 ---
 ### Rights and Licenses
 ***Art***
 - All the artworks are generated with DALL-E (ChatGpt 4)
 - The Ascii art in the top of this file was made using [Ascii Art Archive](https://www.asciiart.eu/image-to-ascii) <br>
+- All fonts used are for Personal use Only
 
 ___Other components of the project are all made by us___
 

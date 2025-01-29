@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Surefire Report</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 20px;
+        color: #333;
+      }
+
+      h1, h2, h3 {
+        color: #007bff;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+
+      .table th {
+        background: #007bff;
+        color: white;
+        padding: 10px;
+      }
+
+      .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background: #f2f2f2;
+      }
+
+      tr:hover {
+        background: #d6e9f8;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Surefire Report</h1>
+    <h2>Summary</h2>
+    <table class="table">
+      <tr>
+        <th>Tests</th>
+        <th>Errors</th>
+        <th>Failures</th>
+        <th>Skipped</th>
+        <th>Success Rate</th>
+        <th>Time</th>
+      </tr>
+      <tr>
+        <td>90</td>
+        <td>24</td>
+        <td>0</td>
+        <td>0</td>
+        <td>73.3%</td>
+        <td>3.000 s</td>
+      </tr>
+    </table>
+    <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p>
+    <h2>Package List</h2>
+    <table class="table">
+      <tr>
+        <th>Package</th>
+        <th>Tests</th>
+        <th>Errors</th>
+        <th>Failures</th>
+        <th>Skipped</th>
+        <th>Success Rate</th>
+        <th>Time</th>
+      </tr>
+      <tr>
+        <td><img src="images/icon_success_sml.gif" /></td>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Apache Maven Doxia Site Renderer 2.0.0" />
+    <title>Surefire Report – d_and_d</title>
+    <link rel="stylesheet" href="./css/apache-maven-fluido-2.0.0-M9.min.css" />
+    <link rel="stylesheet" href="./css/site.css" />
+    <link rel="stylesheet" href="./css/print.css" media="print" />
+    <script src="./js/apache-maven-fluido-2.0.0-M9.min.js"></script>
+  </head>
+  <body>
+    <div class="container container-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1>d_and_d</h1></div></div>
+          <div class="pull-right"></div>
+          <div class="clear"><hr/></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+        <li id="publishDate">Last Published: 2025-01-29<span class="divider">|</span>
+</li>
+          <li id="projectVersion">Version: 1.0-SNAPSHOT</li>
+        <li class="pull-right"><a href="${project.url}">d_and_d</a></li>
+          </ul>
+        </div>
+      </header>
+        <main id="bodyColumn">
+
+<script>
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + '-error');
+ if (elm == null) {
+  elm = document.getElementById(elementId + '-failure');
+ }
+ if (elm && typeof elm.style != "undefined") {
+  if (elm.style.display == "none") {
+   elm.style.display = "";
+   document.getElementById(elementId + '-off').style.display = "none";
+   document.getElementById(elementId + '-on').style.display = "inline";
+  } else if (elm.style.display == "") {   elm.style.display = "none";
+   document.getElementById(elementId + '-off').style.display = "inline";
+   document.getElementById(elementId + '-on').style.display = "none";
+  }
+ }
+ }
+</script>
+<section><a id="Surefire_Report"></a>
+<h1>Surefire Report</h1><section><a id="Summary"></a>
+<h2>Summary</h2>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table class="table table-striped">
+<tr class="a">
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td>90</td>
+<td>24</td>
+<td>0</td>
+<td>0</td>
+<td>73.3%</td>
+<td>3.000 s</td></tr></table><br />
+<p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></section><section><a id="Package_List"></a>
+<h2>Package List</h2>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table class="table table-striped">
+<tr class="a">
+<th>Package</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.enums">test.java.game.enums</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.032 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.room">test.java.game.room</a></td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>80.0%</td>
+<td>0.028 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.character">test.java.game.character</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight">test.java.interfaccia.framesFight</a></td>
+<td>6</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.026 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.player">test.java.game.character.player</a></td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>87.5%</td>
+<td>0.486 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.items.model">test.java.game.items.model</a></td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.026 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.FrameMenu">test.java.interfaccia.FrameMenu</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.025 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.multimedia">test.java.interfaccia.multimedia</a></td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.003 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia">test.java.interfaccia</a></td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.006 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.messaggi">test.java.messaggi</a></td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.022 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.enemies">test.java.game.character.enemies</a></td>
+<td>10</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>90.0%</td>
+<td>0.440 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.util">test.java.util</a></td>
+<td>11</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.033 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.framesGame">test.java.interfaccia.framesGame</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.908 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.frameBlocks">test.java.interfaccia.frameBlocks</a></td>
+<td>10</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>80.0%</td>
+<td>0.567 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game">test.java.game</a></td>
+<td>6</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>66.7%</td>
+<td>0.028 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.items.view">test.java.game.items.view</a></td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.saveManager">test.java.saveManager</a></td>
+<td>7</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>57.1%</td>
+<td>0.369 s</td></tr></table><br />
+<p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p><section><a id="test.java.game.enums"></a>
+<h3>test.java.game.enums</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.enums.ClasseTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.enums.ClasseTest">ClasseTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.018 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.enums.RazzaTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.enums.RazzaTest">RazzaTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.014 s</td></tr></table></section><section><a id="test.java.game.room"></a>
+<h3>test.java.game.room</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.room.MuroTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.room.MuroTest">MuroTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.006 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.room.PortaTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.room.PortaTest">PortaTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.022 s</td></tr></table></section><section><a id="test.java.game.character"></a>
+<h3>test.java.game.character</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.PersonaggioTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.PersonaggioTest">PersonaggioTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.interfaccia.framesFight"></a>
+<h3>test.java.interfaccia.framesFight</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest">EventScreenTest</a></td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.020 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.FrameFightTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.framesFight.FrameFightTest">FrameFightTest</a></td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.006 s</td></tr></table></section><section><a id="test.java.game.character.player"></a>
+<h3>test.java.game.character.player</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.player.GiocatoreTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.player.GiocatoreTest">GiocatoreTest</a></td>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>80.0%</td>
+<td>0.459 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.character.player.InventarioTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.player.InventarioTest">InventarioTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.027 s</td></tr></table></section><section><a id="test.java.game.items.model"></a>
+<h3>test.java.game.items.model</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.items.model.ModelArmaTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.items.model.ModelArmaTest">ModelArmaTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.013 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.items.model.ModelOggettoTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.items.model.ModelOggettoTest">ModelOggettoTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.013 s</td></tr></table></section><section><a id="test.java.interfaccia.FrameMenu"></a>
+<h3>test.java.interfaccia.FrameMenu</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.FrameMenu.FrameMenuTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.FrameMenu.FrameMenuTest">FrameMenuTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.013 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.FrameMenu.FrameSelectionTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.FrameMenu.FrameSelectionTest">FrameSelectionTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.012 s</td></tr></table></section><section><a id="test.java.interfaccia.multimedia"></a>
+<h3>test.java.interfaccia.multimedia</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.multimedia.FormEventTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.multimedia.FormEventTest">FormEventTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.003 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.multimedia.ImagePanelTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.multimedia.ImagePanelTest">ImagePanelTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0 s</td></tr></table></section><section><a id="test.java.interfaccia"></a>
+<h3>test.java.interfaccia</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.FrameTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.FrameTest">FrameTest</a></td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.006 s</td></tr></table></section><section><a id="test.java.messaggi"></a>
+<h3>test.java.messaggi</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.messaggi.MessaggioTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.messaggi.MessaggioTest">MessaggioTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.016 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.messaggi.ScnTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.messaggi.ScnTest">ScnTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.006 s</td></tr></table></section><section><a id="test.java.game.character.enemies"></a>
+<h3>test.java.game.character.enemies</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.enemies.ControllerPngTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.enemies.ControllerPngTest">ControllerPngTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.074 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.character.enemies.DragoTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.enemies.DragoTest">DragoTest</a></td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.290 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.character.enemies.PngTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.character.enemies.PngTest">PngTest</a></td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>66.7%</td>
+<td>0.076 s</td></tr></table></section><section><a id="test.java.util"></a>
+<h3>test.java.util</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.util.RandomUtilsTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.util.RandomUtilsTest">RandomUtilsTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.009 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.util.StringUtilsTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.util.StringUtilsTest">StringUtilsTest</a></td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.024 s</td></tr></table></section><section><a id="test.java.interfaccia.framesGame"></a>
+<h3>test.java.interfaccia.framesGame</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.framesGame.FrameGameTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.framesGame.FrameGameTest">FrameGameTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.908 s</td></tr></table></section><section><a id="test.java.interfaccia.frameBlocks"></a>
+<h3>test.java.interfaccia.frameBlocks</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest">BarraStrumentiTest</a></td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>50.0%</td>
+<td>0.196 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.frameBlocks.PannelloTextTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.frameBlocks.PannelloTextTest">PannelloTextTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.361 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.frameBlocks.PannelloTitledTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.interfaccia.frameBlocks.PannelloTitledTest">PannelloTitledTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.010 s</td></tr></table></section><section><a id="test.java.game"></a>
+<h3>test.java.game</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.DungeonTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.DungeonTest">DungeonTest</a></td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>66.7%</td>
+<td>0.017 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.GameTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.game.GameTest">GameTest</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.010 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.PosizioneTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.PosizioneTest">PosizioneTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.items.view"></a>
+<h3>test.java.game.items.view</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.game.items.view.ArmaTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.items.view.ArmaTest">ArmaTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.game.items.view.OggettoTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.game.items.view.OggettoTest">OggettoTest</a></td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0 s</td></tr></table></section><section><a id="test.java.saveManager"></a>
+<h3>test.java.saveManager</h3>
+<table class="table table-striped">
+<tr class="a">
+<th>-</th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#test.java.saveManager.FirebaseInitializerTest"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a href="#test.java.saveManager.FirebaseInitializerTest">FirebaseInitializerTest</a></td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0.261 s</td></tr>
+<tr class="a">
+<td><a href="#test.java.saveManager.JsonSavingTest"><img src="images/icon_success_sml.gif" /></a></td>
+<td><a href="#test.java.saveManager.JsonSavingTest">JsonSavingTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.108 s</td></tr></table></section><br /></section><section><a id="Test_Cases"></a>
+<h2>Test Cases</h2>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><section><a id="test.java.game.character.enemies.ControllerPngTest"></a>
+<h3>ControllerPngTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.ControllerPngTest.testSingletonInstance"></a>testSingletonInstance</td>
+<td>0.044 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.ControllerPngTest.testGenerateNome"></a>testGenerateNome</td>
+<td>0.005 s</td></tr></table></section><section><a id="test.java.game.character.enemies.DragoTest"></a>
+<h3>DragoTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.DragoTest.testGetDannoFiammata"></a>testGetDannoFiammata</td>
+<td>0.003 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.DragoTest.testGetDannoMorso"></a>testGetDannoMorso</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.DragoTest.testGetDannoZampa"></a>testGetDannoZampa</td>
+<td>0.003 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.DragoTest.testGetDialogo"></a>testGetDialogo</td>
+<td>0.271 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.DragoTest.testDefaultConstructor"></a>testDefaultConstructor</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.character.enemies.PngTest"></a>
+<h3>PngTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.character.enemies.PngTest.testSerialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.character.enemies.PngTest.testSerialization"></a><a href="#test.java.game.character.enemies.PngTest.testSerialization">testSerialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.character.enemies.PngTest.testSerialization');"><span style="display:inline;" id="test.java.game.character.enemies.PngTest.testSerialization-off"> + </span><span style="display:none;" id="test.java.game.character.enemies.PngTest.testSerialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.062 s</td></tr>
+<tr id="test.java.game.character.enemies.PngTest.testSerialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>java.io.NotSerializableException: game.character.enemies.ControllerPng
+	at test.java.game.character.enemies.PngTest.testSerialization(PngTest.java:52)
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.PngTest.testOstileConstructor"></a>testOstileConstructor</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.enemies.PngTest.testNonOstileConstructor"></a>testNonOstileConstructor</td>
+<td>0.003 s</td></tr></table></section><section><a id="test.java.game.character.PersonaggioTest"></a>
+<h3>PersonaggioTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.character.PersonaggioTest."><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.character.PersonaggioTest."></a><a href="#test.java.game.character.PersonaggioTest.">-</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.character.PersonaggioTest.');"><span style="display:inline;" id="test.java.game.character.PersonaggioTest.-off"> + </span><span style="display:none;" id="test.java.game.character.PersonaggioTest.-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.game.character.PersonaggioTest.-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.platform.commons.PreconditionViolationException: Class [test.java.game.character.PersonaggioTest] must declare a single constructor
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.game.character.player.GiocatoreTest"></a>
+<h3>GiocatoreTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.character.player.GiocatoreTest.testSerialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.character.player.GiocatoreTest.testSerialization"></a><a href="#test.java.game.character.player.GiocatoreTest.testSerialization">testSerialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.character.player.GiocatoreTest.testSerialization');"><span style="display:inline;" id="test.java.game.character.player.GiocatoreTest.testSerialization-off"> + </span><span style="display:none;" id="test.java.game.character.player.GiocatoreTest.testSerialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.011 s</td></tr>
+<tr id="test.java.game.character.player.GiocatoreTest.testSerialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>java.io.NotSerializableException: test.java.game.character.player.GiocatoreTest
+	at test.java.game.character.player.GiocatoreTest.testSerialization(GiocatoreTest.java:62)
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.GiocatoreTest.testSetAndGetPuntiEsperienza"></a>testSetAndGetPuntiEsperienza</td>
+<td>0.412 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.GiocatoreTest.testSetAndGetRazza"></a>testSetAndGetRazza</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.GiocatoreTest.testSetAndGetClasse"></a>testSetAndGetClasse</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.GiocatoreTest.testDefaultConstructor"></a>testDefaultConstructor</td>
+<td>0.008 s</td></tr></table></section><section><a id="test.java.game.character.player.InventarioTest"></a>
+<h3>InventarioTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.InventarioTest.testCopyConstructor"></a>testCopyConstructor</td>
+<td>0.005 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.InventarioTest.testSerialization"></a>testSerialization</td>
+<td>0.016 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.character.player.InventarioTest.testDefaultConstructor"></a>testDefaultConstructor</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.DungeonTest"></a>
+<h3>DungeonTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.DungeonTest.testSingletonInstance"></a>testSingletonInstance</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.game.DungeonTest.testSerialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.DungeonTest.testSerialization"></a><a href="#test.java.game.DungeonTest.testSerialization">testSerialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.DungeonTest.testSerialization');"><span style="display:inline;" id="test.java.game.DungeonTest.testSerialization-off"> + </span><span style="display:none;" id="test.java.game.DungeonTest.testSerialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.009 s</td></tr>
+<tr id="test.java.game.DungeonTest.testSerialization-error" style="display:none;" class="a">
+<td>-</td>
+<td>
+<pre>java.io.NotSerializableException: java.lang.Object
+	at test.java.game.DungeonTest.testSerialization(DungeonTest.java:59)
+</pre></td>
+<td>-</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.DungeonTest.testDungeonProperties"></a>testDungeonProperties</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.enums.ClasseTest"></a>
+<h3>ClasseTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.enums.ClasseTest.testSerialization"></a>testSerialization</td>
+<td>0.008 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.enums.ClasseTest.testDeserializationWithInvalidFile"></a>testDeserializationWithInvalidFile</td>
+<td>0.003 s</td></tr></table></section><section><a id="test.java.game.enums.RazzaTest"></a>
+<h3>RazzaTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.enums.RazzaTest.testSerialization"></a>testSerialization</td>
+<td>0.005 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.enums.RazzaTest.testDeserializationWithInvalidFile"></a>testDeserializationWithInvalidFile</td>
+<td>0.003 s</td></tr></table></section><section><a id="test.java.game.GameTest"></a>
+<h3>GameTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.GameTest.testSelectPuntiVita"></a>testSelectPuntiVita</td>
+<td>0.005 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.GameTest.testSelectPuntiArmatura"></a>testSelectPuntiArmatura</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.items.model.ModelArmaTest"></a>
+<h3>ModelArmaTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelArmaTest.testSingletonInstance"></a>testSingletonInstance</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelArmaTest.testGenerateDescrizioneWithInvalidIndex"></a>testGenerateDescrizioneWithInvalidIndex</td>
+<td>0.002 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelArmaTest.testGenerateDescrizione"></a>testGenerateDescrizione</td>
+<td>0.002 s</td></tr></table></section><section><a id="test.java.game.items.model.ModelOggettoTest"></a>
+<h3>ModelOggettoTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelOggettoTest.testSingletonInstance"></a>testSingletonInstance</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelOggettoTest.testGenerateObjects"></a>testGenerateObjects</td>
+<td>0.003 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.items.model.ModelOggettoTest.testGenerateObjectsWithInvalidIndex"></a>testGenerateObjectsWithInvalidIndex</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.game.items.view.ArmaTest"></a>
+<h3>ArmaTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.items.view.ArmaTest."><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.items.view.ArmaTest."></a><a href="#test.java.game.items.view.ArmaTest.">-</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.items.view.ArmaTest.');"><span style="display:inline;" id="test.java.game.items.view.ArmaTest.-off"> + </span><span style="display:none;" id="test.java.game.items.view.ArmaTest.-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.game.items.view.ArmaTest.-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.platform.commons.PreconditionViolationException: Class [test.java.game.items.view.ArmaTest] must declare a single constructor
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.game.items.view.OggettoTest"></a>
+<h3>OggettoTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.items.view.OggettoTest."><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.items.view.OggettoTest."></a><a href="#test.java.game.items.view.OggettoTest.">-</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.items.view.OggettoTest.');"><span style="display:inline;" id="test.java.game.items.view.OggettoTest.-off"> + </span><span style="display:none;" id="test.java.game.items.view.OggettoTest.-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.game.items.view.OggettoTest.-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.platform.commons.PreconditionViolationException: Class [test.java.game.items.view.OggettoTest] must declare a single constructor
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.game.PosizioneTest"></a>
+<h3>PosizioneTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.PosizioneTest."><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.PosizioneTest."></a><a href="#test.java.game.PosizioneTest.">-</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.PosizioneTest.');"><span style="display:inline;" id="test.java.game.PosizioneTest.-off"> + </span><span style="display:none;" id="test.java.game.PosizioneTest.-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.game.PosizioneTest.-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.platform.commons.PreconditionViolationException: Class [test.java.game.PosizioneTest] must declare a single constructor
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.game.room.MuroTest"></a>
+<h3>MuroTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.game.room.MuroTest.testConstructor"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.game.room.MuroTest.testConstructor"></a><a href="#test.java.game.room.MuroTest.testConstructor">testConstructor</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.game.room.MuroTest.testConstructor');"><span style="display:inline;" id="test.java.game.room.MuroTest.testConstructor-off"> + </span><span style="display:none;" id="test.java.game.room.MuroTest.testConstructor-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.game.room.MuroTest.testConstructor-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [int arg0] in constructor [public test.java.game.room.MuroTest(int,int,java.lang.String)].
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.game.room.PortaTest"></a>
+<h3>PortaTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.room.PortaTest.testGetIndex"></a>testGetIndex</td>
+<td>0.007 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.room.PortaTest.testSetBloccata"></a>testSetBloccata</td>
+<td>0.002 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.room.PortaTest.testConstructor"></a>testConstructor</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.game.room.PortaTest.testIsBloccata"></a>testIsBloccata</td>
+<td>0.002 s</td></tr></table></section><section><a id="test.java.interfaccia.frameBlocks.BarraStrumentiTest"></a>
+<h3>BarraStrumentiTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.BarraStrumentiTest.testBarraStrumentiInitialization"></a>testBarraStrumentiInitialization</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction"></a><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction">testAffermativoButtonAction</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction');"><span style="display:inline;" id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction-off"> + </span><span style="display:none;" id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction-on"> - </span>[ Detail ]</a></div></td>
+<td>0.008 s</td></tr>
+<tr id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction-error" style="display:none;" class="a">
+<td>-</td>
+<td>
+<pre>java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction(BarraStrumentiTest.java:40)
+</pre></td>
+<td>-</td></tr>
+<tr class="b">
+<td><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction"></a><a href="#test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction">testNegativoButtonAction</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction');"><span style="display:inline;" id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction-off"> + </span><span style="display:none;" id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction-on"> - </span>[ Detail ]</a></div></td>
+<td>0.003 s</td></tr>
+<tr id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction-error" style="display:none;" class="a">
+<td>-</td>
+<td>
+<pre>java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction(BarraStrumentiTest.java:49)
+</pre></td>
+<td>-</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.BarraStrumentiTest.testInputFieldInitialization"></a>testInputFieldInitialization</td>
+<td>0.007 s</td></tr></table></section><section><a id="test.java.interfaccia.frameBlocks.PannelloTextTest"></a>
+<h3>PannelloTextTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTextTest.testClearText"></a>testClearText</td>
+<td>0.344 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTextTest.testPannelloTextInitialization"></a>testPannelloTextInitialization</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTextTest.testDimension"></a>testDimension</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTextTest.testSetText"></a>testSetText</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.interfaccia.frameBlocks.PannelloTitledTest"></a>
+<h3>PannelloTitledTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTitledTest.testTitleInBorder"></a>testTitleInBorder</td>
+<td>0.008 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.frameBlocks.PannelloTitledTest.testPanelBorder"></a>testPanelBorder</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.interfaccia.FrameMenu.FrameMenuTest"></a>
+<h3>FrameMenuTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.FrameMenu.FrameMenuTest.testFrameMenuInitialization"></a>testFrameMenuInitialization</td>
+<td>0.010 s</td></tr></table></section><section><a id="test.java.interfaccia.FrameMenu.FrameSelectionTest"></a>
+<h3>FrameSelectionTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.FrameMenu.FrameSelectionTest.testFrameSelectionInitialization"></a>testFrameSelectionInitialization</td>
+<td>0.005 s</td></tr></table></section><section><a id="test.java.interfaccia.framesFight.EventScreenTest"></a>
+<h3>EventScreenTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest.testHintLabel"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.EventScreenTest.testHintLabel"></a><a href="#test.java.interfaccia.framesFight.EventScreenTest.testHintLabel">testHintLabel</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.EventScreenTest.testHintLabel');"><span style="display:inline;" id="test.java.interfaccia.framesFight.EventScreenTest.testHintLabel-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.EventScreenTest.testHintLabel-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.EventScreenTest.testHintLabel-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization"></a><a href="#test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization">testEventScreenInitialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization');"><span style="display:inline;" id="test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.008 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel"></a><a href="#test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel">testMessageLabel</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel');"><span style="display:inline;" id="test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel"></a><a href="#test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel">testMessaggioBaseLabel</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel');"><span style="display:inline;" id="test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.framesFight.EventScreenTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.interfaccia.framesFight.FrameFightTest"></a>
+<h3>FrameFightTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization"></a><a href="#test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization">testFrameFightInitialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization');"><span style="display:inline;" id="test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [game.character.player.Giocatore arg0] in constructor [public test.java.interfaccia.framesFight.FrameFightTest(game.character.player.Giocatore)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings"></a><a href="#test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings">testFrameSettings</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings');"><span style="display:inline;" id="test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings-off"> + </span><span style="display:none;" id="test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [game.character.player.Giocatore arg0] in constructor [public test.java.interfaccia.framesFight.FrameFightTest(game.character.player.Giocatore)].
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.interfaccia.framesGame.FrameGameTest"></a>
+<h3>FrameGameTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.framesGame.FrameGameTest.testFrameGameInitialization"></a>testFrameGameInitialization</td>
+<td>0.638 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.interfaccia.framesGame.FrameGameTest.testFrameSettings"></a>testFrameSettings</td>
+<td>0.266 s</td></tr></table></section><section><a id="test.java.interfaccia.FrameTest"></a>
+<h3>FrameTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.interfaccia.FrameTest.testGridBagConstraints"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.FrameTest.testGridBagConstraints"></a><a href="#test.java.interfaccia.FrameTest.testGridBagConstraints">testGridBagConstraints</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.FrameTest.testGridBagConstraints');"><span style="display:inline;" id="test.java.interfaccia.FrameTest.testGridBagConstraints-off"> + </span><span style="display:none;" id="test.java.interfaccia.FrameTest.testGridBagConstraints-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.interfaccia.FrameTest.testGridBagConstraints-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.FrameTest.testFrameSettings"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.FrameTest.testFrameSettings"></a><a href="#test.java.interfaccia.FrameTest.testFrameSettings">testFrameSettings</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.FrameTest.testFrameSettings');"><span style="display:inline;" id="test.java.interfaccia.FrameTest.testFrameSettings-off"> + </span><span style="display:none;" id="test.java.interfaccia.FrameTest.testFrameSettings-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.FrameTest.testFrameSettings-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.interfaccia.FrameTest.testFrameInitialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.FrameTest.testFrameInitialization"></a><a href="#test.java.interfaccia.FrameTest.testFrameInitialization">testFrameInitialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.FrameTest.testFrameInitialization');"><span style="display:inline;" id="test.java.interfaccia.FrameTest.testFrameInitialization-off"> + </span><span style="display:none;" id="test.java.interfaccia.FrameTest.testFrameInitialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.interfaccia.FrameTest.testFrameInitialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.interfaccia.multimedia.FormEventTest"></a>
+<h3>FormEventTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.interfaccia.multimedia.FormEventTest.testFormEvent"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.multimedia.FormEventTest.testFormEvent"></a><a href="#test.java.interfaccia.multimedia.FormEventTest.testFormEvent">testFormEvent</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.multimedia.FormEventTest.testFormEvent');"><span style="display:inline;" id="test.java.interfaccia.multimedia.FormEventTest.testFormEvent-off"> + </span><span style="display:none;" id="test.java.interfaccia.multimedia.FormEventTest.testFormEvent-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.multimedia.FormEventTest.testFormEvent-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.Object arg0] in constructor [public test.java.interfaccia.multimedia.FormEventTest(java.lang.Object)].
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.interfaccia.multimedia.ImagePanelTest"></a>
+<h3>ImagePanelTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.interfaccia.multimedia.ImagePanelTest."><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.interfaccia.multimedia.ImagePanelTest."></a><a href="#test.java.interfaccia.multimedia.ImagePanelTest.">-</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.interfaccia.multimedia.ImagePanelTest.');"><span style="display:inline;" id="test.java.interfaccia.multimedia.ImagePanelTest.-off"> + </span><span style="display:none;" id="test.java.interfaccia.multimedia.ImagePanelTest.-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.interfaccia.multimedia.ImagePanelTest.-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>org.junit.platform.commons.PreconditionViolationException: Class [test.java.interfaccia.multimedia.ImagePanelTest] must declare a single constructor
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.messaggi.MessaggioTest"></a>
+<h3>MessaggioTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.messaggi.MessaggioTest.testGetAndSetMessaggio"></a>testGetAndSetMessaggio</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.messaggi.MessaggioTest.testAddMessaggio"></a>testAddMessaggio</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.messaggi.MessaggioTest.testClearMessaggio"></a>testClearMessaggio</td>
+<td>0.003 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.messaggi.MessaggioTest.testGetInstance"></a>testGetInstance</td>
+<td>0.002 s</td></tr></table></section><section><a id="test.java.messaggi.ScnTest"></a>
+<h3>ScnTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.messaggi.ScnTest.testGetInstance"></a>testGetInstance</td>
+<td>0.005 s</td></tr></table></section><section><a id="test.java.saveManager.FirebaseInitializerTest"></a>
+<h3>FirebaseInitializerTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><a href="#test.java.saveManager.FirebaseInitializerTest.testBlobOperations"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.saveManager.FirebaseInitializerTest.testBlobOperations"></a><a href="#test.java.saveManager.FirebaseInitializerTest.testBlobOperations">testBlobOperations</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.saveManager.FirebaseInitializerTest.testBlobOperations');"><span style="display:inline;" id="test.java.saveManager.FirebaseInitializerTest.testBlobOperations-off"> + </span><span style="display:none;" id="test.java.saveManager.FirebaseInitializerTest.testBlobOperations-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.saveManager.FirebaseInitializerTest.testBlobOperations-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.&lt;init&gt;(FirebaseInitializerTest.java:32)
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.saveManager.FirebaseInitializerTest.testStorageClient"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.saveManager.FirebaseInitializerTest.testStorageClient"></a><a href="#test.java.saveManager.FirebaseInitializerTest.testStorageClient">testStorageClient</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.saveManager.FirebaseInitializerTest.testStorageClient');"><span style="display:inline;" id="test.java.saveManager.FirebaseInitializerTest.testStorageClient-off"> + </span><span style="display:none;" id="test.java.saveManager.FirebaseInitializerTest.testStorageClient-on"> - </span>[ Detail ]</a></div></td>
+<td>0.001 s</td></tr>
+<tr id="test.java.saveManager.FirebaseInitializerTest.testStorageClient-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.&lt;init&gt;(FirebaseInitializerTest.java:32)
+</pre></td>
+<td>-</td></tr>
+<tr class="a">
+<td><a href="#test.java.saveManager.FirebaseInitializerTest.testInitialization"><img src="images/icon_error_sml.gif" /></a></td>
+<td><a id="TC_test.java.saveManager.FirebaseInitializerTest.testInitialization"></a><a href="#test.java.saveManager.FirebaseInitializerTest.testInitialization">testInitialization</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay('test.java.saveManager.FirebaseInitializerTest.testInitialization');"><span style="display:inline;" id="test.java.saveManager.FirebaseInitializerTest.testInitialization-off"> + </span><span style="display:none;" id="test.java.saveManager.FirebaseInitializerTest.testInitialization-on"> - </span>[ Detail ]</a></div></td>
+<td>0 s</td></tr>
+<tr id="test.java.saveManager.FirebaseInitializerTest.testInitialization-error" style="display:none;" class="b">
+<td>-</td>
+<td>
+<pre>java.lang.IllegalStateException: FirebaseApp name [DEFAULT] already exists!
+	at test.java.saveManager.FirebaseInitializerTest.&lt;init&gt;(FirebaseInitializerTest.java:32)
+</pre></td>
+<td>-</td></tr></table></section><section><a id="test.java.saveManager.JsonSavingTest"></a>
+<h3>JsonSavingTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.saveManager.JsonSavingTest.testSaveAndLoadGiocatore"></a>testSaveAndLoadGiocatore</td>
+<td>0.080 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.saveManager.JsonSavingTest.testSaveAndLoadInventario"></a>testSaveAndLoadInventario</td>
+<td>0.015 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.saveManager.JsonSavingTest.testSaveAndLoadClasse"></a>testSaveAndLoadClasse</td>
+<td>0.005 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.saveManager.JsonSavingTest.testSaveAndLoadRazza"></a>testSaveAndLoadRazza</td>
+<td>0.004 s</td></tr></table></section><section><a id="test.java.util.RandomUtilsTest"></a>
+<h3>RandomUtilsTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.RandomUtilsTest.testGetRandomNumber"></a>testGetRandomNumber</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.RandomUtilsTest.testRollD20"></a>testRollD20</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.RandomUtilsTest.testRollD4"></a>testRollD4</td>
+<td>0.001 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.RandomUtilsTest.testRollD6"></a>testRollD6</td>
+<td>0.001 s</td></tr></table></section><section><a id="test.java.util.StringUtilsTest"></a>
+<h3>StringUtilsTest</h3>
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetGameOverDefaultFont"></a>testGetGameOverDefaultFont</td>
+<td>0.004 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetBodyFont"></a>testGetBodyFont</td>
+<td>0.002 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetAlagardFont"></a>testGetAlagardFont</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testFormatCharacterName"></a>testFormatCharacterName</td>
+<td>0.001 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetBodyDefaultFont"></a>testGetBodyDefaultFont</td>
+<td>0.002 s</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetAlagardDefaultFont"></a>testGetAlagardDefaultFont</td>
+<td>0.003 s</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td><a id="TC_test.java.util.StringUtilsTest.testGetGameOverFont"></a>testGetGameOverFont</td>
+<td>0.002 s</td></tr></table></section><br /></section><section><a id="Failure_Details"></a>
+<h2>Failure Details</h2>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.character.enemies.PngTest.testSerialization"></a>testSerialization</td></tr>
+<tr class="b">
+<td>-</td>
+<td>java.io.NotSerializableException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testSerialization-error">test.java.game.character.enemies.PngTest:52</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.character.PersonaggioTest."></a></td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.platform.commons.PreconditionViolationException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="-error">test.java.game.character.PersonaggioTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.character.player.GiocatoreTest.testSerialization"></a>testSerialization</td></tr>
+<tr class="b">
+<td>-</td>
+<td>java.io.NotSerializableException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testSerialization-error">test.java.game.character.player.GiocatoreTest:62</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.DungeonTest.testSerialization"></a>testSerialization</td></tr>
+<tr class="a">
+<td>-</td>
+<td>java.io.NotSerializableException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testSerialization-error">test.java.game.DungeonTest:59</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.items.view.ArmaTest."></a></td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.platform.commons.PreconditionViolationException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="-error">test.java.game.items.view.ArmaTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.items.view.OggettoTest."></a></td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.platform.commons.PreconditionViolationException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="-error">test.java.game.items.view.OggettoTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.PosizioneTest."></a></td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.platform.commons.PreconditionViolationException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="-error">test.java.game.PosizioneTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.game.room.MuroTest.testConstructor"></a>testConstructor</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testConstructor-error">test.java.game.room.MuroTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testAffermativoButtonAction"></a>testAffermativoButtonAction</td></tr>
+<tr class="b">
+<td>-</td>
+<td>java.lang.ArrayIndexOutOfBoundsException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testAffermativoButtonAction-error">test.java.interfaccia.frameBlocks.BarraStrumentiTest:40</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.frameBlocks.BarraStrumentiTest.testNegativoButtonAction"></a>testNegativoButtonAction</td></tr>
+<tr class="a">
+<td>-</td>
+<td>java.lang.ArrayIndexOutOfBoundsException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testNegativoButtonAction-error">test.java.interfaccia.frameBlocks.BarraStrumentiTest:49</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.EventScreenTest.testHintLabel"></a>testHintLabel</td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testHintLabel-error">test.java.interfaccia.framesFight.EventScreenTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.EventScreenTest.testEventScreenInitialization"></a>testEventScreenInitialization</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testEventScreenInitialization-error">test.java.interfaccia.framesFight.EventScreenTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.EventScreenTest.testMessageLabel"></a>testMessageLabel</td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testMessageLabel-error">test.java.interfaccia.framesFight.EventScreenTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.EventScreenTest.testMessaggioBaseLabel"></a>testMessaggioBaseLabel</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testMessaggioBaseLabel-error">test.java.interfaccia.framesFight.EventScreenTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.FrameFightTest.testFrameFightInitialization"></a>testFrameFightInitialization</td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testFrameFightInitialization-error">test.java.interfaccia.framesFight.FrameFightTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.framesFight.FrameFightTest.testFrameSettings"></a>testFrameSettings</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testFrameSettings-error">test.java.interfaccia.framesFight.FrameFightTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.FrameTest.testGridBagConstraints"></a>testGridBagConstraints</td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testGridBagConstraints-error">test.java.interfaccia.FrameTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.FrameTest.testFrameSettings"></a>testFrameSettings</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testFrameSettings-error">test.java.interfaccia.FrameTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.FrameTest.testFrameInitialization"></a>testFrameInitialization</td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testFrameInitialization-error">test.java.interfaccia.FrameTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.multimedia.FormEventTest.testFormEvent"></a>testFormEvent</td></tr>
+<tr class="a">
+<td>-</td>
+<td>org.junit.jupiter.api.extension.ParameterResolutionException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testFormEvent-error">test.java.interfaccia.multimedia.FormEventTest:</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.interfaccia.multimedia.ImagePanelTest."></a></td></tr>
+<tr class="b">
+<td>-</td>
+<td>org.junit.platform.commons.PreconditionViolationException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="-error">test.java.interfaccia.multimedia.ImagePanelTest:</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.saveManager.FirebaseInitializerTest.testBlobOperations"></a>testBlobOperations</td></tr>
+<tr class="a">
+<td>-</td>
+<td>java.lang.IllegalStateException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testBlobOperations-error">test.java.saveManager.FirebaseInitializerTest:32</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.saveManager.FirebaseInitializerTest.testStorageClient"></a>testStorageClient</td></tr>
+<tr class="b">
+<td>-</td>
+<td>java.lang.IllegalStateException</td></tr>
+<tr class="a">
+<td>-</td>
+<td>
+<div id="testStorageClient-error">test.java.saveManager.FirebaseInitializerTest:32</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" /></td>
+<td><a id="test.java.saveManager.FirebaseInitializerTest.testInitialization"></a>testInitialization</td></tr>
+<tr class="a">
+<td>-</td>
+<td>java.lang.IllegalStateException</td></tr>
+<tr class="b">
+<td>-</td>
+<td>
+<div id="testInitialization-error">test.java.saveManager.FirebaseInitializerTest:32</div></td></tr></table><br /></section></section>
+        </main>
+    </div>
+    <hr/>
+    <footer>
+      <div class="container">
+        <div class="row">
+            <p>©      2025
+</p>
+        </div>
+        <p id="poweredBy" class="pull-right"><a href="https://maven.apache.org/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="./images/logos/maven-feather.png" /></a>
+</p>
+      </div>
+    </footer>
+<script>
+  if(anchors) {
+    anchors.add();
+  }
+</script>
+  </body>
+</html>

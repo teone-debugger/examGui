@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: test.java.interfaccia.FrameTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in test.java.interfaccia.FrameTest
+test.java.interfaccia.FrameTest.testGridBagConstraints  Time elapsed: 0.001 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+
+test.java.interfaccia.FrameTest.testFrameSettings  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+
+test.java.interfaccia.FrameTest.testFrameInitialization  Time elapsed: 0.001 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.String arg0] in constructor [public test.java.interfaccia.FrameTest(java.lang.String)].
+

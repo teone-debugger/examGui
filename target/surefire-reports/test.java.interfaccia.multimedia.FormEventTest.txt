@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: test.java.interfaccia.multimedia.FormEventTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in test.java.interfaccia.multimedia.FormEventTest
+test.java.interfaccia.multimedia.FormEventTest.testFormEvent  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [java.lang.Object arg0] in constructor [public test.java.interfaccia.multimedia.FormEventTest(java.lang.Object)].
+

@@ -5,7 +5,7 @@ public class Messaggio {
     private static Messaggio instance = null;
     private static String messaggio = "";
 
-    private  Messaggio(){
+    public  Messaggio(){
     }
 
     public static Messaggio getIstance(){
