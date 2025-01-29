@@ -1,1 +1,15 @@
-{"righe":1,"colonne":1,"tipo":"H","libera":false,"nome":"HAL","puntiVita":30,"puntiVitaMAX":30,"puntiArmatura":12,"monete":300,"vivo":true,"nemico":null,"posizioniTrovate":[]
+{
+  "righe" : 5,
+  "colonne" : 3,
+  "tipo" : "H",
+  "libera" : false,
+  "nome" : "HAL",
+  "puntiVita" : 30,
+  "puntiVitaMAX" : 30,
+  "puntiArmatura" : 12,
+  "monete" : 300,
+  "vivo" : true,
+  "nemico" : null,
+  "posizioniTrovate" : [ ],
+  "puntiEscperienza" : 0
+}

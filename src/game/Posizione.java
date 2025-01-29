@@ -23,15 +23,20 @@ public class Posizione implements Serializable{
     String tipo;
     boolean libera;
 
+
+    public Posizione() {
+        this.righe = 0;
+        this.colonne = 0;
+        this.tipo = " ";
+        this.libera = true;
+    }
+
     //Metodo costruttore di default
     public Posizione(int righe, int colonne, String tipo) {
         this.righe = righe;
         this.colonne = colonne;
         this.tipo = tipo;
         libera = false;
-        if(tipo==" ") {
-            libera = true;
-        }
     }
 
     //Metodo costruttore 

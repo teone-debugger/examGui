@@ -6,6 +6,7 @@ import game.Game;
 import interfaccia.framesGame.FrameGame;
 import util.StringUtils;
 import interfaccia.frameBlocks.*;
+import game.character.player.Giocatore;
 
 import javax.swing.*;
 import java.awt.*;
@@ -124,31 +125,10 @@ public class FrameSelection extends interfaccia.Frame{
                     nome = textNome.getText();
                 }
 
-                Dungeon.getInstance(17, 81, 4, 8, Game.createGiocatoreGui(razza, classe, nome), new Drago());
+                Giocatore g = Game.createGiocatoreGui(razza, classe, nome);
 
-                new FrameGame();
+                new FrameGame(g);
                 FrameSelection.this.dispose();
-            }
-        });
-        
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                    razza = bgRazza.getSelection().getActionCommand();
-                    classe = bgClasse.getSelection().getActionCommand();
-                    if(textNome.getText().equals("")){
-                        nome = "HAL";
-                    }else {
-                        nome = textNome.getText();
-                    }
-
-                    Dungeon.getInstance(17, 81, 4, 8, Game.createGiocatoreGui(razza, classe, nome), new Drago());
-
-                    new FrameGame();
-                    FrameSelection.this.dispose();
-                }
             }
         });
 

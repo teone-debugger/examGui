@@ -34,6 +34,11 @@ public final class Dungeon implements Serializable{
     private static Drago drago;
 
 
+    private Dungeon(){
+        this.maxItems = 40;
+        this.maxPng = 20;
+    }
+
     //Costruttore della classe
     private Dungeon(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){
         Dungeon.righe = righe;
@@ -55,6 +60,8 @@ public final class Dungeon implements Serializable{
         //mappa[giocatore.getRighe() + 1][giocatore.getColonne()+ 1] = new gioco.Oggetto(giocatore.getRighe() + 1,giocatore.getColonne()+ 1 ,"POZIONE");
     }
 
+
+
     //Metodo per prendere l'istanza del dungeon
     public static Dungeon getInstance(int righe, int colonne, int divisoreRighe, int divisoreColonne, Giocatore giocatore, Drago drago){
         if(instance == null){
@@ -65,6 +72,10 @@ public final class Dungeon implements Serializable{
 
     public static Dungeon getInstance(){
         return instance;
+    }
+
+    public static void setInstance(Dungeon dungeon){
+        instance = dungeon;
     }
 
     //Metodo per creare il dungeon
@@ -314,5 +325,6 @@ public final class Dungeon implements Serializable{
 
     //Metodo per settare la posizione del giocatore
     public static void setPosizioneMappa(Posizione p) {Dungeon.mappa[p.getRighe()][p.getColonne()] = p;}
+
     
 }

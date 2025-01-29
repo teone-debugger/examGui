@@ -53,10 +53,10 @@ public class FrameFight extends JFrame{
         backgroundLabel = new JLabel(scaleImage("resources/images/background/backgroundBase.png", 800, 600));
         backgroundLabel.setBounds(0, 0, 800, 600);
 
-        characterPanel = Dungeon.getGiocatore().getImmagine();
+        characterPanel = setImmagineGiocatore(Dungeon.getGiocatore().getClasse(), Dungeon.getGiocatore().getRazza());
         characterPanel.setBounds(50, 250, 200, 200);
 
-        enemyPanel = Dungeon.getGiocatore().getNemico().getImmagine();
+        enemyPanel = setImmaginePng(Dungeon.getGiocatore().getNemico().getPuntiVitaMAX());
         enemyPanel.setBounds(500, 150, 200,  200);
 
         scalePanels(200, 200, 200, 200);
@@ -167,6 +167,112 @@ public class FrameFight extends JFrame{
         setResizable(false);
         setLocation(FrameGame.getWindows()[0].getX(), FrameGame.getWindows()[0].getY());
 
+    }
+    //Metodo per generare l'immagine del giocatore a differenza della classe e razza
+    public ImagePanel setImmagineGiocatore(Classe classe, Razza razza){
+        ImagePanel immagine;
+
+        System.out.println(razza.toString().toUpperCase());
+
+        switch(razza.toString().toUpperCase()) {
+            case "UMANO":
+               
+                switch (classe.toString().toUpperCase()) {
+                    case "LADRO":
+                        immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOLADRO.png", 200, 200);
+                        break;
+                
+                    case "MAGO":
+                        immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOMAGO.png", 200, 200);
+                        break;
+
+                    case "BARBARO":
+                        immagine = new ImagePanel("resources/images/pg principali/UMANO/UMANOBARBARO.png", 200, 200);
+                        break;
+
+                    default:
+                        immagine = new ImagePanel(classe.toString().toUpperCase(), 200, 200);
+                        break;
+                }
+                break;
+
+            case "NANO":
+
+                switch (classe.toString().toUpperCase()) {
+                    case "LADRO":
+                        immagine = new ImagePanel("resources/images/pg principali/NANO/NANOLADRO.png", 200, 200);
+                        break;
+                
+                    case "MAGO":
+                        immagine = new ImagePanel("resources/images/pg principali/NANO/NANOMAGO.png", 200, 200);
+                        break;
+
+                    case "BARBARO":
+                        immagine = new ImagePanel("resources/images/pg principali/NANO/NANOBARBARO.png", 200, 200);
+                        break;
+
+                    default:
+                        immagine = new ImagePanel(classe.toString().toUpperCase(), 200, 200);
+                        break;
+                }
+                break;
+
+            case "ELFO":
+                switch (classe.toString().toUpperCase()) {
+                    case "LADRO":
+                        immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOLADRO.png", 200, 200);
+                        break;
+                
+                    case "MAGO":
+                        immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOMAGO.png", 200, 200);
+                        break;
+
+                    case "BARBARO":
+                        immagine = new ImagePanel("resources/images/pg principali/ELFO/ELFOBARBARO.png", 200, 200);
+                        break;
+
+                    default:
+                        immagine = new ImagePanel(classe.toString().toUpperCase(), 200, 200);
+                        break;
+                }
+                break;
+
+            default:
+                immagine = new ImagePanel("resources/images/pg principali/ELFO/image (12).png", 200, 200);
+                break;
+
+        }
+        return immagine;
+
+}
+
+    //Metodo per inserire l'immagine del nemico in base al punteggio vita
+    public ImagePanel setImmaginePng(int vita){
+
+        if(vita == 8){
+            return new ImagePanel("resources/images/nemici/image (10).png", 300, 300);
+
+        }else if( vita == 12){
+            return new ImagePanel("resources/images/nemici/image (1).png", 300, 300);
+
+        }else if( vita == 15){
+            return new ImagePanel("resources/images/nemici/ghost.png", 300, 300);
+
+        }else if( vita == 18){
+            return new ImagePanel("resources/images/nemici/image (2).png", 300, 300);
+
+        }else if( vita == 21){
+            return new ImagePanel("resources/images/nemici/image (3).png", 300, 300);
+
+        }else if( vita == 24){
+            return new ImagePanel("resources/images/nemici/image (9).png", 300, 300);
+
+        }else if( vita == 27){
+            return new ImagePanel("resources/images/nemici/image.png", 300, 300);
+
+        }else{
+            return new ImagePanel("resources/images/nemici/image (21).png", 300, 300);
+        }
     }
 
     private void handleDeath(boolean isDead, String nome) {

@@ -116,34 +116,6 @@ public class ControllerPng {
             return 33;
         }
     }
-    //Metodo per inserire l'immagine del nemico in base al punteggio vita
-    public ImagePanel setImmaginePng(int vita){
-
-        if(vita == 8){
-            return new ImagePanel("resources/images/nemici/image (10).png", 300, 300);
-
-        }else if( vita == 12){
-            return new ImagePanel("resources/images/nemici/image (1).png", 300, 300);
-
-        }else if( vita == 15){
-            return new ImagePanel("resources/images/nemici/ghost.png", 300, 300);
-
-        }else if( vita == 18){
-            return new ImagePanel("resources/images/nemici/image (2).png", 300, 300);
-
-        }else if( vita == 21){
-            return new ImagePanel("resources/images/nemici/image (3).png", 300, 300);
-
-        }else if( vita == 24){
-            return new ImagePanel("resources/images/nemici/image (9).png", 300, 300);
-
-        }else if( vita == 27){
-            return new ImagePanel("resources/images/nemici/image.png", 300, 300);
-
-        }else{
-            return new ImagePanel("resources/images/nemici/image (21).png", 300, 300);
-        }
-    }
 
 
 }

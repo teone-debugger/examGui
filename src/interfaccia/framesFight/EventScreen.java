@@ -46,7 +46,7 @@ public class EventScreen extends JLayeredPane {
         add(gameOverLabel);
         gameOverLabel.setVisible(false);
 
-        winLabel = new JLabel("HAI VINTO", SwingConstants.CENTER);
+        winLabel = new JLabel("Hai Vinto!", SwingConstants.CENTER);
         winLabel.setFont(StringUtils.getGameOverFont(110f));
         winLabel.setForeground(Color.YELLOW);
         winLabel.setBounds(100, 150, 600, 200);

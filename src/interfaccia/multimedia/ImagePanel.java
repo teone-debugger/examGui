@@ -1,12 +1,23 @@
 package interfaccia.multimedia;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
  
  
  public class ImagePanel extends JPanel{
         private Image image;
         private float opacity = 0f;
+
+
+        public ImagePanel(){
+            super();
+        }
 
         //Metodo costruttore
         public ImagePanel(String imagePath, int width, int height) {
@@ -47,4 +58,21 @@ import java.awt.*;
             g2d.drawImage(image, 0, 0, null);
             g2d.dispose();
         }
-    }
+        
+        public static void serialize(ImagePanel posizione, String filePath) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+                oos.writeObject(posizione);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static ImagePanel deserialize(String filePath) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+                return (ImagePanel) ois.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+}

@@ -197,6 +197,9 @@ public class Game {
     }
 
     public static void saveGame(){
+        JsonSaving.saveToFileClasse(Giocatore.getClasse(), "resources/firebase/savesLogs/classe.json");
+        JsonSaving.saveToFileRazza(Giocatore.getRazza(),"resources/firebase/savesLogs/razza.json");
+        JsonSaving.saveToFileInventario(Giocatore.getInventory(), "resources/firebase/savesLogs/inventory.json");
         JsonSaving.saveToFile(Dungeon.getGiocatore(), "resources/firebase/savesLogs/save.json");
     }
 

@@ -1,11 +1,18 @@
 package interfaccia.FrameMenu;
 
 import interfaccia.frameBlocks.PannelloTitled;
-import saveManager.FirebaseInitializer;
 import util.StringUtils;
+import saveManager.*;
+import interfaccia.framesGame.*;
+import game.Dungeon;
 
 
 import javax.swing.*;
+
+import com.google.api.client.json.Json;
+
+import game.character.player.Giocatore;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,7 +60,15 @@ public class FrameMenu extends interfaccia.Frame{
             public void mouseClicked(MouseEvent e) {
                 //aggiungere codice per caricare partita
 
-                FirebaseInitializer.getInstance();
+                //FirebaseInitializer.getInstance();
+                try{
+
+                    FrameMenu.this.dispose();
+                    Giocatore g = JsonSaving.loadFromFile("resources/firebase/savesLogs/save.json");
+                    new FrameGame(g);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
 
             }
         });

@@ -8,35 +8,27 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import game.Dungeon;
 import game.items.view.Oggetto;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Inventario implements Serializable{
 
-@JsonProperty
-
-    private static Inventario instance = null;
+    private static final long serialVersionUID = 3L;
 
     private final int pesoMax; /**--- PESO MASSIMO CHE PUO' PORTARE ---**/
     private HashMap <Integer,Oggetto> inventario; /**--- BASATO SUL PESO ---**/
 
     //Metodo costruttore
-    private Inventario() {
+    public Inventario() {
         this.pesoMax = 500;
         inventario = new HashMap<>();
     }
 
-    //Metodo per prendere l'istanza dell'inventario
-    public static Inventario getInstance() {
-        if (instance == null) {
-            instance = new Inventario();
-        }
-        return instance;
+    public Inventario(Inventario inventario) {
+        this.pesoMax = inventario.getPesoMax();
+        this.inventario = inventario.getInventario();
+
     }
+    
 
     //Metodo per cercare un oggetto nell'inventario
     public boolean searchInInventory(String s) {
@@ -50,6 +42,16 @@ public class Inventario implements Serializable{
         return false;
     }
 
+    //Metodo per cercare un oggetto nell'inventario
+    public boolean searchInInventory(int index) {
+        if(inventario.get(index) != null){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     //Metodo per rimuovere un oggetto dall'inventario
     public Class<?> removeFromInventory(String s) {
         for (Oggetto oggetto : inventario.values()) {
@@ -60,6 +62,10 @@ public class Inventario implements Serializable{
         }
 
         return null;
+    }
+
+    public Oggetto removeFromInventory(int index) {
+        return inventario.remove(index);
     }
 
     //metodo per convertire l'inventario in stringa
@@ -142,12 +148,16 @@ public class Inventario implements Serializable{
 
     //Metodo per prendere peso dell'inventario
     public int getPesoMax() {
-        return instance.pesoMax;
+        return this.pesoMax;
     }
 
     //Metodo per prendere l'inventario
     public HashMap<Integer, Oggetto> getInventario() {
         return inventario;
+    }
+
+    public void setInventario(HashMap<Integer, Oggetto> inventario) {
+        this.inventario = inventario;
     }
 
     public static void serialize(Inventario inventario, String filePath) {

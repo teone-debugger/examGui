@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.*;
 import interfaccia.Frame;
 import game.items.view.*;
+import game.character.enemies.Drago;
 import game.character.player.Giocatore;
 
 public class FrameGame extends Frame{
@@ -30,10 +31,10 @@ public class FrameGame extends Frame{
 
     private BarraStrumenti barraStrumenti;
 
-    public FrameGame() {
+    public FrameGame(Giocatore g) {
         super("D&D");
 
-
+        Dungeon.getInstance(17, 81, 4, 8, g, new Drago());
 
         widthMappa = getWidth() * 58 /100;
         heightMappa = getHeight() * 60 /100;
@@ -194,6 +195,9 @@ public class FrameGame extends Frame{
                 }else if(fe.getJButton().equals(barraStrumenti.getSalva())) {
                     
                     FrameGame.this.actionSalva();
+                }else if(fe.getJButton().equals(barraStrumenti.getGetta())) {
+                    
+                    FrameGame.this.actionGetta();
                 }
 
 
@@ -296,11 +300,29 @@ public class FrameGame extends Frame{
         if(Dungeon.getGiocatore().getBackRoom()==null){
             messaggi.setText("NON PUOI TORNARE INDIETRO!!!");
         }else{
-            
+
+            Dungeon.setPosizioneMappa(new Posizione(Dungeon.getGiocatore().getRighe(), Dungeon.getGiocatore().getColonne()));
             Dungeon.getGiocatore().setRighe(Dungeon.getGiocatore().getBackRoom().getRighe());
             Dungeon.getGiocatore().setColonne(Dungeon.getGiocatore().getBackRoom().getColonne());
 
             Dungeon.setPosizioneMappa(Dungeon.getGiocatore());
+        }
+    }
+
+    private void actionGetta(){
+        String str = barraStrumenti.getInputField();
+        if(str != ""){
+            if(Giocatore.getInventory().searchInInventory(Integer.parseInt(str))){
+                
+                Giocatore.getInventory().removeFromInventory(Integer.parseInt(str));
+                messaggi.setText("HAI RIMOSSO DALL'INVENTARIO");
+                inventario.setText(Giocatore.getInventory().inventoryToString());
+            }else{
+                messaggi.setText("OGGETTO NON PRESENTE NELL'INVENTARIO");
+            }
+        }else{
+            messaggi.setText("DEVI INSERIRE UN NUMERO");
+
         }
     }
 

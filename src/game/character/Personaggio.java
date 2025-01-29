@@ -22,9 +22,14 @@ public class Personaggio extends Posizione {
 
     private boolean vivo;
 
-@JsonIgnore
+    @JsonIgnore
     private ImagePanel immagine;
 
+
+    public Personaggio() {
+        super(0, 0, "?");
+        this.puntiVitaMAX = 15;
+    }
 
     //Metodo Costruttore
     public Personaggio(int righe, int colonne, String tipo, String nome, int puntiVita, int puntiArmatura, int monete) {

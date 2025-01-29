@@ -13,18 +13,33 @@ import util.RandomUtils;
 import interfaccia.framesFight.FrameFight;
 import messaggi.Messaggio;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import messaggi.Scn;
+import saveManager.JsonSaving;
 
 
 public class Giocatore extends Personaggio{
 
     private int puntiEsperienza;
 
+    @JsonProperty("classe")
     private static Classe classe;
+
+    @JsonProperty("razza")
     private static Razza razza;
-    
+
+    @JsonProperty("inventario")
     private static Inventario inventario;
+
     private static Arma arma;        /**--- ARMA EQUIPAGGIATA ---**/
     private Personaggio nemico;
     private ArrayList<Posizione> posizioniTrovate;
@@ -35,6 +50,32 @@ public class Giocatore extends Personaggio{
 
     private ControllerGiocatore controllerGiocatore = ControllerGiocatore.getInstance();
     
+    //Metodo costruttore
+    public Giocatore(){
+        super(0,0," "," ",0,0,0);
+        this.puntiEsperienza = 0;
+        try{
+
+            this.razza = JsonSaving.loadFromFileRazza("resources/firebase/savesLogs/razza.json");
+            this.classe = JsonSaving.loadFromFileClasse("resources/firebase/savesLogs/classe.json");
+            inventario = JsonSaving.loadFromFileInventoy("resources/firebase/savesLogs/inventory.json");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        posizioniTrovate = new ArrayList<>();
+    }
+
+        public Giocatore(Giocatore g){
+            super(g.getRighe(), g.getColonne(), g.getTipo(), g.getNome(), g.getPuntiVita(), g.getPuntiArmatura(), g.getMonete());
+            this.classe = g.getClasse();
+            this.razza = g.getRazza();
+            this.inventario = g.getInventory();
+            this.arma = g.getArma();
+            this.nemico = g.getNemico();
+            this.posizioniTrovate = g.getPosizioniTrovate();
+        }
+
         //Metodo costruttore
         public Giocatore(String nome, int puntiVita, int puntiArmatura, int monete, Classe classe, Razza razza, int righe, int colonne){
             super(righe, colonne,String.valueOf(nome.charAt(0)),nome,puntiVita,puntiArmatura,monete);
@@ -42,10 +83,10 @@ public class Giocatore extends Personaggio{
             this.classe = classe;
             this.razza = razza;
             this.puntiEsperienza = 0;    
-            inventario = Inventario.getInstance();
+            inventario = new Inventario();
             posizioniTrovate = new ArrayList<>();
 
-            setImmagine(controllerGiocatore.getImmagine(razza, classe));
+            //setImmagine(controllerGiocatore.getImmagine(razza, classe));
 
             //this.armi = new HashMap<>();
         }
@@ -351,7 +392,9 @@ public class Giocatore extends Personaggio{
         private void talkGui() {
     
             if(this.nemico.getClass().getSimpleName().equals("Png")) {
-    
+                
+                System.out.println(((Png) this.nemico).getDialogo());
+
                 Messaggio.addMessaggio(((Png) this.nemico).getDialogo());
     
                 if(!((Png) this.nemico).isOstile()) {
@@ -903,9 +946,26 @@ public class Giocatore extends Personaggio{
                 }
             }
         }
+    public static void serialize(Giocatore posizione, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(posizione);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static Giocatore deserialize(String filePath) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (Giocatore) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @JsonIgnore
     public Posizione getBackRoom(){
-        Dungeon.setPosizioneMappa(new Posizione(p2.getRighe(), p2.getColonne()));
+        p2 = posizione;
         return posizione;
     }
     

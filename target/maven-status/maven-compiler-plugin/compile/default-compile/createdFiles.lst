@@ -1,4 +1,3 @@
-interfaccia\FrameMenu\FrameSelection$3.class
 interfaccia\FrameMenu\FrameMenu$2.class
 game\items\view\Oggetto.class
 interfaccia\frameBlocks\BarraStrumenti$5.class
@@ -17,6 +16,7 @@ util\StringUtils.class
 interfaccia\framesFight\EventScreen$1.class
 game\items\model\ModelArma.class
 interfaccia\FrameMenu\FrameMenu.class
+interfaccia\frameBlocks\BarraStrumenti$6.class
 interfaccia\framesGame\FrameGame$3.class
 game\character\enemies\Png.class
 game\character\Personaggio.class
