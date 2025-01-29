@@ -28,7 +28,7 @@
 ### This game is brought to you by:
 - Gianluca Frassoni (GitHub: GianSette)
 - Matteo Milan (GitHub: Teone-Debugger)
-- Cezar Cosmin Stefan Tordai (GitHub:)
+- Cezar Cosmin Stefan Tordai (GitHub: Mugurel750)
 ---
 ### What is Dungeons and Dragons?
 ___Dungeons and Dragons___ is **not** only a text adventure. <br>
@@ -57,6 +57,8 @@ ___Are you going to defeat the mighty Aurelion Sol?___
 
  __[You can read the pdf file attached here](MANUALE.pdf)__ <br>
  ***freely inspired by GTA:SAN ANDREAS "Local Business Advertiser's Guide"***
+
+ **We recommend to play with the GUI**
 
 ---
 ### System Documentation
