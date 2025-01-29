@@ -64,7 +64,7 @@ ___Are you going to defeat the mighty Aurelion Sol?___
 ### System Documentation
 __[Unit Test report](Report.pdf)__ <br>
 __[Jira Web](https://studenti-team-zw2x4sa2.atlassian.net/jira/software/projects/DD10/boards/3/backlog?selectedIssue=DD10-2)__ <br>
-__[Jira PDF](jira.pdf)__
+__[Jira PDF](jira.pdf)__ <br>
 __[System Test Document](System_test.pdf)__ <br>
 __[System Test Report](System_Test_Report.pdf)__ <br>
 __[Design Document]()__ <br>
