@@ -74,6 +74,7 @@ __[Design Document](INSERIRE QUA NOME PDF)__ <br>
 ***Art***
 - All the artworks are generated with DALL-E (ChatGpt 4)
 - The Ascii art in the top of this file was made using [Ascii Art Archive](https://www.asciiart.eu/image-to-ascii) <br>
+- All fonts used are for Personal use Only
 
 ___Other components of the project are all made by us___
 
